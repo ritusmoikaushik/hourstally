@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Card Calculator with Multiple In and Out Punches | Hours Tally</title>
+<meta name="description" content="Free time card calculator that handles several clock in and out punches per day, unpaid breaks, overtime and biweekly pay periods. Download the finished card as Excel or PDF. No signup.">
+<link rel="canonical" href="https://hourstally.com/">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="/">Hours<span>Tally</span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="#how">How it works</a>
+      <a href="#overtime">Overtime rules</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Time card calculator with multiple in and out punches</h1>
+  <p class="sub">Clock out for lunch, back in, out again for an errand — add as many in and out pairs
+  a day as you actually worked. Totals in hours and minutes and in decimal, overtime split out, and
+  the finished card downloads as Excel or prints as PDF. Nothing to sign up for.</p>
+
+  <section class="card">
+    <div class="settings">
+      <div class="field">
+        <label for="period">Pay period</label>
+        <select id="period">
+          <option value="week">Weekly — 7 days</option>
+          <option value="biweekly">Biweekly — 14 days</option>
+          <option value="semimonthly">Semi-monthly — 15 days</option>
+          <option value="monthly">Monthly — 31 days</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="start">First day</label>
+        <input type="date" id="start">
+      </div>
+      <div class="field">
+        <label for="rule">Overtime rule</label>
+        <select id="rule">
+          <option value="weekly40">Over 40 in a week (federal)</option>
+          <option value="daily8">Over 8 in a day</option>
+          <option value="both">Over 8 a day and 40 a week</option>
+          <option value="california">California — 8 / 12 a day</option>
+          <option value="none">No overtime</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rate">Hourly rate (optional)</label>
+        <input type="number" id="rate" min="0" step="0.01" placeholder="e.g. 22.50">
+      </div>
+      <div class="field">
+        <label for="employee">Name on the card (optional)</label>
+        <input type="text" id="employee" placeholder="e.g. J. Alvarez">
+      </div>
+    </div>
+
+    <table class="card-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Clock in and out</th>
+          <th>Unpaid break (min)</th>
+          <th class="num">Hours</th>
+          <th class="num">Decimal</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+
+    <div class="totals">
+      <div class="tot"><div class="k">Total</div><div class="v" id="t-total-hm">0:00</div></div>
+      <div class="tot"><div class="k">Total decimal</div><div class="v" id="t-total-dec">0.00</div></div>
+      <div class="tot"><div class="k">Regular</div><div class="v" id="t-reg">0.00</div></div>
+      <div class="tot"><div class="k">Overtime</div><div class="v" id="t-ot">0.00</div></div>
+      <div class="tot" id="dtrow" hidden><div class="k">Double time</div><div class="v" id="t-dt">0.00</div></div>
+      <div class="tot"><div class="k">Days worked</div><div class="v" id="t-days">0</div></div>
+      <div class="tot pay" id="paybox" hidden><div class="k">Gross pay</div><div class="v" id="t-pay">0.00</div></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="btn-csv" type="button">Download for Excel</button>
+      <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
+      <button class="btn quiet" id="btn-clear" type="button">Clear</button>
+    </div>
+
+    <p class="note">Times can be typed any way you like — <code>9</code>, <code>9:15</code>,
+    <code>9:15am</code>, <code>0915</code> or <code>13:45</code> all work. A shift that ends after
+    midnight is counted correctly. Your entries stay in this browser and are never sent anywhere.</p>
+  </section>
+
+  <article>
+
+    <h2 id="how">How to fill in the card</h2>
+
+    <p>Pick your pay period and the first day of it. The rows fill themselves with dates and
+    weekday names. Then type each clock in and clock out.</p>
+
+    <p>If you left the site during the day, press <strong>+ another in / out</strong> on that row and
+    enter the second pair. There is no limit. A day with three pairs — in at 7:00, out at 11:00, back
+    at 11:30, out at 2:00, back at 2:30, out at 6:00 — totals ten hours, and every pair is shown so
+    you can check it against your own memory of the day.</p>
+
+    <p>The unpaid break column is for time that is deducted without a punch, which is how most
+    employers treat a fixed thirty minute lunch. Enter it in minutes. If you punched out for lunch
+    instead, leave the break column empty — the punches already account for it. Entering both is the
+    most common mistake people make on a time card, and it costs half an hour of pay a day.</p>
+
+    <h2 id="overtime">Which overtime rule to choose</h2>
+
+    <p>Federal law under the Fair Labor Standards Act pays overtime after forty hours in a workweek.
+    Daily overtime is a state rule, not a federal one, and only some states have it.</p>
+
+    <table>
+      <tr><th>Rule</th><th>When to pick it</th></tr>
+      <tr><td>Over 40 in a week</td><td>The federal default. Right for most of the United States.</td></tr>
+      <tr><td>Over 8 in a day</td><td>Some union contracts and public sector schedules pay by the day.</td></tr>
+      <tr><td>Over 8 a day and 40 a week</td><td>Alaska, Nevada and Colorado work broadly this way.</td></tr>
+      <tr><td>California 8 / 12</td><td>Time and a half after eight hours, double time after twelve.</td></tr>
+      <tr><td>No overtime</td><td>Salaried or exempt work, or you only want the raw hours.</td></tr>
+    </table>
+
+    <p>The calculator counts each seven day block of the period as its own week, so a fortnightly
+    card with nine hour days shows eighty regular hours and ten of overtime, not ninety regular.</p>
+
+    <h2>Hours and minutes, or decimal?</h2>
+
+    <p>Payroll systems almost always want decimal. Eight hours and five minutes is
+    <code>8:05</code> on a clock but <code>8.08</code> on a pay run, because five minutes is
+    0.083 of an hour, not 0.05. Both columns are shown for every day so you never have to convert
+    by hand, and both go into the download.</p>
+
+    <h2>What the download contains</h2>
+
+    <p>The Excel download is a CSV, which opens directly in Excel, Google Sheets, Numbers and
+    LibreOffice. It carries every day, every in and out pair, the break minutes, both hour formats,
+    and the regular, overtime and total lines at the bottom. If you entered a rate it carries the
+    gross pay too. Print gives you the same card on paper, or save it as a PDF from the print
+    dialog — that is usually the format a payroll department wants attached to an email.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+
+    <details>
+      <summary>Can it handle a night shift that ends the next morning?</summary>
+      <p>Yes. Enter 10:00pm and 6:00am and it counts eight hours. Any clock out earlier than the
+      clock in is treated as the following morning.</p>
+    </details>
+
+    <details>
+      <summary>How many in and out pairs can one day have?</summary>
+      <p>As many as you need. Two are shown to start with, and each press of + another in / out adds
+      one more. Split shifts, several site visits, or clocking out for the school run are all fine.</p>
+    </details>
+
+    <details>
+      <summary>Does it round to the nearest quarter hour?</summary>
+      <p>No. It counts the exact minutes you enter. Employer rounding rules vary and rounding that
+      always favours the employer is not lawful under the FLSA, so this calculator leaves your times
+      alone and lets you see the true total.</p>
+    </details>
+
+    <details>
+      <summary>Is my time card sent anywhere?</summary>
+      <p>No. Everything is worked out inside your browser. What you type is saved in this browser
+      only, so the card is still here if you close the tab and come back, and it is gone if you press
+      Clear or clear your browsing data. Nothing reaches a server.</p>
+    </details>
+
+    <details>
+      <summary>Is this legal advice on my pay?</summary>
+      <p>No. It is arithmetic. Overtime law varies by state and by contract, and your employer's
+      rules may differ from the options here. Use it to check your own hours, then raise anything
+      that looks wrong with whoever runs your payroll.</p>
+    </details>
+
+  </article>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    HoursTally — a free time card calculator. No account, no data leaves your browser.
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>
