@@ -143,6 +143,11 @@ function fmtHM(minutes) {
   return (minutes < 0 ? '-' : '') + Math.floor(m / 60) + ':' + String(m % 60).padStart(2, '0');
 }
 
+function fmtHMlabel(minutes) {
+  const m = Math.abs(Math.round(minutes));
+  return (minutes < 0 ? '-' : '') + Math.floor(m / 60) + 'h ' + String(m % 60).padStart(2, '0') + 'm';
+}
+
 function fmtDec(hours) { return (Math.round(hours * 100) / 100).toFixed(2); }
 
 function money(n) {
@@ -302,7 +307,7 @@ function renderDays() {
     ]));
 
     row.append(el('div', { class: 'totals' + (res.worked ? '' : ' empty') }, [
-      el('div', { class: 'hm' }, [res.worked ? fmtHM(res.minutes) : '—']),
+      el('div', { class: 'hm' }, [res.worked ? fmtHMlabel(res.minutes) : '—']),
       el('div', { class: 'dec' }, [res.worked ? fmtDec(res.minutes / 60) : ''])
     ]));
     row.classList.toggle('incomplete', res.incomplete);
@@ -351,7 +356,7 @@ function focusLastIn(di) {
 function renderTotals() {
   const r = compute(state);
   const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
-  set('t-total-hm', fmtHM(r.totalMinutes));
+  set('t-total-hm', fmtHMlabel(r.totalMinutes));
   const stub = document.querySelector('.stub-value'); if (stub) stub.classList.toggle('empty', r.totalMinutes === 0);
   set('t-total-dec', fmtDec(r.totalMinutes / 60));
   set('t-reg', fmtDec(r.reg));
@@ -367,7 +372,7 @@ function renderTotals() {
   document.querySelectorAll('#days .day').forEach((row, i) => {
     const res = dayMinutes(state.days[i]);
     const hm = row.querySelector('.hm'), dec = row.querySelector('.dec');
-    hm.textContent = res.worked ? fmtHM(res.minutes) : '—';
+    hm.textContent = res.worked ? fmtHMlabel(res.minutes) : '—';
     dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '';
     row.querySelector('.totals').classList.toggle('empty', !res.worked);
     row.classList.toggle('bad', res.bad);
@@ -464,5 +469,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { parseTime, parseTimeEx, applyMeridian, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { fmtHMlabel, parseTime, parseTimeEx, applyMeridian, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }

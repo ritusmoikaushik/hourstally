@@ -161,6 +161,7 @@ check('six days worked: no seventh-day rule', () => {
 
 console.log('formatting');
 check('h:mm pads', () => assert.strictEqual(e.fmtHM(485), '8:05'));
+check('screen label', () => { assert.strictEqual(e.fmtHMlabel(485), '8h 05m'); assert.strictEqual(e.fmtHMlabel(721), '12h 01m'); assert.strictEqual(e.fmtHMlabel(0), '0h 00m'); });
 check('decimal rounds', () => assert.strictEqual(e.fmtDec(485 / 60), '8.08'));
 
 console.log(failures ? '\n' + failures + ' FAILED' : '\nall passed');

@@ -140,7 +140,7 @@ input.brk { width: 76px; height: 36px; font-size: 16px; padding: 0 8px; text-ali
 /* the tear-off stub at the bottom */
 .stub { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: end; padding: 18px 20px 4px; }
 .stub-total .stub-label { font-size: 13px; color: var(--ink-soft); }
-.stub-total .stub-value { font-size: 40px; line-height: 1; font-weight: 500; color: var(--stamp); letter-spacing: -1px; }
+.stub-total .stub-value { font-size: 36px; line-height: 1; font-weight: 500; color: var(--stamp); letter-spacing: -1px; }
 .stub-total .stub-value.empty { color: #b3a98d; }
 .stub-total .stub-value small { font-size: 18px; color: var(--ink-soft); font-weight: 400; margin-left: 10px; letter-spacing: 0; }
 .stub-breakdown { display: grid; grid-template-columns: auto auto; gap: 2px 14px; font-size: 15px; text-align: right; }
