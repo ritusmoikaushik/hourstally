@@ -49,10 +49,10 @@ body {
 
 /* ---------- type ---------- */
 
-h1 { font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2; font-weight: 600; letter-spacing: -0.4px; margin: 30px 0 8px; max-width: 30ch; }
+h1 { font-size: clamp(24px, 3.6vw, 32px); line-height: 1.2; font-weight: 600; letter-spacing: -0.4px; margin: 30px 0 8px; text-wrap: balance; }
 h2 { font-size: 21px; font-weight: 600; letter-spacing: -0.2px; margin: 36px 0 10px; }
 h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
-.lede { color: var(--ink-soft); font-size: 17px; max-width: var(--text-max); margin: 0 0 22px; }
+.lede { color: var(--ink-soft); font-size: 17px; margin: 0 0 22px; text-wrap: pretty; }
 .mono, .num, input.time, input.brk, .hm, .dec, .stub-value, .conv input { font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
 
 /* ---------- the card ---------- */
