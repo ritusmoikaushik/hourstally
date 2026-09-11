@@ -10,6 +10,7 @@ Run `python scripts/serve.py` and open http://localhost:8000 — it serves clean
 
     docs/GOOGLE-RULES.md   read first — why two sister sites were removed from Google, and the rules that follow
     docs/PLAN.md           what gets built, in what order, and what makes each page its own tool
+    docs/SCHEDULE.md       the dated calendar - one page every two weeks, measurements every 28 days
     docs/MEASUREMENTS.md   publish log and 28-day Search Console / GA4 pulls
     PROJECT.md             why this niche — the scorecard and the evidence
 
