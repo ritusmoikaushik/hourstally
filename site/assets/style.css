@@ -232,7 +232,8 @@ details p { margin: 10px 0 0; }
   .day .totals { grid-area: total; display: flex; gap: 12px; align-items: baseline; line-height: 1.4; }
   .hm, .dec { line-height: 1.4; }
   .dec::before { content: "= "; color: var(--ink-soft); }
-  input.time { width: 92px; }
+  .pair { grid-template-columns: minmax(0, 1fr) 38px 18px minmax(0, 1fr) 38px 24px 36px; gap: 4px; }
+  input.time { padding: 0 4px; }
   .stub { grid-template-columns: 1fr; }
   .stub-breakdown { text-align: left; grid-template-columns: auto 1fr; }
   .stub-total .stub-value { font-size: 34px; }
@@ -255,3 +256,9 @@ details p { margin: 10px 0 0; }
 
 .stub-breakdown > div { display: contents; }
 .stub-breakdown > div[hidden] { display: none; }
+
+@media (max-width: 340px) {
+  .pair { grid-template-columns: minmax(0, 1fr) 34px 16px minmax(0, 1fr) 34px 22px 34px; gap: 3px; }
+  input.time { font-size: 15px; padding: 0 2px; }
+  .mer { font-size: 11px; }
+}
