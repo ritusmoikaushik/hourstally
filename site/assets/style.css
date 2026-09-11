@@ -97,9 +97,11 @@ h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
 
 .day { padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
 .day.bad { background: var(--bad); }
-.badnote, .incnote { display: none; font-weight: 400; font-size: 12px; line-height: 1.2; }
+.badnote, .incnote, .longnote { display: none; font-weight: 400; font-size: 12px; line-height: 1.2; }
 .badnote { color: var(--stamp); }
 .incnote { color: var(--ink-soft); }
+.longnote { color: #8a5a00; }
+.day.long:not(.bad) .longnote { display: block; }
 .day.bad .badnote { display: block; }
 .day.incomplete:not(.bad) .incnote { display: block; }
 .day-name { font-weight: 600; line-height: 34px; white-space: nowrap; }
@@ -257,7 +259,7 @@ details p { margin: 10px 0 0; }
   @page { margin: 14mm; }
   body { background: #fff; color: #000; }
   .site-head nav, .lede, .actions, .hint, .site-foot, article, aside.rail,
-  .pair .add, .pair .x, .pair .slot, .incnote, .noprint { display: none !important; }
+  .pair .add, .pair .x, .pair .slot, .incnote, .longnote, .noprint { display: none !important; }
   .site-head { border-bottom: 1px solid #000; }
   .site-head .wrap { height: 44px; }
   h1 { font-size: 18px; margin: 12px 0 10px; }

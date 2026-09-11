@@ -85,6 +85,13 @@ check('unreadable text is bad even with the other box empty', () => {
   const r = e.dayMinutes(day([{ in: 'lunch', out: '', inM: 'am', outM: 'pm' }], ''));
   assert.strictEqual(r.bad, true);
 });
+check('a 23-hour stretch is counted but flagged long', () => {
+  const r = e.dayMinutes(day([{ in: '3', out: '2', inM: 'am', outM: 'am' }], ''));
+  assert.strictEqual(r.minutes, 23 * 60); assert.strictEqual(r.long, true);
+});
+check('a 12-hour stretch is not flagged', () => {
+  assert.strictEqual(e.dayMinutes(day([{ in: '7', out: '7', inM: 'am', outM: 'pm' }], '')).long, false);
+});
 check('blank day is not worked', () => {
   assert.strictEqual(e.dayMinutes(day([{ in: '', out: '' }], '')).worked, false);
 });

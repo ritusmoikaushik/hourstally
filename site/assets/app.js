@@ -71,7 +71,7 @@ function segmentMinutes(inRaw, outRaw, inMer, outMer) {
 
 // bad = something typed that cannot be read. incomplete = one box of a pair still empty.
 function dayMinutes(day) {
-  let total = 0, any = false, bad = false, incomplete = false;
+  let total = 0, any = false, bad = false, incomplete = false, long = false;
   for (const seg of day.segments) {
     if (!seg.in && !seg.out) continue;
     if (seg.in && parseTimeEx(seg.in) === null) bad = true;
@@ -79,12 +79,13 @@ function dayMinutes(day) {
     if (!seg.in || !seg.out) { incomplete = true; continue; }
     const m = segmentMinutes(seg.in, seg.out, seg.inM, seg.outM);
     if (m === null) continue;
+    if (m > 16 * 60) long = true;
     total += m; any = true;
   }
   const brk = parseInt(day.breakMins, 10);
   if (any && brk > 0) total -= brk;
   if (total < 0) total = 0;
-  return { minutes: any ? total : 0, worked: any, bad, incomplete };
+  return { minutes: any ? total : 0, worked: any, bad, incomplete, long };
 }
 
 function splitDay(minutes, rule) {
@@ -258,7 +259,8 @@ function renderDays() {
       day.label || ('Day ' + (di + 1)),
       day.date ? el('small', {}, [shortDate(day.date)]) : null,
       el('span', { class: 'badnote' }, ['Cannot read a time on this line']),
-      el('span', { class: 'incnote' }, ['A clock-out is missing'])
+      el('span', { class: 'incnote' }, ['A clock-out is missing']),
+      el('span', { class: 'longnote' }, ['A shift over 16 hours — check am and pm'])
     ]));
 
     const pairs = el('div', { class: 'pairs' });
@@ -311,6 +313,7 @@ function renderDays() {
       el('div', { class: 'dec' }, [res.worked ? fmtDec(res.minutes / 60) : ''])
     ]));
     row.classList.toggle('incomplete', res.incomplete);
+    row.classList.toggle('long', res.long);
 
     host.append(row);
   });
@@ -377,6 +380,7 @@ function renderTotals() {
     row.querySelector('.totals').classList.toggle('empty', !res.worked);
     row.classList.toggle('bad', res.bad);
     row.classList.toggle('incomplete', res.incomplete);
+    row.classList.toggle('long', res.long);
   });
 }
 
