@@ -71,12 +71,14 @@ function segmentMinutes(inRaw, outRaw, inMer, outMer) {
 
 // bad = something typed that cannot be read. incomplete = one box of a pair still empty.
 function dayMinutes(day) {
-  let total = 0, any = false, bad = false, incomplete = false, long = false;
+  let total = 0, any = false, bad = false, missingIn = false, missingOut = false, long = false;
   for (const seg of day.segments) {
     if (!seg.in && !seg.out) continue;
     if (seg.in && parseTimeEx(seg.in) === null) bad = true;
     if (seg.out && parseTimeEx(seg.out) === null) bad = true;
-    if (!seg.in || !seg.out) { incomplete = true; continue; }
+    if (!seg.in) missingIn = true;
+    if (!seg.out) missingOut = true;
+    if (!seg.in || !seg.out) continue;
     const m = segmentMinutes(seg.in, seg.out, seg.inM, seg.outM);
     if (m === null) continue;
     if (m > 16 * 60) long = true;
@@ -85,7 +87,7 @@ function dayMinutes(day) {
   const brk = parseInt(day.breakMins, 10);
   if (any && brk > 0) total -= brk;
   if (total < 0) total = 0;
-  return { minutes: any ? total : 0, worked: any, bad, incomplete, long };
+  return { minutes: any ? total : 0, worked: any, bad, missingIn, missingOut, incomplete: missingIn || missingOut, long };
 }
 
 function splitDay(minutes, rule) {
@@ -257,10 +259,7 @@ function renderDays() {
 
     row.append(el('div', { class: 'day-name' }, [
       day.label || ('Day ' + (di + 1)),
-      day.date ? el('small', {}, [shortDate(day.date)]) : null,
-      el('span', { class: 'badnote' }, ['Cannot read a time on this line']),
-      el('span', { class: 'incnote' }, ['A clock-out is missing']),
-      el('span', { class: 'longnote' }, ['A shift over 16 hours — check am and pm'])
+      day.date ? el('small', {}, [shortDate(day.date)]) : null
     ]));
 
     const pairs = el('div', { class: 'pairs' });
@@ -312,8 +311,9 @@ function renderDays() {
       el('div', { class: 'hm' }, [res.worked ? fmtHMlabel(res.minutes) : '—']),
       el('div', { class: 'dec' }, [res.worked ? fmtDec(res.minutes / 60) : ''])
     ]));
-    row.classList.toggle('incomplete', res.incomplete);
+    row.append(el('div', { class: 'daynotes' }, [el('span', { class: 'note' }, [noteText(res)])]));
     row.classList.toggle('long', res.long);
+    row.classList.toggle('noted', !!noteText(res));
 
     host.append(row);
   });
@@ -350,6 +350,16 @@ function merSwitch(seg, key, label) {
   return b;
 }
 
+// Red for anything that stops the card being submitted; amber for a doubt.
+function noteText(res) {
+  if (res.bad) return 'Cannot read a time on this line';
+  if (res.missingIn && res.missingOut) return 'A clock-in and a clock-out are missing';
+  if (res.missingIn) return 'A clock-in is missing';
+  if (res.missingOut) return 'A clock-out is missing';
+  if (res.long) return 'A shift over 16 hours — check am and pm';
+  return '';
+}
+
 function focusLastIn(di) {
   const rows = document.querySelectorAll('#days .day');
   const ins = rows[di] && rows[di].querySelectorAll('input.time');
@@ -379,8 +389,10 @@ function renderTotals() {
     dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '';
     row.querySelector('.totals').classList.toggle('empty', !res.worked);
     row.classList.toggle('bad', res.bad);
-    row.classList.toggle('incomplete', res.incomplete);
     row.classList.toggle('long', res.long);
+    const text = noteText(res);
+    row.querySelector('.daynotes .note').textContent = text;
+    row.classList.toggle('noted', !!text);
   });
 }
 

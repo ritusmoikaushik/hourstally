@@ -97,13 +97,9 @@ h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
 
 .day { padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
 .day.bad { background: var(--bad); }
-.badnote, .incnote, .longnote { display: none; font-weight: 400; font-size: 12px; line-height: 1.2; }
-.badnote { color: var(--stamp); }
-.incnote { color: var(--ink-soft); }
-.longnote { color: #8a5a00; }
-.day.long:not(.bad) .longnote { display: block; }
-.day.bad .badnote { display: block; }
-.day.incomplete:not(.bad) .incnote { display: block; }
+.daynotes { display: none; grid-column: 1 / -1; font-size: 13px; line-height: 1.3; color: var(--stamp); padding-top: 2px; }
+.day.noted .daynotes { display: block; }
+.day.long:not(.bad) .daynotes { color: #8a5a00; }
 .day-name { font-weight: 600; line-height: 34px; white-space: nowrap; }
 .day-name small { font-weight: 400; color: var(--ink-soft); margin-left: 6px; }
 
@@ -230,11 +226,13 @@ details p { margin: 10px 0 0; }
     grid-template-areas:
       "name total"
       "pairs pairs"
-      "brk brk";
+      "brk brk"
+      "notes notes";
     gap: 6px 10px;
   }
   .day-name { grid-area: name; line-height: 1.4; }
   .pairs { grid-area: pairs; }
+  .daynotes { grid-area: notes; }
   .day .brkwrap { grid-area: brk; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-soft); }
   .day .totals { grid-area: total; display: flex; gap: 12px; align-items: baseline; line-height: 1.4; }
   .hm, .dec { line-height: 1.4; }
@@ -259,7 +257,7 @@ details p { margin: 10px 0 0; }
   @page { margin: 14mm; }
   body { background: #fff; color: #000; }
   .site-head nav, .lede, .actions, .hint, .site-foot, article, aside.rail,
-  .pair .add, .pair .x, .pair .slot, .incnote, .longnote, .noprint { display: none !important; }
+  .pair .add, .pair .x, .pair .slot, .daynotes, .noprint { display: none !important; }
   .site-head { border-bottom: 1px solid #000; }
   .site-head .wrap { height: 44px; }
   h1 { font-size: 18px; margin: 12px 0 10px; }
@@ -273,7 +271,7 @@ details p { margin: 10px 0 0; }
   .field input::placeholder, input.time::placeholder, input.brk::placeholder { color: transparent; }
   .tc-cols { display: grid !important; color: #444; border-bottom: 1px solid #000; }
   .day { border-bottom: 1px solid #bbb; padding: 6px 12px; grid-template-columns: 92px minmax(0, 1fr) 84px 72px 72px; grid-template-areas: none; gap: 0 12px; }
-  .day-name, .pairs, .day .brkwrap, .hm, .dec { grid-area: auto; }
+  .day-name, .pairs, .day .brkwrap, .hm, .dec, .daynotes { grid-area: auto; }
   .dec::before, .dec::after { content: none !important; }
   .day.bad { background: none; }
   .day-name { line-height: 1.4; }

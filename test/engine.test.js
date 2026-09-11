@@ -81,6 +81,10 @@ check('half-filled pair is incomplete, not bad, not counted', () => {
   const r = e.dayMinutes(day([{ in: '9', out: '', inM: 'am', outM: 'pm' }], ''));
   assert.strictEqual(r.incomplete, true); assert.strictEqual(r.bad, false); assert.strictEqual(r.worked, false);
 });
+check('missing clock-in is reported as such', () => {
+  const r = e.dayMinutes(day([{ in: '', out: '5', inM: 'am', outM: 'pm' }], ''));
+  assert.strictEqual(r.missingIn, true); assert.strictEqual(r.missingOut, false);
+});
 check('unreadable text is bad even with the other box empty', () => {
   const r = e.dayMinutes(day([{ in: 'lunch', out: '', inM: 'am', outM: 'pm' }], ''));
   assert.strictEqual(r.bad, true);
