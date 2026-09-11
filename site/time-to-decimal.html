@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 26 26%27%3E%3Crect x=%273%27 y=%272%27 width=%2720%27 height=%2722%27 rx=%272%27 fill=%27%23fbf6e8%27 stroke=%27%231b2a41%27 stroke-width=%271.6%27/%3E%3Cpath d=%27M7 10h12M7 14h12M7 18h8%27 stroke=%27%231b2a41%27 stroke-width=%271.4%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2718.5%27 cy=%276%27 r=%271.8%27 fill=%27%23b3372c%27/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
 <style>
   .tc-body { padding: 18px 20px 0; }
@@ -34,7 +35,7 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="wordmark" href="index.html">HoursTally</a>
+    <a class="wordmark" href="index.html"><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="3" y="2" width="20" height="22" rx="2" fill="#fbf6e8" stroke="#1b2a41" stroke-width="1.6"/><path d="M7 10h12M7 14h12M7 18h8" stroke="#1b2a41" stroke-width="1.4" stroke-linecap="round"/><circle cx="18.5" cy="6" r="1.8" fill="#b3372c"/></svg>HoursTally</a>
     <nav>
       <a href="index.html">Time card</a>
       <a href="time-to-decimal.html" aria-current="page">Time to decimal</a>
@@ -96,6 +97,7 @@
     leaves your browser.</p>
   </section>
 
+  <div class="body">
   <article>
 
     <h2>Why payroll wants decimal, and why 8:30 is not 8.30</h2>
@@ -211,11 +213,44 @@
     </details>
 
   </article>
+    <aside class="rail">
+      <div class="rail-box">
+        <h3>Tools</h3>
+        <ul>
+        <li><a href="index.html">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li aria-current="page"><a href="time-to-decimal.html">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        </ul>
+      </div>
+      <div class="rail-box">
+        <h3>On this page</h3>
+        <ul>
+        <li><a href="#chart">Minutes to decimal chart</a></li>
+        <li><a href="#faq">Questions people ask</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
 </main>
 
 <footer class="site-foot">
   <div class="wrap">
-    HoursTally is a free time card calculator. No account, and nothing you type leaves your browser.
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="index.html">Time card calculator</a></li>
+        <li><a href="time-to-decimal.html">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
