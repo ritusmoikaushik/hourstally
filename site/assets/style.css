@@ -235,6 +235,7 @@ details p { margin: 10px 0 0; }
   .day .totals { grid-area: total; display: flex; gap: 12px; align-items: baseline; line-height: 1.4; }
   .hm, .dec { line-height: 1.4; }
   .totals:not(.empty) .dec::before { content: "= "; color: var(--ink-soft); }
+  .totals:not(.empty) .dec::after { content: " hrs"; color: var(--ink-soft); font-family: "IBM Plex Sans", sans-serif; font-size: 13px; }
   .pair { grid-template-columns: minmax(0, 1fr) 38px 18px minmax(0, 1fr) 38px 24px 36px; gap: 4px; }
   input.time { padding: 0 4px; }
   .stub { grid-template-columns: 1fr; }
