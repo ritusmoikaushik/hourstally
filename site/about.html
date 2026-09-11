@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | HoursTally</title>
+<meta name="description" content="Who builds HoursTally, why the time card calculator exists, and how to get in touch.">
+<link rel="canonical" href="https://hourstally.com/about">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AboutPage","name":"About HoursTally","url":"https://hourstally.com/about","mainEntity":{"@type":"Person","name":"Ritusmoi Kaushik","jobTitle":"Software engineer","url":"https://hourstally.com/about","sameAs":["https://github.com/ritusmoikaushik","https://gstextract.com/about"]}}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cg fill=%27%231b2a41%27%3E%3Crect x=%274%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2710.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2717%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2723.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3C/g%3E%3Cpath d=%27M3 26 L29 6%27 stroke=%27%23b3372c%27 stroke-width=%273.8%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#b3372c" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="/time-to-decimal">Time to decimal</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>About HoursTally</h1>
+  <p class="lede">One person, a few calculators, and a rule that nothing you type ever leaves your browser.</p>
+
+  <div class="body">
+  <article>
+    <h2>Who runs this</h2>
+    <p>My name is Ritusmoi Kaushik. I am a software engineer based in India, and I build small,
+    free tools for jobs that are usually done by hand. HoursTally is one of them. Before this I
+    built <a href="https://gstextract.com/about">GSTExtract</a>, which pulls the numbers out of
+    Indian tax invoices so accountants stop retyping them. Same idea, different pile of paper.</p>
+
+    <h2>Why this site exists</h2>
+    <p>Counting hours for pay is a task that looks trivial and is not. A real working day is not
+    one clock-in and one clock-out. It is in at 7:00, out for lunch, back at 11:30, out to collect
+    a child, back at 2:30, out at 6:00. When I went looking at the free time card calculators
+    people actually use, every one of them assumed one pair of punches a day. To record a real day
+    you had to add up the pieces yourself first, which is the thing the calculator was supposed to
+    do.</p>
+    <p>So the first tool here does that: as many ins and outs a day as you actually had, unpaid
+    breaks, the overtime rule that applies to you, and the total in both the clock format you
+    think in and the decimal format payroll wants. Then the whole card downloads as a file, because
+    a number on a screen is not something you can attach to an email.</p>
+    <p>The second tool is the time-to-decimal converter, because the question "what is 7:45 in
+    decimal" is asked thousands of times a day and half the answers online are wrong.</p>
+
+    <h2>How it is paid for</h2>
+    <p>It is not, yet. Hosting is close to free and I pay it. If the site earns enough visitors,
+    it will carry ordinary display advertising, and the <a href="/privacy">privacy page</a> will
+    say so before the first advert appears. There will never be a signup, a paid tier, or a
+    version of the calculator that withholds the answer until you hand over an email address.</p>
+
+    <h2>How I know the arithmetic is right</h2>
+    <p>Every rule the calculators apply is written down on the
+    <a href="/how-it-counts">how it counts</a> page with worked examples, so a payroll clerk can
+    check the tool against their own method. Behind that, the code has a test suite that runs the
+    same examples on every change. If you find a case it gets wrong, tell me and it becomes a
+    test.</p>
+
+    <h2>Get in touch</h2>
+    <ul>
+      <li>Email: <a href="mailto:hello@hourstally.com">hello@hourstally.com</a></li>
+      <li>GitHub: <a href="https://github.com/ritusmoikaushik">github.com/ritusmoikaushik</a></li>
+    </ul>
+    <p>Corrections and awkward edge cases are the most useful mail I get.</p>
+  </article>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. Built by <a href="/about">Ritusmoi Kaushik</a>. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/how-it-counts">How it counts</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

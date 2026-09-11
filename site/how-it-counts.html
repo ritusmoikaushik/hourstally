@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it counts | HoursTally</title>
+<meta name="description" content="Every rule the HoursTally time card calculator applies - reading times, breaks, overtime, decimal - with worked examples.">
+<link rel="canonical" href="https://hourstally.com/how-it-counts">
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cg fill=%27%231b2a41%27%3E%3Crect x=%274%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2710.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2717%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2723.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3C/g%3E%3Cpath d=%27M3 26 L29 6%27 stroke=%27%23b3372c%27 stroke-width=%273.8%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#b3372c" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="/time-to-decimal">Time to decimal</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>How it counts</h1>
+  <p class="lede">Every rule the time card calculator applies, with worked examples, so you can check
+  its answers against your own.</p>
+
+  <div class="body">
+  <article>
+    <h2>Reading a time</h2>
+    <p>A time is read in whatever form you type it. <code>9</code>, <code>9:15</code>,
+    <code>9:15am</code>, <code>915</code>, <code>0915</code> and <code>13:45</code> are all
+    accepted. Minutes above 59 or hours above 23 are rejected and the row turns pink.</p>
+    <p>A time with no am or pm and an hour from 1 to 12 is ambiguous: <code>4</code> could be
+    four in the morning or four in the afternoon. The calculator resolves it by choosing the reading
+    that gives the shorter shift. So <code>8</code> to <code>4</code> is eight hours, not twenty.
+    If you mean the small hours, write <code>4am</code>, <code>04:00</code> or <code>0400</code> &mdash;
+    a leading zero or a four-digit form is treated as deliberate 24-hour time and never reinterpreted.</p>
+
+    <h2>Totalling a day</h2>
+    <p>Each in and out pair is one segment. A segment's length is clock-out minus clock-in. If the
+    clock-out is earlier than the clock-in, the shift crossed midnight and 24 hours are added:
+    <code>10:00pm</code> to <code>6:00am</code> is eight hours.</p>
+    <p>The segments of a day are added together. Then the unpaid break, if you entered one, is
+    subtracted from the day's total. A day cannot go below zero. A day with no times entered
+    counts as not worked and is left out of every total.</p>
+    <table>
+      <tr><th>Day</th><th>Segments</th><th>Break</th><th>Total</th></tr>
+      <tr><td>Mon</td><td>7:00&ndash;11:00, 11:30&ndash;2:00, 2:30&ndash;6:00</td><td>none</td><td>4:00 + 2:30 + 3:30 = <strong>10:00</strong></td></tr>
+      <tr><td>Tue</td><td>8:52&ndash;5:33pm</td><td>30 min</td><td>8:41 &minus; 0:30 = <strong>8:11</strong></td></tr>
+      <tr><td>Fri</td><td>10:00pm&ndash;6:00am</td><td>none</td><td><strong>8:00</strong></td></tr>
+    </table>
+    <p>If you punched out for lunch, the punches already exclude it. Enter a break only for time
+    that is deducted without a punch. Entering both deducts it twice.</p>
+
+    <h2>Hours and decimal</h2>
+    <p>Decimal hours are minutes divided by sixty, shown to two places. 8:11 is 8 + 11 &divide; 60 =
+    8.1833, shown as <code>8.18</code>. 8:05 is <code>8.08</code>, not 8.05. The totals row uses
+    the exact minutes, not the sum of rounded days, so it can differ from adding the decimal
+    column by hand by a hundredth. The exact figure is the correct one.</p>
+
+    <h2>Overtime rules</h2>
+    <p>Overtime is worked out one week at a time. A biweekly or monthly card is split into blocks
+    of seven days from the first day, and each block is judged on its own. Nothing carries from
+    one week into the next.</p>
+    <table>
+      <tr><th>Rule</th><th>What it does</th></tr>
+      <tr><td>Over 40 a week</td><td>All hours are regular until the week passes 40. Everything past 40 is overtime.</td></tr>
+      <tr><td>Over 8 a day</td><td>Each day: the first 8 hours are regular, the rest overtime. No weekly test.</td></tr>
+      <tr><td>Over 8 a day, 40 a week</td><td>Daily rule first, then if the remaining regular hours pass 40 in the week, the excess is also overtime. Hours are never counted twice.</td></tr>
+      <tr><td>California 8 / 12</td><td>Each day: first 8 regular, 8 to 12 overtime, past 12 double time. Then the weekly 40 test on regular hours. And if all seven days of a week are worked, the seventh day is paid at overtime for its first 8 hours and double time after that.</td></tr>
+      <tr><td>None</td><td>Every hour is regular.</td></tr>
+    </table>
+    <p>Worked example, California rule, one week of 8, 8, 8, 8, 8, 8 and 10 hours: the first six
+    days are 48 regular hours, of which 8 pass the weekly 40 and become overtime. The seventh day
+    is worked, so its 10 hours are 8 overtime and 2 double time. Result: <strong>40 regular,
+    16 overtime, 2 double time</strong>.</p>
+
+    <h2>Pay</h2>
+    <p>If you enter a rate, gross pay is regular hours &times; rate, plus overtime hours &times; 1.5 &times; rate,
+    plus double time hours &times; 2 &times; rate. It is gross &mdash; before tax, before deductions. It does not
+    apply a blended rate for two jobs at different rates; that calculator is on the list.</p>
+
+    <h2>What it does not do</h2>
+    <ul>
+      <li>It does not round. Employer rounding to the nearest quarter hour is lawful only when it
+      rounds both ways; this calculator shows exact minutes so you can see what rounding did.</li>
+      <li>It does not know your state's meal break law, your union contract or your employer's
+      handbook. Pick the rule that matches; if none does, use "none" and apply your own.</li>
+      <li>It does not send anything anywhere. Every number on this page is produced on your device.</li>
+    </ul>
+
+    <h2>If you find a mistake</h2>
+    <p>Send the exact times and the answer you expected to
+    <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Every reported case becomes a
+    permanent test so it cannot come back.</p>
+  </article>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. Built by <a href="/about">Ritusmoi Kaushik</a>. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/how-it-counts">How it counts</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -173,6 +173,8 @@ aside.rail { position: sticky; top: 16px; display: flex; flex-direction: column;
 .rail-box li small { display: block; color: var(--ink-soft); font-size: 13px; }
 .rail-box li[aria-current] a { font-weight: 600; }
 
+.byline { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--hair); font-size: 14px; color: var(--ink-soft); }
+
 details { border-top: 1px solid #d3d7dd; padding: 12px 0; }
 details:last-of-type { border-bottom: 1px solid #d3d7dd; }
 details summary { cursor: pointer; font-weight: 600; }
