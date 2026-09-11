@@ -100,8 +100,14 @@
       </select>
     </div>
     <div class="bulk">
-      <textarea id="bulk-in" aria-label="Values to convert, one per line" spellcheck="false"></textarea>
-      <textarea id="bulk-out" aria-label="Converted values" readonly></textarea>
+      <div class="field">
+        <label for="bulk-in" id="bulk-in-label">Paste times here, one per line</label>
+        <textarea id="bulk-in" spellcheck="false"></textarea>
+      </div>
+      <div class="field">
+        <label for="bulk-out" id="bulk-out-label">Decimal hours</label>
+        <textarea id="bulk-out" readonly></textarea>
+      </div>
     </div>
     <p class="hint" id="bulk-note" style="padding-left:0"></p>
    </div>
