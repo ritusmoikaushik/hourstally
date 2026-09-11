@@ -126,6 +126,8 @@ function renderBulk() {
     ? rows.length + ' lines · total ' + fmtHM(total) + ' = ' + fmtDec(minutesToDecimal(total)) + ' hours' + (bad ? ' · ' + bad + ' could not be read' : '')
     : '';
   $('bulk-in').placeholder = direction === 'toDecimal' ? '7:45\n8:05\n0:30' : '7.75\n8.08\n0.5';
+  $('bulk-in-label').textContent = direction === 'toDecimal' ? 'Paste times here, one per line' : 'Paste decimal hours here, one per line';
+  $('bulk-out-label').textContent = direction === 'toDecimal' ? 'Decimal hours' : 'Hours and minutes';
 }
 
 function renderChart() {
