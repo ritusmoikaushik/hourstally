@@ -7,10 +7,11 @@ does not exist. Rule 10 in `GOOGLE-RULES.md`.
 
 | Date | Page | Indexable pages after this | Notes |
 |---|---|---|---|
-| — | `/` time card calculator | — | built 2026-09-10, not yet live |
+| 2026-09-11 | `/` time card calculator | 1 | site went live on hourstally.com via Cloudflare Pages, repo `main` |
+| 2026-09-11 | `/time-to-decimal` | 2 | launched together with the time card |
 
 ## 28-day pulls
 
 | Pulled | Window | Clicks | Impressions | Avg position | Tier-1 sessions | Google updates in window | Notes |
 |---|---|---|---|---|---|---|---|
-| — | — | — | — | — | — | — | site not yet live |
+| — | — | — | — | — | — | — | first pull due 2026-10-09 (28 days after launch) |
