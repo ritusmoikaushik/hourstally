@@ -28,14 +28,24 @@
   .bulk textarea { width: 100%; min-height: 190px; font: 15px/1.6 "IBM Plex Mono", Consolas, monospace; padding: 10px; background: var(--field); border: 1px solid var(--rule-strong); border-radius: 3px; resize: vertical; color: var(--ink); }
   .bulk textarea[readonly] { background: rgba(255,255,255,.4); }
   .bulk textarea::placeholder { color: #a39a80; }
-  .chart { columns: 3; column-gap: 28px; }
-  .chart table { break-inside: avoid; font-size: 14px; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
-  .chart td, .chart th { padding: 3px 6px; text-align: right; }
-  .chart th { font-family: "IBM Plex Sans", sans-serif; }
+  .chartwrap { margin-top: 40px; }
+  .chartwrap h2 { margin-top: 0; }
+  .chartwrap p { max-width: var(--text-max); color: var(--ink); }
+  .chart { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .chart table { width: 100%; border-collapse: collapse; font-size: 15px; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; background: var(--bar); border: 1px solid var(--hair); }
+  .chart th { font-family: "IBM Plex Sans", sans-serif; font-weight: 600; color: var(--ink-soft); background: var(--page); }
+  .chart td, .chart th { padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--hair); }
   .chart td:first-child, .chart th:first-child { text-align: left; }
-  @media (max-width: 760px) { .tc-body { padding: 14px 14px 0; } .conv { grid-template-columns: 1fr; } .conv .eq { display: none; } .bulk { grid-template-columns: 1fr; } .chart { columns: 2; } }
-  @media (max-width: 400px) { .chart { columns: 1; } }
-  @media print { .chart { columns: 3; } .tc, .rounding { display: none; } article h2#chart, article .chart { display: block; } }
+  .chart tr:last-child td { border-bottom: 0; }
+  @media (max-width: 760px) { .tc-body { padding: 14px 14px 0; } .conv { grid-template-columns: 1fr; } .conv .eq { display: none; } .bulk { grid-template-columns: 1fr; } .chart { grid-template-columns: 1fr; } }
+  @media print {
+    .tc, .rounding, h1, .lede, .body { display: none !important; }
+    .chartwrap { margin-top: 0; display: block !important; }
+    .chart { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .chart table { border: 0; }
+    .chart th { border-bottom: 1px solid #000; background: none; color: #000; }
+    .chart td { border-bottom: 1px solid #ccc; }
+  }
 </style>
 </head>
 <body>
@@ -172,20 +182,6 @@
     wrong tool — use the <a href="/">time card calculator</a>, which takes the punches,
     handles breaks and overtime, and gives you decimal totals at the end.</p>
 
-    <h2 id="chart">Minutes to decimal chart</h2>
-
-    <p>Every minute from one to sixty, exact to two places, and what it becomes under quarter-hour
-    and tenth-hour rounding. Print it and keep it by the desk.</p>
-
-    <div class="actions noprint"><button class="btn ghost" id="btn-print-chart" type="button">Print the chart</button></div>
-
-    <div class="chart">
-      <table>
-        <thead><tr><th>Min</th><th>Exact</th><th>¼ hr</th><th>⅒ hr</th></tr></thead>
-        <tbody id="chart-rows"></tbody>
-      </table>
-    </div>
-
     <h2 id="faq">Questions people ask</h2>
 
     <details>
@@ -238,6 +234,18 @@
       </div>
     </aside>
   </div>
+
+  <section class="chartwrap" id="chart">
+    <h2>Minutes to decimal chart</h2>
+    <p>Every minute from one to sixty, exact to two places, and what it becomes under quarter-hour
+    and tenth-hour rounding. Print it and keep it by the desk.</p>
+    <div class="actions noprint" style="padding:0 0 12px"><button class="btn ghost" id="btn-print-chart" type="button">Print the chart</button></div>
+    <div class="chart">
+      <table><thead><tr><th>Min</th><th>Exact</th><th>¼ hr</th><th>⅒ hr</th></tr></thead><tbody id="chart-1"></tbody></table>
+      <table><thead><tr><th>Min</th><th>Exact</th><th>¼ hr</th><th>⅒ hr</th></tr></thead><tbody id="chart-2"></tbody></table>
+      <table><thead><tr><th>Min</th><th>Exact</th><th>¼ hr</th><th>⅒ hr</th></tr></thead><tbody id="chart-3"></tbody></table>
+    </div>
+  </section>
 </main>
 
 <footer class="site-foot">

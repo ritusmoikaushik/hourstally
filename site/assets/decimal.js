@@ -129,16 +129,16 @@ function renderBulk() {
 }
 
 function renderChart() {
-  const tbody = $('chart-rows');
-  if (!tbody) return;
-  tbody.textContent = '';
+  const bodies = [$('chart-1'), $('chart-2'), $('chart-3')];
+  if (!bodies[0]) return;
+  bodies.forEach(b => { b.textContent = ''; });
   for (let m = 1; m <= 60; m++) {
     const h = m / 60;
     const tr = document.createElement('tr');
     for (const v of [m, fmtDec(h), fmtDec(roundHours(h, 'quarter')), fmtDec(roundHours(h, 'tenth'), 1)]) {
       const td = document.createElement('td'); td.textContent = v; tr.append(td);
     }
-    tbody.append(tr);
+    bodies[Math.floor((m - 1) / 20)].append(tr);
   }
 }
 
