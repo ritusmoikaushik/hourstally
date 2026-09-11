@@ -38,6 +38,18 @@ check('24h 22:00 to 04:00 wraps', () => assert.strictEqual(e.segmentMinutes('22:
 check('zero-padded 08:00 to 04:00 is a deliberate overnight', () => assert.strictEqual(e.segmentMinutes('08:00', '04:00'), 1200));
 check('0800 to 0400 likewise', () => assert.strictEqual(e.segmentMinutes('0800', '0400'), 1200));
 
+console.log('am/pm switch');
+check('switch resolves a bare 7 to 7am', () => assert.strictEqual(e.applyMeridian(e.parseTimeEx('7'), 'am').minutes, 420));
+check('switch resolves a bare 7 to 7pm', () => assert.strictEqual(e.applyMeridian(e.parseTimeEx('7'), 'pm').minutes, 1140));
+check('bare 12 with am is midnight', () => assert.strictEqual(e.applyMeridian(e.parseTimeEx('12'), 'am').minutes, 0));
+check('bare 12 with pm is noon', () => assert.strictEqual(e.applyMeridian(e.parseTimeEx('12'), 'pm').minutes, 720));
+check('typed pm beats an am switch', () => assert.strictEqual(e.applyMeridian(e.parseTimeEx('7pm'), 'am').minutes, 1140));
+check('24-hour 1930 beats an am switch', () => assert.strictEqual(e.applyMeridian(e.parseTimeEx('1930'), 'am').minutes, 1170));
+check('defaults: in am, out pm, 8 to 4 is eight hours', () => assert.strictEqual(e.segmentMinutes('8', '4', 'am', 'pm'), 480));
+check('night shift with switches: 10pm to 6am', () => assert.strictEqual(e.segmentMinutes('10', '6', 'pm', 'am'), 480));
+check('second pair defaults pm: 1 to 5', () => assert.strictEqual(e.segmentMinutes('1', '5', 'pm', 'pm'), 240));
+check('fmt12', () => { assert.strictEqual(e.fmt12(0), '12:00am'); assert.strictEqual(e.fmt12(750), '12:30pm'); assert.strictEqual(e.fmt12(1050), '5:30pm'); });
+
 console.log('day totals');
 const day = (segs, brk) => ({ segments: segs, breakMins: brk });
 check('two punch pairs add up', () => {

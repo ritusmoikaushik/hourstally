@@ -87,7 +87,7 @@ h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
 
 .tc-cols, .day {
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr) 88px 76px 76px;
+  grid-template-columns: 92px minmax(0, 1fr) 84px 72px 72px;
   gap: 0 12px;
   align-items: start;
   padding: 0 20px;
@@ -105,11 +105,18 @@ h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; }
 .pairs { display: flex; flex-direction: column; gap: 6px; }
 .pair { display: flex; align-items: center; gap: 8px; }
 input.time {
-  width: 96px; font-size: 16px; padding: 6px 8px; text-align: center;
+  width: 84px; font-size: 16px; padding: 6px 8px; text-align: center;
   background: var(--field); border: 1px solid var(--rule-strong); border-radius: 3px; color: var(--ink);
 }
 input.time::placeholder, input.brk::placeholder, .field input::placeholder { color: #a39a80; }
 .pair .to { color: var(--ink-soft); font-size: 14px; }
+.mer {
+  font: inherit; font-size: 12px; font-weight: 600; letter-spacing: .3px; cursor: pointer;
+  width: 34px; height: 34px; padding: 0; border-radius: 3px; margin-left: -4px;
+  border: 1px solid var(--rule-strong); background: var(--field); color: var(--ink-soft);
+}
+.mer.pm { background: var(--ink); color: #fff; border-color: var(--ink); }
+.mer:hover { border-color: var(--ink-soft); }
 .pair .x { background: none; border: 0; color: var(--ink-soft); font-size: 20px; line-height: 1; padding: 0 2px; cursor: pointer; }
 .pair .x:hover { color: var(--stamp); }
 .pair .add {
@@ -199,7 +206,7 @@ details p { margin: 10px 0 0; }
   aside.rail .rail-box:nth-child(2) { display: none; }
   .site-foot .wrap { grid-template-columns: 1fr; gap: 18px; }
 }
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .wrap { padding: 0 12px; }
   .site-head .wrap { height: 52px; gap: 12px; }
   .site-head nav a { padding: 6px 7px; font-size: 14px; }
@@ -225,7 +232,7 @@ details p { margin: 10px 0 0; }
   .stub-breakdown { text-align: left; grid-template-columns: auto 1fr; }
   .stub-total .stub-value { font-size: 34px; }
 }
-@media (min-width: 641px) {
+@media (min-width: 761px) {
   .day .brkwrap span { display: none; }
   .day .totals { display: contents; }
 }

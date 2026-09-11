@@ -35,10 +35,13 @@
     <code>9:15am</code>, <code>915</code>, <code>0915</code> and <code>13:45</code> are all
     accepted. Minutes above 59 or hours above 23 are rejected and the row turns pink.</p>
     <p>A time with no am or pm and an hour from 1 to 12 is ambiguous: <code>4</code> could be
-    four in the morning or four in the afternoon. The calculator resolves it by choosing the reading
-    that gives the shorter shift. So <code>8</code> to <code>4</code> is eight hours, not twenty.
-    If you mean the small hours, write <code>4am</code>, <code>04:00</code> or <code>0400</code> &mdash;
-    a leading zero or a four-digit form is treated as deliberate 24-hour time and never reinterpreted.</p>
+    four in the morning or four in the afternoon. The am/pm switch beside each box decides it. The
+    switch starts on am for a clock-in and pm for a clock-out (pm for both on a second or later pair
+    in the same day). A typed <code>4am</code>, <code>4pm</code>, <code>04:00</code> or
+    <code>0400</code> is never ambiguous and ignores the switch &mdash; a leading zero or a
+    four-digit form is treated as deliberate 24-hour time.</p>
+    <p>If a time somehow reaches the calculator still ambiguous, it takes the reading that gives the
+    shorter shift, so <code>8</code> to <code>4</code> is eight hours rather than twenty.</p>
 
     <h2>Totalling a day</h2>
     <p>Each in and out pair is one segment. A segment's length is clock-out minus clock-in. If the

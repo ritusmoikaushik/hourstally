@@ -46,8 +46,17 @@ function parseTimeEx(raw) {
   return { minutes: h * 60 + m, ambiguous: mer === null && !explicit24 && h >= 1 && h <= 12 };
 }
 
-function segmentMinutes(inRaw, outRaw) {
-  const a = parseTimeEx(inRaw), b = parseTimeEx(outRaw);
+// The am/pm switch only decides times that were typed without one.
+function applyMeridian(t, mer) {
+  if (!t || !t.ambiguous || !mer) return t;
+  let h = Math.floor(t.minutes / 60), m = t.minutes % 60;
+  if (mer === 'pm' && h < 12) h += 12;
+  if (mer === 'am' && h === 12) h = 0;
+  return { minutes: h * 60 + m, ambiguous: false };
+}
+
+function segmentMinutes(inRaw, outRaw, inMer, outMer) {
+  const a = applyMeridian(parseTimeEx(inRaw), inMer), b = applyMeridian(parseTimeEx(outRaw), outMer);
   if (a === null || b === null) return null;
   const candidates = [b.minutes];
   if (b.ambiguous) candidates.push((b.minutes + 720) % 1440);
@@ -64,7 +73,7 @@ function dayMinutes(day) {
   let total = 0, any = false, bad = false;
   for (const seg of day.segments) {
     if (!seg.in && !seg.out) continue;
-    const m = segmentMinutes(seg.in, seg.out);
+    const m = segmentMinutes(seg.in, seg.out, seg.inM, seg.outM);
     if (m === null) { bad = true; continue; }
     total += m; any = true;
   }
@@ -138,8 +147,12 @@ function money(n) {
 
 const KEY = 'hourstally.v1';
 
+function newSeg(index) {
+  return { in: '', out: '', inM: index === 0 ? 'am' : 'pm', outM: 'pm' };
+}
+
 function blankDay(date, label) {
-  return { date, label, segments: [{ in: '', out: '' }], breakMins: '' };
+  return { date, label, segments: [newSeg(0)], breakMins: '' };
 }
 
 function periodLength(startISO, period) {
@@ -195,7 +208,13 @@ function load() {
     const raw = localStorage.getItem(KEY);
     if (!raw) return;
     const parsed = JSON.parse(raw);
-    if (parsed && Array.isArray(parsed.days) && parsed.days.length) state = parsed;
+    if (parsed && Array.isArray(parsed.days) && parsed.days.length) {
+      parsed.days.forEach(d => d.segments.forEach((sg, i) => {
+        if (!sg.inM) sg.inM = i === 0 ? 'am' : 'pm';
+        if (!sg.outM) sg.outM = 'pm';
+      }));
+      state = parsed;
+    }
   } catch (e) { /* ignore */ }
 }
 
@@ -237,16 +256,18 @@ function renderDays() {
       const last = si === day.segments.length - 1;
       pairs.append(el('div', { class: 'pair' }, [
         el('input', {
-          class: 'time', placeholder: (di === 0 && si === 0) ? '9:00am' : (si === 0 ? '' : 'in'), value: seg.in, autocomplete: 'off',
-          'aria-label': (day.label || 'Day') + ' clock in ' + (si + 1),
+          class: 'time', placeholder: (di === 0 && si === 0) ? '9:00' : (si === 0 ? '' : 'in'), value: seg.in, autocomplete: 'off',
+          inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock in ' + (si + 1),
           oninput: e => { seg.in = e.target.value; save(); renderTotals(); }
         }),
+        merSwitch(seg, 'inM', (day.label || 'Day') + ' clock in ' + (si + 1)),
         el('span', { class: 'to' }, ['to']),
         el('input', {
-          class: 'time', placeholder: (di === 0 && si === 0) ? '5:30pm' : (si === 0 ? '' : 'out'), value: seg.out, autocomplete: 'off',
-          'aria-label': (day.label || 'Day') + ' clock out ' + (si + 1),
+          class: 'time', placeholder: (di === 0 && si === 0) ? '5:30' : (si === 0 ? '' : 'out'), value: seg.out, autocomplete: 'off',
+          inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock out ' + (si + 1),
           oninput: e => { seg.out = e.target.value; save(); renderTotals(); }
         }),
+        merSwitch(seg, 'outM', (day.label || 'Day') + ' clock out ' + (si + 1)),
         si > 0 ? el('button', {
           class: 'x', type: 'button', title: 'Remove this in and out',
           'aria-label': 'Remove in and out ' + (si + 1),
@@ -255,7 +276,7 @@ function renderDays() {
         last ? el('button', {
           class: 'add', type: 'button', title: 'Add another clock in and out for this day',
           'aria-label': 'Add another in and out for ' + (day.label || 'this day'),
-          onclick: () => { day.segments.push({ in: '', out: '' }); save(); render(); focusLastIn(di); }
+          onclick: () => { day.segments.push(newSeg(day.segments.length)); save(); render(); focusLastIn(di); }
         }, ['+']) : null
       ]));
     });
@@ -278,6 +299,20 @@ function renderDays() {
 
     host.append(row);
   });
+}
+
+function merSwitch(seg, key, label) {
+  const b = el('button', {
+    class: 'mer ' + seg[key], type: 'button',
+    'aria-label': label + ' ' + seg[key] + ', tap to switch',
+    title: 'Switch am / pm',
+    onclick: () => {
+      seg[key] = seg[key] === 'am' ? 'pm' : 'am';
+      b.textContent = seg[key]; b.className = 'mer ' + seg[key];
+      save(); renderTotals();
+    }
+  }, [seg[key]]);
+  return b;
 }
 
 function focusLastIn(di) {
@@ -323,12 +358,23 @@ function render() {
   renderTotals();
 }
 
+function fmt12(minutes) {
+  const h = Math.floor(minutes / 60), m = minutes % 60;
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  return h12 + ':' + String(m).padStart(2, '0') + (h < 12 ? 'am' : 'pm');
+}
+
+function segLabel(seg) {
+  const a = applyMeridian(parseTimeEx(seg.in), seg.inM), b = applyMeridian(parseTimeEx(seg.out), seg.outM);
+  return (a ? fmt12(a.minutes) : (seg.in || '?')) + ' - ' + (b ? fmt12(b.minutes) : (seg.out || '?'));
+}
+
 function tableRows() {
   const r = compute(state);
   const head = ['Date', 'Day', 'In / out', 'Unpaid break (min)', 'Hours (h:mm)', 'Hours (decimal)'];
   const body = state.days.map((d, i) => {
     const punches = d.segments.filter(s => s.in || s.out)
-      .map(s => (s.in || '?') + ' - ' + (s.out || '?')).join('; ');
+      .map(segLabel).join('; ');
     const row = r.rows[i];
     return [d.date, d.label, punches, d.breakMins || '0',
       row.worked ? fmtHM(row.minutes) : '', row.worked ? fmtDec(row.minutes / 60) : ''];
@@ -391,5 +437,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { parseTime, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { parseTime, parseTimeEx, applyMeridian, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }
