@@ -144,6 +144,14 @@ function renderChart() {
 
 function bind() {
   $('time-in').addEventListener('input', () => { renderSingle.last = 'time'; renderSingle(); });
+  $('time-in').addEventListener('blur', () => {
+    const mins = parseDuration($('time-in').value);
+    if (mins !== null && $('time-in').value.trim()) $('time-in').value = fmtHM(mins);
+  });
+  $('dec-in').addEventListener('blur', () => {
+    const h = parseDecimal($('dec-in').value);
+    if (h !== null && $('dec-in').value.trim()) $('dec-in').value = fmtDec(h);
+  });
   $('dec-in').addEventListener('input', () => { renderSingle.last = 'dec'; renderSingle(); });
   $('rounding').addEventListener('change', () => { renderSingle(); renderBulk(); });
   $('direction').addEventListener('change', renderBulk);
