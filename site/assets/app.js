@@ -272,12 +272,12 @@ function renderDays() {
           class: 'x', type: 'button', title: 'Remove this in and out',
           'aria-label': 'Remove in and out ' + (si + 1),
           onclick: () => { day.segments.splice(si, 1); save(); render(); }
-        }, ['×']) : null,
+        }, ['×']) : el('span', { class: 'slot' }),
         last ? el('button', {
           class: 'add', type: 'button', title: 'Add another clock in and out for this day',
           'aria-label': 'Add another in and out for ' + (day.label || 'this day'),
           onclick: () => { day.segments.push(newSeg(day.segments.length)); save(); render(); focusLastIn(di); }
-        }, ['+']) : null
+        }, ['+']) : el('span', { class: 'slot' })
       ]));
     });
     row.append(pairs);
