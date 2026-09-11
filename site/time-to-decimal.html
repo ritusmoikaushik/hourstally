@@ -6,34 +6,38 @@
 <title>Time to Decimal Converter for Payroll | Hours Tally</title>
 <meta name="description" content="Convert hours and minutes to decimal hours for payroll, and back again. Paste a whole column of times and convert them at once. Printable minutes-to-decimal chart with quarter-hour and tenth-hour rounding.">
 <link rel="canonical" href="https://hourstally.com/time-to-decimal">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-  .conv { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; max-width: 560px; }
-  .conv .field input { font-size: 22px; padding: 10px 12px; min-width: 0; width: 100%; font-variant-numeric: tabular-nums; }
-  .conv .eq { font-size: 26px; color: var(--ink-soft); padding-bottom: 10px; }
-  .bulk { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-  .bulk textarea { width: 100%; min-height: 200px; font: 15px/1.6 ui-monospace, Menlo, Consolas, monospace; padding: 10px; border: 1px solid var(--line); border-radius: 7px; resize: vertical; }
-  .bulk textarea[readonly] { background: #f7f9fb; }
-  .chart { columns: 3; column-gap: 24px; }
-  .chart table { break-inside: avoid; font-size: 14px; }
-  .chart td, .chart th { padding: 4px 6px; text-align: right; }
-  .chart th { text-align: right; }
-  .chart td:first-child, .chart th:first-child { text-align: left; font-weight: 600; }
-  @media (max-width: 700px) { .conv { grid-template-columns: 1fr; } .conv .eq { display: none; } .bulk { grid-template-columns: 1fr; } .chart { columns: 2; } }
-  @media (max-width: 420px) { .chart { columns: 1; } }
-  @media print { .chart { columns: 3; } .conv, .bulk, .settings { display: none; } }
+  .tc-body { padding: 18px 20px 0; }
+  .conv { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: end; max-width: 520px; }
+  .conv .field input { font-size: 30px; padding: 6px 2px; font-weight: 500; }
+  .conv .eq { font-size: 28px; color: var(--ink-soft); padding-bottom: 8px; font-family: "IBM Plex Mono", monospace; }
+  .rounding { max-width: 300px; margin-bottom: 16px; }
+  .bulk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 10px; }
+  .bulk textarea { width: 100%; min-height: 190px; font: 15px/1.6 "IBM Plex Mono", Consolas, monospace; padding: 10px; background: var(--field); border: 1px solid var(--rule-strong); border-radius: 3px; resize: vertical; color: var(--ink); }
+  .bulk textarea[readonly] { background: rgba(255,255,255,.4); }
+  .bulk textarea::placeholder { color: #a39a80; }
+  .chart { columns: 3; column-gap: 28px; }
+  .chart table { break-inside: avoid; font-size: 14px; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  .chart td, .chart th { padding: 3px 6px; text-align: right; }
+  .chart th { font-family: "IBM Plex Sans", sans-serif; }
+  .chart td:first-child, .chart th:first-child { text-align: left; }
+  @media (max-width: 640px) { .tc-body { padding: 14px 14px 0; } .conv { grid-template-columns: 1fr; } .conv .eq { display: none; } .bulk { grid-template-columns: 1fr; } .chart { columns: 2; } }
+  @media (max-width: 400px) { .chart { columns: 1; } }
+  @media print { .chart { columns: 3; } .tc, .rounding { display: none; } article h2#chart, article .chart { display: block; } }
 </style>
 </head>
 <body>
 
-<header class="site">
+<header class="site-head">
   <div class="wrap">
-    <a class="logo" href="index.html">Hours<span>Tally</span></a>
+    <a class="wordmark" href="index.html">HoursTally</a>
     <nav>
       <a href="index.html">Time card</a>
-      <a href="time-to-decimal.html">Time to decimal</a>
-      <a href="#chart">Chart</a>
-      <a href="#faq">FAQ</a>
+      <a href="time-to-decimal.html" aria-current="page">Time to decimal</a>
     </nav>
   </div>
 </header>
@@ -41,20 +45,19 @@
 <main class="wrap">
 
   <h1>Time to decimal converter</h1>
-  <p class="sub">Turn hours and minutes into the decimal hours payroll software wants, or turn a
+  <p class="lede">Turn hours and minutes into the decimal hours payroll software wants, or turn a
   decimal back into a clock time. Convert one value, or paste a whole column from a timesheet and
   convert all of it at once. The chart for one to sixty minutes is below, ready to print.</p>
 
-  <section class="card">
-    <div class="settings">
-      <div class="field">
-        <label for="rounding">Rounding</label>
-        <select id="rounding">
-          <option value="exact">Exact — two decimal places</option>
-          <option value="quarter">Nearest quarter hour (0.25)</option>
-          <option value="tenth">Nearest tenth of an hour (0.1)</option>
-        </select>
-      </div>
+  <section class="tc" aria-label="Time to decimal converter">
+   <div class="tc-body">
+    <div class="field rounding">
+      <label for="rounding">Rounding</label>
+      <select id="rounding">
+        <option value="exact">Exact, two decimal places</option>
+        <option value="quarter">Nearest quarter hour</option>
+        <option value="tenth">Nearest tenth of an hour</option>
+      </select>
     </div>
 
     <div class="conv">
@@ -68,27 +71,26 @@
         <input id="dec-in" inputmode="decimal" placeholder="7.75" autocomplete="off">
       </div>
     </div>
-    <p class="note" id="single-note">Type in either box. The other one fills in.</p>
+    <p class="hint" id="single-note" style="padding-left:0">Type in either box. The other one fills in.</p>
 
     <h3>Convert a whole column</h3>
-    <div class="settings">
-      <div class="field">
-        <label for="direction">Direction</label>
-        <select id="direction">
-          <option value="toDecimal">Times → decimal</option>
-          <option value="toTime">Decimal → times</option>
-        </select>
-      </div>
+    <div class="field rounding">
+      <label for="direction">Direction</label>
+      <select id="direction">
+        <option value="toDecimal">Times to decimal</option>
+        <option value="toTime">Decimal to times</option>
+      </select>
     </div>
     <div class="bulk">
       <textarea id="bulk-in" aria-label="Values to convert, one per line" spellcheck="false"></textarea>
       <textarea id="bulk-out" aria-label="Converted values" readonly></textarea>
     </div>
-    <p class="note" id="bulk-note"></p>
+    <p class="hint" id="bulk-note" style="padding-left:0"></p>
+   </div>
     <div class="actions">
       <button class="btn" id="btn-copy" type="button">Copy results</button>
     </div>
-    <p class="note">Paste straight from a spreadsheet column. Times can be written as
+    <p class="hint">Paste straight from a spreadsheet column. Times can be written as
     <code>7:45</code>, <code>7h 45m</code>, <code>745</code> or just <code>8</code>. Lines it
     cannot read come back as <code>??</code> so nothing is silently skipped. Nothing you paste
     leaves your browser.</p>
@@ -211,9 +213,9 @@
   </article>
 </main>
 
-<footer class="site">
+<footer class="site-foot">
   <div class="wrap">
-    HoursTally — free tools for counting hours and pay. No account, nothing leaves your browser.
+    HoursTally is a free time card calculator. No account, and nothing you type leaves your browser.
   </div>
 </footer>
 

@@ -6,19 +6,19 @@
 <title>Time Card Calculator with Multiple In and Out Punches | Hours Tally</title>
 <meta name="description" content="Free time card calculator that handles several clock in and out punches per day, unpaid breaks, overtime and biweekly pay periods. Download the finished card as Excel or PDF. No signup.">
 <link rel="canonical" href="https://hourstally.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<header class="site">
+<header class="site-head">
   <div class="wrap">
-    <a class="logo" href="index.html">Hours<span>Tally</span></a>
+    <a class="wordmark" href="index.html">HoursTally</a>
     <nav>
-      <a href="index.html">Time card</a>
+      <a href="index.html" aria-current="page">Time card</a>
       <a href="time-to-decimal.html">Time to decimal</a>
-      <a href="#how">How it works</a>
-      <a href="#overtime">Overtime rules</a>
-      <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
@@ -26,19 +26,19 @@
 <main class="wrap">
 
   <h1>Time card calculator with multiple in and out punches</h1>
-  <p class="sub">Clock out for lunch, back in, out again for an errand — add as many in and out pairs
+  <p class="lede">Clock out for lunch, back in, out again for an errand — add as many in and out pairs
   a day as you actually worked. Totals in hours and minutes and in decimal, overtime split out, and
   the finished card downloads as Excel or prints as PDF. Nothing to sign up for.</p>
 
-  <section class="card">
-    <div class="settings">
+  <section class="tc" aria-label="Time card">
+    <div class="tc-fields">
       <div class="field">
         <label for="period">Pay period</label>
         <select id="period">
-          <option value="week">Weekly — 7 days</option>
-          <option value="biweekly">Biweekly — 14 days</option>
-          <option value="semimonthly">Semi-monthly — 15 days</option>
-          <option value="monthly">Monthly — 31 days</option>
+          <option value="week">Weekly, 7 days</option>
+          <option value="biweekly">Biweekly, 14 days</option>
+          <option value="semimonthly">Semi-monthly, 15 days</option>
+          <option value="monthly">Monthly, 31 days</option>
         </select>
       </div>
       <div class="field">
@@ -46,57 +46,54 @@
         <input type="date" id="start">
       </div>
       <div class="field">
-        <label for="rule">Overtime rule</label>
+        <label for="rule">Overtime</label>
         <select id="rule">
-          <option value="weekly40">Over 40 in a week (federal)</option>
-          <option value="daily8">Over 8 in a day</option>
-          <option value="both">Over 8 a day and 40 a week</option>
-          <option value="california">California — 8 / 12 a day</option>
-          <option value="none">No overtime</option>
+          <option value="weekly40">Over 40 a week</option>
+          <option value="daily8">Over 8 a day</option>
+          <option value="both">Over 8 a day, 40 a week</option>
+          <option value="california">California 8 / 12</option>
+          <option value="none">None</option>
         </select>
       </div>
       <div class="field">
-        <label for="rate">Hourly rate (optional)</label>
-        <input type="number" id="rate" min="0" step="0.01" placeholder="e.g. 22.50">
+        <label for="rate">Hourly rate</label>
+        <input type="number" id="rate" min="0" step="0.01" placeholder="optional" inputmode="decimal">
       </div>
       <div class="field">
-        <label for="employee">Name on the card (optional)</label>
-        <input type="text" id="employee" placeholder="e.g. J. Alvarez">
+        <label for="employee">Name on the card</label>
+        <input type="text" id="employee" placeholder="optional" autocomplete="off">
       </div>
     </div>
 
-    <table class="card-table">
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Clock in and out</th>
-          <th>Unpaid break (min)</th>
-          <th class="num">Hours</th>
-          <th class="num">Decimal</th>
-        </tr>
-      </thead>
-      <tbody id="rows"></tbody>
-    </table>
+    <div class="tc-cols" aria-hidden="true">
+      <div>Day</div><div>Clock in and out</div><div>Unpaid break</div><div class="num">Hours</div><div class="num">Decimal</div>
+    </div>
 
-    <div class="totals">
-      <div class="tot"><div class="k">Total</div><div class="v" id="t-total-hm">0:00</div></div>
-      <div class="tot"><div class="k">Total decimal</div><div class="v" id="t-total-dec">0.00</div></div>
-      <div class="tot"><div class="k">Regular</div><div class="v" id="t-reg">0.00</div></div>
-      <div class="tot"><div class="k">Overtime</div><div class="v" id="t-ot">0.00</div></div>
-      <div class="tot" id="dtrow" hidden><div class="k">Double time</div><div class="v" id="t-dt">0.00</div></div>
-      <div class="tot"><div class="k">Days worked</div><div class="v" id="t-days">0</div></div>
-      <div class="tot pay" id="paybox" hidden><div class="k">Gross pay</div><div class="v" id="t-pay">0.00</div></div>
+    <div id="days"></div>
+
+    <div class="stub">
+      <div class="stub-total">
+        <div class="stub-label">Total for the period</div>
+        <div class="stub-value"><span id="t-total-hm">0:00</span><small><span id="t-total-dec">0.00</span> hrs</small></div>
+      </div>
+      <dl class="stub-breakdown">
+        <dt>Regular</dt><dd id="t-reg">0.00</dd>
+        <dt>Overtime</dt><dd id="t-ot">0.00</dd>
+        <div id="dtrow" hidden><dt>Double time</dt><dd id="t-dt">0.00</dd></div>
+        <dt>Days worked</dt><dd id="t-days">0</dd>
+        <div id="payrow" class="pay" hidden><dt>Gross pay</dt><dd id="t-pay">0.00</dd></div>
+      </dl>
     </div>
 
     <div class="actions">
       <button class="btn" id="btn-csv" type="button">Download for Excel</button>
       <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
-      <button class="btn quiet" id="btn-clear" type="button">Clear</button>
+      <button class="btn quiet" id="btn-clear" type="button">Clear the card</button>
     </div>
 
-    <p class="note">Times can be typed any way you like — <code>9</code>, <code>9:15</code>,
-    <code>9:15am</code>, <code>0915</code> or <code>13:45</code> all work. A shift that ends after
-    midnight is counted correctly. Your entries stay in this browser and are never sent anywhere.</p>
+    <p class="hint">Type times any way you like: <code>9</code>, <code>9:15</code>, <code>9:15am</code>,
+    <code>0915</code>, <code>13:45</code>. Press <strong>+</strong> on a day to add a second clock in
+    and out. A shift that ends after midnight counts correctly. Nothing you enter leaves this browser.</p>
   </section>
 
   <article>
@@ -106,7 +103,7 @@
     <p>Pick your pay period and the first day of it. The rows fill themselves with dates and
     weekday names. Then type each clock in and clock out.</p>
 
-    <p>If you left the site during the day, press <strong>+ another in / out</strong> on that row and
+    <p>If you left the site during the day, press <strong>+</strong> on that row and
     enter the second pair. There is no limit. A day with three pairs — in at 7:00, out at 11:00, back
     at 11:30, out at 2:00, back at 2:30, out at 6:00 — totals ten hours, and every pair is shown so
     you can check it against your own memory of the day.</p>
@@ -187,9 +184,9 @@
   </article>
 </main>
 
-<footer class="site">
+<footer class="site-foot">
   <div class="wrap">
-    HoursTally — a free time card calculator. No account, no data leaves your browser.
+    HoursTally is a free time card calculator. No account, and nothing you type leaves your browser.
   </div>
 </footer>
 

@@ -118,7 +118,7 @@ function money(n) {
 const KEY = 'hourstally.v1';
 
 function blankDay(date, label) {
-  return { date, label, segments: [{ in: '', out: '' }, { in: '', out: '' }], breakMins: '' };
+  return { date, label, segments: [{ in: '', out: '' }], breakMins: '' };
 }
 
 function buildDays(startISO, period) {
@@ -170,88 +170,105 @@ function el(tag, attrs, kids) {
   return n;
 }
 
-function renderRows() {
-  const tbody = document.getElementById('rows');
-  tbody.textContent = '';
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  state.days.forEach(day => {
+function shortDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.getDate() + ' ' + MONTHS[d.getMonth()];
+}
+
+function renderDays() {
+  const host = document.getElementById('days');
+  host.textContent = '';
+
+  state.days.forEach((day, di) => {
     const res = dayMinutes(day);
-    const tr = el('tr', { class: res.bad ? 'bad' : '' });
+    const row = el('div', { class: 'day' + (res.bad ? ' bad' : '') });
 
-    tr.append(el('td', { class: 'daycell' }, [
-      el('span', { class: 'dayname' }, [day.label || '']),
-      el('input', {
-        type: 'date', value: day.date, 'aria-label': 'Date',
-        oninput: e => {
-          day.date = e.target.value;
-          if (day.date) day.label = DAYNAMES[new Date(day.date + 'T00:00:00').getDay()];
-          save(); render();
-        }
-      })
+    row.append(el('div', { class: 'day-name' }, [
+      day.label || ('Day ' + (di + 1)),
+      day.date ? el('small', {}, [shortDate(day.date)]) : null
     ]));
 
-    const punchCell = el('td', { class: 'punches' });
+    const pairs = el('div', { class: 'pairs' });
     day.segments.forEach((seg, si) => {
-      punchCell.append(el('div', { class: 'pair' }, [
+      const last = si === day.segments.length - 1;
+      pairs.append(el('div', { class: 'pair' }, [
         el('input', {
-          class: 'time', placeholder: si === 0 ? '9:00am' : 'in', value: seg.in,
-          'aria-label': 'Clock in ' + (si + 1),
+          class: 'time', placeholder: (di === 0 && si === 0) ? '9:00am' : (si === 0 ? '' : 'in'), value: seg.in, autocomplete: 'off',
+          'aria-label': (day.label || 'Day') + ' clock in ' + (si + 1),
           oninput: e => { seg.in = e.target.value; save(); renderTotals(); }
         }),
-        el('span', { class: 'arrow' }, ['→']),
+        el('span', { class: 'to' }, ['to']),
         el('input', {
-          class: 'time', placeholder: si === 0 ? '5:30pm' : 'out', value: seg.out,
-          'aria-label': 'Clock out ' + (si + 1),
+          class: 'time', placeholder: (di === 0 && si === 0) ? '5:30pm' : (si === 0 ? '' : 'out'), value: seg.out, autocomplete: 'off',
+          'aria-label': (day.label || 'Day') + ' clock out ' + (si + 1),
           oninput: e => { seg.out = e.target.value; save(); renderTotals(); }
         }),
-        si > 1 ? el('button', {
-          class: 'x', type: 'button', title: 'Remove this pair',
+        si > 0 ? el('button', {
+          class: 'x', type: 'button', title: 'Remove this in and out',
+          'aria-label': 'Remove in and out ' + (si + 1),
           onclick: () => { day.segments.splice(si, 1); save(); render(); }
-        }, ['×']) : null
+        }, ['×']) : null,
+        last ? el('button', {
+          class: 'add', type: 'button', title: 'Add another clock in and out for this day',
+          'aria-label': 'Add another in and out for ' + (day.label || 'this day'),
+          onclick: () => { day.segments.push({ in: '', out: '' }); save(); render(); focusLastIn(di); }
+        }, ['+']) : null
       ]));
     });
-    punchCell.append(el('button', {
-      class: 'addpair', type: 'button',
-      onclick: () => { day.segments.push({ in: '', out: '' }); save(); render(); }
-    }, ['+ another in / out']));
-    tr.append(punchCell);
+    row.append(pairs);
 
-    tr.append(el('td', {}, [el('input', {
-      class: 'brk', type: 'number', min: '0', step: '5', placeholder: '0', value: day.breakMins,
-      'aria-label': 'Unpaid break minutes',
-      oninput: e => { day.breakMins = e.target.value; save(); renderTotals(); }
-    })]));
+    row.append(el('div', { class: 'brkwrap' }, [
+      el('span', {}, ['Unpaid break']),
+      el('input', {
+        class: 'brk', type: 'number', min: '0', step: '5', placeholder: '0', value: day.breakMins,
+        'aria-label': (day.label || 'Day') + ' unpaid break minutes',
+        oninput: e => { day.breakMins = e.target.value; save(); renderTotals(); }
+      }),
+      el('span', {}, ['min'])
+    ]));
 
-    tr.append(el('td', { class: 'num' }, [res.worked ? fmtHM(res.minutes) : '—']));
-    tr.append(el('td', { class: 'num' }, [res.worked ? fmtDec(res.minutes / 60) : '—']));
-    tbody.append(tr);
+    row.append(el('div', { class: 'totals' }, [
+      el('div', { class: 'hm' + (res.worked ? '' : ' empty') }, [res.worked ? fmtHM(res.minutes) : '0:00']),
+      el('div', { class: 'dec' + (res.worked ? '' : ' empty') }, [res.worked ? fmtDec(res.minutes / 60) : '0.00'])
+    ]));
+
+    host.append(row);
   });
+}
+
+function focusLastIn(di) {
+  const rows = document.querySelectorAll('#days .day');
+  const ins = rows[di] && rows[di].querySelectorAll('input.time');
+  if (ins && ins.length) ins[ins.length - 2].focus();
 }
 
 function renderTotals() {
   const r = compute(state);
   const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
   set('t-total-hm', fmtHM(r.totalMinutes));
+  const stub = document.querySelector('.stub-value'); if (stub) stub.classList.toggle('empty', r.totalMinutes === 0);
   set('t-total-dec', fmtDec(r.totalMinutes / 60));
   set('t-reg', fmtDec(r.reg));
   set('t-ot', fmtDec(r.ot));
   set('t-dt', fmtDec(r.dt));
   set('t-days', String(r.daysWorked));
 
-  const payBox = document.getElementById('paybox');
-  if (r.pay > 0) { payBox.hidden = false; set('t-pay', money(r.pay)); } else { payBox.hidden = true; }
-
+  const payRow = document.getElementById('payrow');
+  if (r.pay > 0) { payRow.hidden = false; set('t-pay', money(r.pay)); } else { payRow.hidden = true; }
   const dtRow = document.getElementById('dtrow');
   if (dtRow) dtRow.hidden = r.dt <= 0;
 
-  document.querySelectorAll('#rows tr').forEach((tr, i) => {
+  document.querySelectorAll('#days .day').forEach((row, i) => {
     const res = dayMinutes(state.days[i]);
-    const cells = tr.querySelectorAll('td.num');
-    if (cells.length === 2) {
-      cells[0].textContent = res.worked ? fmtHM(res.minutes) : '—';
-      cells[1].textContent = res.worked ? fmtDec(res.minutes / 60) : '—';
-    }
-    tr.classList.toggle('bad', res.bad);
+    const hm = row.querySelector('.hm'), dec = row.querySelector('.dec');
+    hm.textContent = res.worked ? fmtHM(res.minutes) : '0:00';
+    dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '0.00';
+    hm.classList.toggle('empty', !res.worked);
+    dec.classList.toggle('empty', !res.worked);
+    row.classList.toggle('bad', res.bad);
   });
 }
 
@@ -261,7 +278,7 @@ function render() {
   document.getElementById('rule').value = state.rule;
   document.getElementById('rate').value = state.rate;
   document.getElementById('employee').value = state.employee;
-  renderRows();
+  renderDays();
   renderTotals();
 }
 
