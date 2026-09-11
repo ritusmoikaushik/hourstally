@@ -14,8 +14,7 @@ Pages are counted as *indexable* only when they are in the sitemap without `noin
 | Date | Who | What | Indexable pages after |
 |---|---|---|---|
 | 2026-09-11 | done | `/`, `/time-to-decimal`, `/about` live. Search Console verified, sitemap submitted, indexing requested | 3 |
-| 2026-09-12 to 09-18 | founder | Email routing for hello@hourstally.com · add `www` custom domain · switch on Cloudflare Web Analytics in the Pages project | 3 |
-| 2026-09-12 to 09-18 | assistant | Privacy page updated for the analytics beacon · phone test of every page on a real phone with the founder · nothing new published | 3 |
+| 2026-09-11 | done | Email routing live · `www` answers · Cloudflare Web Analytics found already on · privacy page updated · phone test done on the founder's handset, both tools, print and CSV included. Every finding fixed the same day: number keypad, am/pm switches, aligned rows, row notes, print as a document, chart layout, logo, favicon | 3 |
 | 2026-09-25 | assistant | `/how-it-counts` moves from noindex into the sitemap | 4 |
 | 2026-10-09 | founder + assistant | **First 28-day measurement.** Search Console and analytics into `MEASUREMENTS.md`. Sitemap status, indexed pages, impressions, any Google update in the window | 4 |
 | 2026-10-09 | assistant | `/with-lunch` — time card with lunch break, auto-deduct rule, meal-break table | 5 |

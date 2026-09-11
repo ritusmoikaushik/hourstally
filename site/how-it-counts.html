@@ -59,7 +59,17 @@
     <p>If you punched out for lunch, the punches already exclude it. Enter a break only for time
     that is deducted without a punch. Entering both deducts it twice.</p>
 
+    <h2>What the row notes mean</h2>
+    <p>A line under a day, in red, means the card cannot be submitted as it stands: a time the
+    calculator cannot read (the row also turns pink), a clock-in that is missing, or a clock-out
+    that is missing. The affected pair is left out of the total until it is fixed. A line in amber
+    means one stretch runs over sixteen hours &mdash; counted in full, because it might be true, but
+    almost always an am that should be a pm. Notes never appear on the printed card.</p>
+
     <h2>Hours and decimal</h2>
+    <p>On screen a day's total is written <code>8h 11m</code> rather than 8:11, so it cannot be
+    mistaken for a time of day or for the decimal beside it. The Excel download uses the
+    <code>8:11</code> form, which is what payroll software imports.</p>
     <p>Decimal hours are minutes divided by sixty, shown to two places. 8:11 is 8 + 11 &divide; 60 =
     8.1833, shown as <code>8.18</code>. 8:05 is <code>8.08</code>, not 8.05. The totals row uses
     the exact minutes, not the sum of rounded days, so it can differ from adding the decimal
