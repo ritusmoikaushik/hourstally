@@ -254,20 +254,24 @@ function renderDays() {
     const pairs = el('div', { class: 'pairs' });
     day.segments.forEach((seg, si) => {
       const last = si === day.segments.length - 1;
+      const inSwitch = merSwitch(seg, 'inM', (day.label || 'Day') + ' clock in ' + (si + 1));
+      const outSwitch = merSwitch(seg, 'outM', (day.label || 'Day') + ' clock out ' + (si + 1));
       pairs.append(el('div', { class: 'pair' }, [
         el('input', {
           class: 'time', placeholder: (di === 0 && si === 0) ? '9:00' : (si === 0 ? '' : 'in'), value: seg.in, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock in ' + (si + 1),
-          oninput: e => { seg.in = e.target.value; save(); renderTotals(); }
+          oninput: e => { seg.in = e.target.value; save(); renderTotals(); },
+          onblur: e => tidyTime(e.target, seg, 'in', 'inM', inSwitch)
         }),
-        merSwitch(seg, 'inM', (day.label || 'Day') + ' clock in ' + (si + 1)),
+        inSwitch,
         el('span', { class: 'to' }, ['to']),
         el('input', {
           class: 'time', placeholder: (di === 0 && si === 0) ? '5:30' : (si === 0 ? '' : 'out'), value: seg.out, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock out ' + (si + 1),
-          oninput: e => { seg.out = e.target.value; save(); renderTotals(); }
+          oninput: e => { seg.out = e.target.value; save(); renderTotals(); },
+          onblur: e => tidyTime(e.target, seg, 'out', 'outM', outSwitch)
         }),
-        merSwitch(seg, 'outM', (day.label || 'Day') + ' clock out ' + (si + 1)),
+        outSwitch,
         si > 0 ? el('button', {
           class: 'x', type: 'button', title: 'Remove this in and out',
           'aria-label': 'Remove in and out ' + (si + 1),
@@ -299,6 +303,23 @@ function renderDays() {
 
     host.append(row);
   });
+}
+
+// On leaving a box, show what was understood: 852 -> 8:52, 7 -> 7:00, 1930 -> 7:30 with pm.
+function tidyTime(input, seg, key, merKey, switchEl) {
+  const r = parseTimeEx(input.value);
+  if (r === null) return;
+  let h = Math.floor(r.minutes / 60), m = r.minutes % 60;
+  if (!r.ambiguous) {
+    seg[merKey] = h >= 12 ? 'pm' : 'am';
+    switchEl.textContent = seg[merKey];
+    switchEl.className = 'mer ' + seg[merKey];
+    h = h % 12 === 0 ? 12 : h % 12;
+  }
+  const clean = h + ':' + String(m).padStart(2, '0');
+  seg[key] = clean;
+  input.value = clean;
+  save(); renderTotals();
 }
 
 function merSwitch(seg, key, label) {
