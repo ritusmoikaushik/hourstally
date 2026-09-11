@@ -152,6 +152,8 @@ input.brk { width: 76px; font-size: 16px; padding: 6px 8px; text-align: right; b
 
 .body { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 48px; align-items: start; margin-top: 8px; }
 article { max-width: var(--text-max); min-width: 0; }
+.body:not(:has(.rail)) { grid-template-columns: 1fr; }
+.body:not(:has(.rail)) article { max-width: 78ch; }
 article h2:first-child { margin-top: 20px; }
 article p { margin: 0 0 14px; }
 article ul { margin: 0 0 14px; padding-left: 22px; }
