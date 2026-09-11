@@ -268,7 +268,7 @@ details p { margin: 10px 0 0; }
     border: 0; background: none; padding: 0; height: auto; color: #000; appearance: none; -webkit-appearance: none;
   }
   .field select { text-indent: 0; }
-  .field input::placeholder { color: transparent; }
+  .field input::placeholder, input.time::placeholder, input.brk::placeholder { color: transparent; }
   .tc-cols { display: grid !important; color: #444; border-bottom: 1px solid #000; }
   .day { border-bottom: 1px solid #bbb; padding: 6px 12px; grid-template-columns: 92px minmax(0, 1fr) 84px 72px 72px; grid-template-areas: none; gap: 0 12px; }
   .day-name, .pairs, .day .brkwrap, .hm, .dec { grid-area: auto; }
