@@ -37,9 +37,11 @@ body {
 /* ---------- header ---------- */
 
 .site-head { background: var(--bar); border-bottom: 1px solid var(--hair); }
-.site-head .wrap { display: flex; align-items: center; gap: 28px; height: 58px; }
-.wordmark { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 19px; letter-spacing: -0.3px; color: var(--ink); text-decoration: none; }
-.wordmark svg { width: 26px; height: 26px; display: block; }
+.site-head .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.wordmark .mark { width: 34px; height: 34px; display: block; }
+.wordmark .wm { font-size: 24px; font-weight: 700; letter-spacing: -0.7px; line-height: 1; }
+.wordmark .wm b { font-weight: 400; }
 .site-head nav { display: flex; gap: 4px; margin-left: auto; }
 .site-head nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; padding: 6px 10px; border-radius: 3px; }
 .site-head nav a:hover { color: var(--ink); background: var(--page); }
