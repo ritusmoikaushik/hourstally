@@ -4,6 +4,13 @@ const PERIODS = { week: 7, biweekly: 14, semimonthly: 15, monthly: 31 };
 const DAYNAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 function parseTime(raw) {
+  const r = parseTimeEx(raw);
+  return r === null ? null : r.minutes;
+}
+
+// Returns { minutes, ambiguous } - ambiguous means a 12-hour reading with no am/pm,
+// so "4" could be 04:00 or 16:00.
+function parseTimeEx(raw) {
   if (!raw) return null;
   let s = String(raw).trim().toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
   if (!s) return null;
@@ -12,17 +19,20 @@ function parseTime(raw) {
   if (/a m?$/.test(s) || s.endsWith('am') || s.endsWith('a')) { mer = 'am'; s = s.replace(/am?$/, ''); }
   else if (s.endsWith('pm') || s.endsWith('p')) { mer = 'pm'; s = s.replace(/pm?$/, ''); }
 
-  let h, m;
+  let h, m, explicit24 = false;
   if (s.includes(':')) {
     const parts = s.split(':');
     h = parseInt(parts[0], 10);
     m = parseInt(parts[1] || '0', 10);
+    explicit24 = parts[0].length === 2 && parts[0][0] === '0';
   } else if (/^\d{1,2}$/.test(s)) {
     h = parseInt(s, 10); m = 0;
+    explicit24 = s.length === 2 && s[0] === '0';
   } else if (/^\d{3}$/.test(s)) {
     h = parseInt(s.slice(0, 1), 10); m = parseInt(s.slice(1), 10);
   } else if (/^\d{4}$/.test(s)) {
     h = parseInt(s.slice(0, 2), 10); m = parseInt(s.slice(2), 10);
+    explicit24 = true;
   } else {
     return null;
   }
@@ -33,15 +43,21 @@ function parseTime(raw) {
   else if (mer === 'pm') { if (h !== 12) h += 12; if (h > 23) return null; }
 
   if (h > 23 || h < 0) return null;
-  return h * 60 + m;
+  return { minutes: h * 60 + m, ambiguous: mer === null && !explicit24 && h >= 1 && h <= 12 };
 }
 
 function segmentMinutes(inRaw, outRaw) {
-  const a = parseTime(inRaw), b = parseTime(outRaw);
+  const a = parseTimeEx(inRaw), b = parseTimeEx(outRaw);
   if (a === null || b === null) return null;
-  let d = b - a;
-  if (d < 0) d += 1440;
-  return d;
+  const candidates = [b.minutes];
+  if (b.ambiguous) candidates.push((b.minutes + 720) % 1440);
+  let best = null;
+  for (const c of candidates) {
+    let d = c - a.minutes;
+    if (d <= 0) d += 1440;
+    if (best === null || d < best) best = d;
+  }
+  return best;
 }
 
 function dayMinutes(day) {
@@ -75,10 +91,15 @@ function splitDay(minutes, rule) {
 
 function computeWeek(days, rule) {
   let reg = 0, ot = 0, dt = 0;
-  for (const d of days) {
-    const s = splitDay(d.minutes, rule);
+  const seventh = rule === 'california' && days.length === 7 && days.every(d => d.worked);
+  days.forEach((d, i) => {
+    let s = splitDay(d.minutes, rule);
+    if (seventh && i === 6) {
+      const h = d.minutes / 60;
+      s = { reg: 0, ot: Math.min(h, 8), dt: Math.max(0, h - 8) };
+    }
     reg += s.reg; ot += s.ot; dt += s.dt;
-  }
+  });
   if (rule === 'weekly40' || rule === 'both' || rule === 'california') {
     if (reg > 40) { ot += reg - 40; reg = 40; }
   }
@@ -121,15 +142,34 @@ function blankDay(date, label) {
   return { date, label, segments: [{ in: '', out: '' }], breakMins: '' };
 }
 
+function periodLength(startISO, period) {
+  if (!startISO) return PERIODS[period] || 7;
+  const start = new Date(startISO + 'T00:00:00');
+  if (period === 'monthly') {
+    const next = new Date(start.getTime());
+    next.setMonth(next.getMonth() + 1);
+    return Math.round((next - start) / 86400000);
+  }
+  if (period === 'semimonthly') {
+    const daysInMonth = new Date(start.getFullYear(), start.getMonth() + 1, 0).getDate();
+    return start.getDate() <= 15 ? Math.min(15, daysInMonth - start.getDate() + 1) : daysInMonth - start.getDate() + 1;
+  }
+  return PERIODS[period] || 7;
+}
+
+function isoLocal(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
 function buildDays(startISO, period) {
-  const n = PERIODS[period] || 7;
+  const n = periodLength(startISO, period);
   const out = [];
   const start = startISO ? new Date(startISO + 'T00:00:00') : null;
   for (let i = 0; i < n; i++) {
     if (start) {
       const d = new Date(start.getTime());
       d.setDate(d.getDate() + i);
-      out.push(blankDay(d.toISOString().slice(0, 10), DAYNAMES[d.getDay()]));
+      out.push(blankDay(isoLocal(d), DAYNAMES[d.getDay()]));
     } else {
       out.push(blankDay('', DAYNAMES[i % 7]));
     }
@@ -188,7 +228,8 @@ function renderDays() {
 
     row.append(el('div', { class: 'day-name' }, [
       day.label || ('Day ' + (di + 1)),
-      day.date ? el('small', {}, [shortDate(day.date)]) : null
+      day.date ? el('small', {}, [shortDate(day.date)]) : null,
+      el('span', { class: 'badnote' }, ['Check a time on this line'])
     ]));
 
     const pairs = el('div', { class: 'pairs' });
@@ -350,5 +391,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { parseTime, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec };
+  module.exports = { parseTime, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }

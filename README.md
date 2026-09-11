@@ -6,7 +6,7 @@ Free time card and timesheet calculator. Static site, no build step.
       index.html     main time card calculator
       assets/        css + js
 
-Open `site/index.html` in a browser. That is the whole dev loop.
+Run `python scripts/serve.py` and open http://localhost:8000 — it serves clean URLs the way Cloudflare Pages will. Opening the .html files directly no longer works because links are root-relative.
 
     docs/GOOGLE-RULES.md   read first — why two sister sites were removed from Google, and the rules that follow
     docs/PLAN.md           what gets built, in what order, and what makes each page its own tool

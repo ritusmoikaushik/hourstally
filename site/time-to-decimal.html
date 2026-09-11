@@ -1,16 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Time to Decimal Converter for Payroll | Hours Tally</title>
+<title>Time to Decimal Converter for Payroll | HoursTally</title>
 <meta name="description" content="Convert hours and minutes to decimal hours for payroll, and back again. Paste a whole column of times and convert them at once. Printable minutes-to-decimal chart with quarter-hour and tenth-hour rounding.">
 <link rel="canonical" href="https://hourstally.com/time-to-decimal">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="Time to decimal converter for payroll">
+<meta property="og:description" content="Convert hours and minutes to decimal hours for payroll, and back. Paste a whole column at once. Printable minutes-to-decimal chart.">
+<meta property="og:url" content="https://hourstally.com/time-to-decimal">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Time to decimal converter for payroll","url":"https://hourstally.com/time-to-decimal","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"}}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cg fill=%27%231b2a41%27%3E%3Crect x=%274%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2710.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2717%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2723.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3C/g%3E%3Cpath d=%27M3 26 L29 6%27 stroke=%27%23b3372c%27 stroke-width=%273.8%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="/assets/style.css">
 <style>
   .tc-body { padding: 18px 20px 0; }
   .conv { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: end; max-width: 520px; }
@@ -35,10 +42,10 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="wordmark" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#b3372c" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#b3372c" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
     <nav>
-      <a href="index.html">Time card</a>
-      <a href="time-to-decimal.html" aria-current="page">Time to decimal</a>
+      <a href="/">Time card</a>
+      <a href="/time-to-decimal" aria-current="page">Time to decimal</a>
     </nav>
   </div>
 </header>
@@ -119,7 +126,7 @@
 
     <p>Most payroll systems, ADP, Paychex, QuickBooks, Gusto and the like, accept two decimal
     places and round internally. Two places means the largest possible error on any single entry
-    is a third of a minute, which over a fortnight adds up to less than five minutes and in
+    is a third of a minute, which over two weeks adds up to less than five minutes and in
     practice cancels out. Some systems accept four places. If yours does, the note under the
     converter shows the four-place figure too.</p>
 
@@ -148,7 +155,7 @@
 
     <h2>Going the other way</h2>
 
-    <p>A payslip shows 76.42 hours for the fortnight and you want to know what that is on a clock.
+    <p>A pay stub shows 76.42 hours for the two weeks and you want to know what that is on a clock.
     Type it in the decimal box: 0.42 of an hour is 25 minutes, so 76.42 is <code>76:25</code>. If
     your own record says 76:35, the difference is ten minutes, and now you have a specific number
     to raise rather than a feeling that something is off.</p>
@@ -162,7 +169,7 @@
     dropped, so the two columns always line up row for row.</p>
 
     <p>If what you have is clock-in and clock-out times rather than daily totals, this is the
-    wrong tool — use the <a href="index.html">time card calculator</a>, which takes the punches,
+    wrong tool — use the <a href="/">time card calculator</a>, which takes the punches,
     handles breaks and overtime, and gives you decimal totals at the end.</p>
 
     <h2 id="chart">Minutes to decimal chart</h2>
@@ -185,7 +192,7 @@
       <summary>Is 7.5 hours seven and a half hours or seven hours five minutes?</summary>
       <p>Seven and a half. A decimal hour is a fraction of an hour, so .5 is half an hour, thirty
       minutes. Seven hours five minutes would be 7.08. When someone writes 7.5 meaning 7:05 the
-      payslip is wrong by twenty-five minutes.</p>
+      pay stub is wrong by twenty-five minutes.</p>
     </details>
 
     <details>
@@ -217,8 +224,8 @@
       <div class="rail-box">
         <h3>Tools</h3>
         <ul>
-        <li><a href="index.html">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
-        <li aria-current="page"><a href="time-to-decimal.html">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        <li><a href="/">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li aria-current="page"><a href="/time-to-decimal">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
         </ul>
       </div>
       <div class="rail-box">
@@ -241,19 +248,19 @@
     <div>
       <h4>Tools</h4>
       <ul>
-        <li><a href="index.html">Time card calculator</a></li>
-        <li><a href="time-to-decimal.html">Time to decimal converter</a></li>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
       </ul>
     </div>
     <div>
       <h4>Site</h4>
       <ul>
-        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="/privacy">Privacy</a></li>
       </ul>
     </div>
   </div>
 </footer>
 
-<script src="assets/decimal.js"></script>
+<script src="/assets/decimal.js"></script>
 </body>
 </html>

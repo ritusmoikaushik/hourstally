@@ -27,6 +27,16 @@ check('empty null', () => assert.strictEqual(e.parseTime(''), null));
 console.log('segments');
 check('normal shift', () => assert.strictEqual(e.segmentMinutes('9:00am', '5:30pm'), 510));
 check('overnight shift', () => assert.strictEqual(e.segmentMinutes('10:00pm', '6:00am'), 480));
+check('bare 8 to 4 is a day shift, not twenty hours', () => assert.strictEqual(e.segmentMinutes('8', '4'), 480));
+check('bare 9 to 5:30 is eight and a half', () => assert.strictEqual(e.segmentMinutes('9', '5:30'), 510));
+check('11pm to bare 4 is five hours', () => assert.strictEqual(e.segmentMinutes('11pm', '4'), 300));
+check('1pm to bare 5 is four hours', () => assert.strictEqual(e.segmentMinutes('1pm', '5'), 240));
+check('bare 8 to bare 12 is four hours', () => assert.strictEqual(e.segmentMinutes('8', '12'), 240));
+check('explicit 8am to 4am stays overnight', () => assert.strictEqual(e.segmentMinutes('8am', '4am'), 1200));
+check('24h 08:00 to 16:00', () => assert.strictEqual(e.segmentMinutes('08:00', '16:00'), 480));
+check('24h 22:00 to 04:00 wraps', () => assert.strictEqual(e.segmentMinutes('22:00', '04:00'), 360));
+check('zero-padded 08:00 to 04:00 is a deliberate overnight', () => assert.strictEqual(e.segmentMinutes('08:00', '04:00'), 1200));
+check('0800 to 0400 likewise', () => assert.strictEqual(e.segmentMinutes('0800', '0400'), 1200));
 
 console.log('day totals');
 const day = (segs, brk) => ({ segments: segs, breakMins: brk });
@@ -100,6 +110,33 @@ check('biweekly counts each week separately', () => {
 check('gross pay uses 1.5x and 2x', () => {
   const r = e.compute(mkState([14, 0, 0, 0, 0, 0, 0], 'california', '20'));
   assert.strictEqual(Math.round(r.pay), 8 * 20 + 4 * 30 + 2 * 40);
+});
+
+console.log('periods');
+check('monthly from 1 Sep is 30 days', () => assert.strictEqual(e.periodLength('2026-09-01', 'monthly'), 30));
+check('monthly from 1 Oct is 31 days', () => assert.strictEqual(e.periodLength('2026-10-01', 'monthly'), 31));
+check('monthly from 1 Feb 2028 is 29 days', () => assert.strictEqual(e.periodLength('2028-02-01', 'monthly'), 29));
+check('semi-monthly from the 1st is 15 days', () => assert.strictEqual(e.periodLength('2026-09-01', 'semimonthly'), 15));
+check('semi-monthly from the 16th runs to month end', () => assert.strictEqual(e.periodLength('2026-09-16', 'semimonthly'), 15));
+check('semi-monthly from 16 Oct is 16 days', () => assert.strictEqual(e.periodLength('2026-10-16', 'semimonthly'), 16));
+check('no start date falls back to nominal length', () => assert.strictEqual(e.periodLength('', 'monthly'), 31));
+check('buildDays labels weekdays from the date', () => {
+  const d = e.buildDays('2026-09-14', 'week');
+  assert.strictEqual(d[0].label, 'Mon'); assert.strictEqual(d[6].label, 'Sun'); assert.strictEqual(d[6].date, '2026-09-20');
+});
+
+console.log('california seventh day');
+check('seven straight days: 7th day is all OT, over 8 is DT', () => {
+  const r = e.compute(mkState([8, 8, 8, 8, 8, 8, 10], 'california'));
+  assert.strictEqual(e.fmtDec(r.reg), '40.00');
+  assert.strictEqual(e.fmtDec(r.ot), '16.00');
+  assert.strictEqual(e.fmtDec(r.dt), '2.00');
+});
+check('six days worked: no seventh-day rule', () => {
+  const r = e.compute(mkState([8, 8, 8, 8, 8, 8, 0], 'california'));
+  assert.strictEqual(e.fmtDec(r.reg), '40.00');
+  assert.strictEqual(e.fmtDec(r.ot), '8.00');
+  assert.strictEqual(e.fmtDec(r.dt), '0.00');
 });
 
 console.log('formatting');

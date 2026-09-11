@@ -1,25 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Time Card Calculator with Multiple In and Out Punches | Hours Tally</title>
+<title>Time Card Calculator with Multiple In and Out Punches | HoursTally</title>
 <meta name="description" content="Free time card calculator that handles several clock in and out punches per day, unpaid breaks, overtime and biweekly pay periods. Download the finished card as Excel or PDF. No signup.">
 <link rel="canonical" href="https://hourstally.com/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="Time card calculator with multiple in and out punches">
+<meta property="og:description" content="Free time card calculator that handles several clock in and out punches per day, unpaid breaks, overtime and biweekly pay periods. Download as Excel or PDF. No signup.">
+<meta property="og:url" content="https://hourstally.com/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Time card calculator with multiple in and out punches","url":"https://hourstally.com/","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"}}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cg fill=%27%231b2a41%27%3E%3Crect x=%274%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2710.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2717%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3Crect x=%2723.5%27 y=%275%27 width=%273.8%27 height=%2722%27 rx=%271.9%27/%3E%3C/g%3E%3Cpath d=%27M3 26 L29 6%27 stroke=%27%23b3372c%27 stroke-width=%273.8%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
 <header class="site-head">
   <div class="wrap">
-    <a class="wordmark" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#b3372c" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#b3372c" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
     <nav>
-      <a href="index.html" aria-current="page">Time card</a>
-      <a href="time-to-decimal.html">Time to decimal</a>
+      <a href="/" aria-current="page">Time card</a>
+      <a href="/time-to-decimal">Time to decimal</a>
     </nav>
   </div>
 </header>
@@ -38,8 +45,8 @@
         <select id="period">
           <option value="week">Weekly, 7 days</option>
           <option value="biweekly">Biweekly, 14 days</option>
-          <option value="semimonthly">Semi-monthly, 15 days</option>
-          <option value="monthly">Monthly, 31 days</option>
+          <option value="semimonthly">Semi-monthly</option>
+          <option value="monthly">Monthly</option>
         </select>
       </div>
       <div class="field">
@@ -93,8 +100,9 @@
     </div>
 
     <p class="hint">Type times any way you like: <code>9</code>, <code>9:15</code>, <code>9:15am</code>,
-    <code>0915</code>, <code>13:45</code>. Press <strong>+</strong> on a day to add a second clock in
-    and out. A shift that ends after midnight counts correctly. Nothing you enter leaves this browser.</p>
+    <code>0915</code>, <code>13:45</code>. Without am or pm, <code>8</code> to <code>4</code> is read as a
+    day shift; write <code>4am</code> or <code>0400</code> if you mean the small hours. Press
+    <strong>+</strong> on a day to add a second clock in and out. Nothing you enter leaves this browser.</p>
   </section>
 
   <div class="body">
@@ -103,7 +111,8 @@
     <h2 id="how">How to fill in the card</h2>
 
     <p>Pick your pay period and the first day of it. The rows fill themselves with dates and
-    weekday names. Then type each clock in and clock out.</p>
+    weekday names — a monthly card gets the real number of days in that month, and a
+    semi-monthly card runs to the 15th or to the month end. Then type each clock in and clock out.</p>
 
     <p>If you left the site during the day, press <strong>+</strong> on that row and
     enter the second pair. There is no limit. A day with three pairs — in at 7:00, out at 11:00, back
@@ -125,11 +134,11 @@
       <tr><td>Over 40 in a week</td><td>The federal default. Right for most of the United States.</td></tr>
       <tr><td>Over 8 in a day</td><td>Some union contracts and public sector schedules pay by the day.</td></tr>
       <tr><td>Over 8 a day and 40 a week</td><td>Alaska, Nevada and Colorado work broadly this way.</td></tr>
-      <tr><td>California 8 / 12</td><td>Time and a half after eight hours, double time after twelve.</td></tr>
+      <tr><td>California 8 / 12</td><td>Time and a half after eight hours, double time after twelve, and the seventh straight day of a week paid at time and a half for the first eight and double after that.</td></tr>
       <tr><td>No overtime</td><td>Salaried or exempt work, or you only want the raw hours.</td></tr>
     </table>
 
-    <p>The calculator counts each seven day block of the period as its own week, so a fortnightly
+    <p>The calculator counts each seven day block of the period as its own week, so a two-week
     card with nine hour days shows eighty regular hours and ten of overtime, not ninety regular.</p>
 
     <h2>Hours and minutes, or decimal?</h2>
@@ -138,7 +147,7 @@
     <code>8:05</code> on a clock but <code>8.08</code> on a pay run, because five minutes is
     0.083 of an hour, not 0.05. Both columns are shown for every day so you never have to convert
     by hand, and both go into the download. To convert a single figure, or a whole column of
-    them, use the <a href="time-to-decimal.html">time to decimal converter</a>.</p>
+    them, use the <a href="/time-to-decimal">time to decimal converter</a>.</p>
 
     <h2>What the download contains</h2>
 
@@ -165,7 +174,7 @@
     <details>
       <summary>Does it round to the nearest quarter hour?</summary>
       <p>No. It counts the exact minutes you enter. Employer rounding rules vary and rounding that
-      always favours the employer is not lawful under the FLSA, so this calculator leaves your times
+      always favors the employer is not lawful under the FLSA, so this calculator leaves your times
       alone and lets you see the true total.</p>
     </details>
 
@@ -188,8 +197,8 @@
       <div class="rail-box">
         <h3>Tools</h3>
         <ul>
-        <li aria-current="page"><a href="index.html">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
-        <li><a href="time-to-decimal.html">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        <li aria-current="page"><a href="/">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
         </ul>
       </div>
       <div class="rail-box">
@@ -213,19 +222,19 @@
     <div>
       <h4>Tools</h4>
       <ul>
-        <li><a href="index.html">Time card calculator</a></li>
-        <li><a href="time-to-decimal.html">Time to decimal converter</a></li>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
       </ul>
     </div>
     <div>
       <h4>Site</h4>
       <ul>
-        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="/privacy">Privacy</a></li>
       </ul>
     </div>
   </div>
 </footer>
 
-<script src="assets/app.js"></script>
+<script src="/assets/app.js"></script>
 </body>
 </html>
