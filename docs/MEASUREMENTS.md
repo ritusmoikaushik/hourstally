@@ -9,6 +9,7 @@ does not exist. Rule 10 in `GOOGLE-RULES.md`.
 |---|---|---|---|
 | 2026-09-11 | `/` time card calculator | 1 | site went live on hourstally.com via Cloudflare Pages, repo `main` |
 | 2026-09-11 | `/time-to-decimal` | 2 | launched together with the time card |
+| 2026-09-11 | `/about` | 3 | launch page three; `/how-it-counts` published noindex the same day, joins the index 2026-09-25 |
 
 ## 28-day pulls
 
