@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time to Decimal Converter for Payroll | Hours Tally</title>
+<meta name="description" content="Convert hours and minutes to decimal hours for payroll, and back again. Paste a whole column of times and convert them at once. Printable minutes-to-decimal chart with quarter-hour and tenth-hour rounding.">
+<link rel="canonical" href="https://hourstally.com/time-to-decimal">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .conv { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; max-width: 560px; }
+  .conv .field input { font-size: 22px; padding: 10px 12px; min-width: 0; width: 100%; font-variant-numeric: tabular-nums; }
+  .conv .eq { font-size: 26px; color: var(--ink-soft); padding-bottom: 10px; }
+  .bulk { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .bulk textarea { width: 100%; min-height: 200px; font: 15px/1.6 ui-monospace, Menlo, Consolas, monospace; padding: 10px; border: 1px solid var(--line); border-radius: 7px; resize: vertical; }
+  .bulk textarea[readonly] { background: #f7f9fb; }
+  .chart { columns: 3; column-gap: 24px; }
+  .chart table { break-inside: avoid; font-size: 14px; }
+  .chart td, .chart th { padding: 4px 6px; text-align: right; }
+  .chart th { text-align: right; }
+  .chart td:first-child, .chart th:first-child { text-align: left; font-weight: 600; }
+  @media (max-width: 700px) { .conv { grid-template-columns: 1fr; } .conv .eq { display: none; } .bulk { grid-template-columns: 1fr; } .chart { columns: 2; } }
+  @media (max-width: 420px) { .chart { columns: 1; } }
+  @media print { .chart { columns: 3; } .conv, .bulk, .settings { display: none; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html">Hours<span>Tally</span></a>
+    <nav>
+      <a href="index.html">Time card</a>
+      <a href="time-to-decimal.html">Time to decimal</a>
+      <a href="#chart">Chart</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Time to decimal converter</h1>
+  <p class="sub">Turn hours and minutes into the decimal hours payroll software wants, or turn a
+  decimal back into a clock time. Convert one value, or paste a whole column from a timesheet and
+  convert all of it at once. The chart for one to sixty minutes is below, ready to print.</p>
+
+  <section class="card">
+    <div class="settings">
+      <div class="field">
+        <label for="rounding">Rounding</label>
+        <select id="rounding">
+          <option value="exact">Exact — two decimal places</option>
+          <option value="quarter">Nearest quarter hour (0.25)</option>
+          <option value="tenth">Nearest tenth of an hour (0.1)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="conv">
+      <div class="field">
+        <label for="time-in">Hours and minutes</label>
+        <input id="time-in" inputmode="text" placeholder="7:45" autocomplete="off">
+      </div>
+      <div class="eq">=</div>
+      <div class="field">
+        <label for="dec-in">Decimal hours</label>
+        <input id="dec-in" inputmode="decimal" placeholder="7.75" autocomplete="off">
+      </div>
+    </div>
+    <p class="note" id="single-note">Type in either box. The other one fills in.</p>
+
+    <h3>Convert a whole column</h3>
+    <div class="settings">
+      <div class="field">
+        <label for="direction">Direction</label>
+        <select id="direction">
+          <option value="toDecimal">Times → decimal</option>
+          <option value="toTime">Decimal → times</option>
+        </select>
+      </div>
+    </div>
+    <div class="bulk">
+      <textarea id="bulk-in" aria-label="Values to convert, one per line" spellcheck="false"></textarea>
+      <textarea id="bulk-out" aria-label="Converted values" readonly></textarea>
+    </div>
+    <p class="note" id="bulk-note"></p>
+    <div class="actions">
+      <button class="btn" id="btn-copy" type="button">Copy results</button>
+    </div>
+    <p class="note">Paste straight from a spreadsheet column. Times can be written as
+    <code>7:45</code>, <code>7h 45m</code>, <code>745</code> or just <code>8</code>. Lines it
+    cannot read come back as <code>??</code> so nothing is silently skipped. Nothing you paste
+    leaves your browser.</p>
+  </section>
+
+  <article>
+
+    <h2>Why payroll wants decimal, and why 8:30 is not 8.30</h2>
+
+    <p>A clock counts sixty minutes to the hour. A pay calculation multiplies hours by a rate, and
+    multiplication only works in base ten. So payroll systems, and almost every timekeeping export,
+    store time as a decimal fraction of an hour: thirty minutes is half an hour, so
+    <code>8:30</code> becomes <code>8.50</code>. It is not <code>8.30</code>. That mistake, made
+    once a week for a year, underpays a worker by about twenty minutes a week — seventeen hours
+    over the year.</p>
+
+    <p>The conversion is minutes divided by sixty. Forty-five minutes is 45 ÷ 60 = 0.75. Five
+    minutes is 5 ÷ 60 = 0.0833, which rounds to <code>0.08</code>. Twenty minutes is
+    <code>0.33</code>, forty is <code>0.67</code>. The awkward ones are anything not divisible by
+    three: seven minutes is 0.1167, which is <code>0.12</code> at two places. The chart at the
+    bottom of this page has all sixty.</p>
+
+    <h2>Two decimal places is the usual precision — but check</h2>
+
+    <p>Most payroll systems, ADP, Paychex, QuickBooks, Gusto and the like, accept two decimal
+    places and round internally. Two places means the largest possible error on any single entry
+    is a third of a minute, which over a fortnight adds up to less than five minutes and in
+    practice cancels out. Some systems accept four places. If yours does, the note under the
+    converter shows the four-place figure too.</p>
+
+    <p>What you should not do is round to one place. <code>7:45</code> as <code>7.8</code> gives
+    the worker an extra three minutes; <code>7:20</code> as <code>7.3</code> takes away two. It
+    looks tidy and it is wrong in both directions.</p>
+
+    <h2>Quarter-hour and tenth-hour rounding</h2>
+
+    <p>Rounding is a different thing from conversion, and the two get confused. Conversion changes
+    the format. Rounding changes the number.</p>
+
+    <p><strong>Quarter-hour rounding</strong> snaps a time to the nearest 0.25 — so 7:52 becomes
+    7.75 and 7:53 becomes 8.00, because 7:53 is closer to 8:00 than to 7:45. This is the common
+    employer practice in the United States and it is lawful under the Fair Labor Standards Act
+    only if it rounds both ways and averages out over time. A system that rounds clock-ins up and
+    clock-outs down is not rounding, it is taking wages.</p>
+
+    <p><strong>Tenth-hour rounding</strong> snaps to the nearest six minutes — 0.1 of an hour. It
+    is common in legal billing, healthcare and some government payroll. 7:52 becomes 7.9;
+    7:57 becomes 8.0.</p>
+
+    <p>The rounding selector at the top applies to both the single converter and the column
+    converter, so you can see your exact hours and your rounded hours side by side and know what
+    the rounding is costing or giving you.</p>
+
+    <h2>Going the other way</h2>
+
+    <p>A payslip shows 76.42 hours for the fortnight and you want to know what that is on a clock.
+    Type it in the decimal box: 0.42 of an hour is 25 minutes, so 76.42 is <code>76:25</code>. If
+    your own record says 76:35, the difference is ten minutes, and now you have a specific number
+    to raise rather than a feeling that something is off.</p>
+
+    <h2>Converting a whole timesheet at once</h2>
+
+    <p>The column converter takes one value per line. Copy a column of daily totals from your
+    timesheet, a spreadsheet or a text message, paste it in, and the converted column appears next
+    to it with the total underneath in both formats. Copy the results and paste them back into
+    your sheet. If a line cannot be read it comes back as <code>??</code> rather than being
+    dropped, so the two columns always line up row for row.</p>
+
+    <p>If what you have is clock-in and clock-out times rather than daily totals, this is the
+    wrong tool — use the <a href="index.html">time card calculator</a>, which takes the punches,
+    handles breaks and overtime, and gives you decimal totals at the end.</p>
+
+    <h2 id="chart">Minutes to decimal chart</h2>
+
+    <p>Every minute from one to sixty, exact to two places, and what it becomes under quarter-hour
+    and tenth-hour rounding. Print it and keep it by the desk.</p>
+
+    <div class="actions noprint"><button class="btn ghost" id="btn-print-chart" type="button">Print the chart</button></div>
+
+    <div class="chart">
+      <table>
+        <thead><tr><th>Min</th><th>Exact</th><th>¼ hr</th><th>⅒ hr</th></tr></thead>
+        <tbody id="chart-rows"></tbody>
+      </table>
+    </div>
+
+    <h2 id="faq">Questions people ask</h2>
+
+    <details>
+      <summary>Is 7.5 hours seven and a half hours or seven hours five minutes?</summary>
+      <p>Seven and a half. A decimal hour is a fraction of an hour, so .5 is half an hour, thirty
+      minutes. Seven hours five minutes would be 7.08. When someone writes 7.5 meaning 7:05 the
+      payslip is wrong by twenty-five minutes.</p>
+    </details>
+
+    <details>
+      <summary>What is 0.83 hours in minutes?</summary>
+      <p>Fifty minutes. Multiply the decimal part by sixty: 0.83 × 60 = 49.8, which is fifty
+      minutes once rounded. The chart shows 50 minutes as 0.83 exactly.</p>
+    </details>
+
+    <details>
+      <summary>Why does my payroll show 8.08 when I worked 8:05?</summary>
+      <p>Because five minutes is 0.0833 of an hour and the system shows two decimal places. Nothing
+      is missing. 8.08 hours is 8 hours and 4.8 minutes, which rounds back to 8:05.</p>
+    </details>
+
+    <details>
+      <summary>Can I convert negative time, for a deduction?</summary>
+      <p>Yes. Type <code>-0:30</code> and it converts to <code>-0.50</code>. Useful for correcting
+      a previous period on a timesheet.</p>
+    </details>
+
+    <details>
+      <summary>Does the chart change with the rounding setting?</summary>
+      <p>No. The chart always shows all three columns — exact, quarter-hour and tenth-hour — so it
+      is complete when printed. The rounding setting applies to the converters above it.</p>
+    </details>
+
+  </article>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    HoursTally — free tools for counting hours and pay. No account, nothing leaves your browser.
+  </div>
+</footer>
+
+<script src="assets/decimal.js"></script>
+</body>
+</html>
