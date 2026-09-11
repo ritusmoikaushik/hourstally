@@ -77,6 +77,14 @@ check('bad input flagged, good pair still counted', () => {
   assert.strictEqual(r.bad, true);
   assert.strictEqual(r.minutes, 480);
 });
+check('half-filled pair is incomplete, not bad, not counted', () => {
+  const r = e.dayMinutes(day([{ in: '9', out: '', inM: 'am', outM: 'pm' }], ''));
+  assert.strictEqual(r.incomplete, true); assert.strictEqual(r.bad, false); assert.strictEqual(r.worked, false);
+});
+check('unreadable text is bad even with the other box empty', () => {
+  const r = e.dayMinutes(day([{ in: 'lunch', out: '', inM: 'am', outM: 'pm' }], ''));
+  assert.strictEqual(r.bad, true);
+});
 check('blank day is not worked', () => {
   assert.strictEqual(e.dayMinutes(day([{ in: '', out: '' }], '')).worked, false);
 });

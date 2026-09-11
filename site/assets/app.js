@@ -69,18 +69,22 @@ function segmentMinutes(inRaw, outRaw, inMer, outMer) {
   return best;
 }
 
+// bad = something typed that cannot be read. incomplete = one box of a pair still empty.
 function dayMinutes(day) {
-  let total = 0, any = false, bad = false;
+  let total = 0, any = false, bad = false, incomplete = false;
   for (const seg of day.segments) {
     if (!seg.in && !seg.out) continue;
+    if (seg.in && parseTimeEx(seg.in) === null) bad = true;
+    if (seg.out && parseTimeEx(seg.out) === null) bad = true;
+    if (!seg.in || !seg.out) { incomplete = true; continue; }
     const m = segmentMinutes(seg.in, seg.out, seg.inM, seg.outM);
-    if (m === null) { bad = true; continue; }
+    if (m === null) continue;
     total += m; any = true;
   }
   const brk = parseInt(day.breakMins, 10);
   if (any && brk > 0) total -= brk;
   if (total < 0) total = 0;
-  return { minutes: any ? total : 0, worked: any, bad };
+  return { minutes: any ? total : 0, worked: any, bad, incomplete };
 }
 
 function splitDay(minutes, rule) {
@@ -248,7 +252,8 @@ function renderDays() {
     row.append(el('div', { class: 'day-name' }, [
       day.label || ('Day ' + (di + 1)),
       day.date ? el('small', {}, [shortDate(day.date)]) : null,
-      el('span', { class: 'badnote' }, ['Check a time on this line'])
+      el('span', { class: 'badnote' }, ['Cannot read a time on this line']),
+      el('span', { class: 'incnote' }, ['A clock-out is missing'])
     ]));
 
     const pairs = el('div', { class: 'pairs' });
@@ -296,10 +301,11 @@ function renderDays() {
       el('span', {}, ['min'])
     ]));
 
-    row.append(el('div', { class: 'totals' }, [
-      el('div', { class: 'hm' + (res.worked ? '' : ' empty') }, [res.worked ? fmtHM(res.minutes) : '0:00']),
-      el('div', { class: 'dec' + (res.worked ? '' : ' empty') }, [res.worked ? fmtDec(res.minutes / 60) : '0.00'])
+    row.append(el('div', { class: 'totals' + (res.worked ? '' : ' empty') }, [
+      el('div', { class: 'hm' }, [res.worked ? fmtHM(res.minutes) : '—']),
+      el('div', { class: 'dec' }, [res.worked ? fmtDec(res.minutes / 60) : ''])
     ]));
+    row.classList.toggle('incomplete', res.incomplete);
 
     host.append(row);
   });
@@ -361,11 +367,11 @@ function renderTotals() {
   document.querySelectorAll('#days .day').forEach((row, i) => {
     const res = dayMinutes(state.days[i]);
     const hm = row.querySelector('.hm'), dec = row.querySelector('.dec');
-    hm.textContent = res.worked ? fmtHM(res.minutes) : '0:00';
-    dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '0.00';
-    hm.classList.toggle('empty', !res.worked);
-    dec.classList.toggle('empty', !res.worked);
+    hm.textContent = res.worked ? fmtHM(res.minutes) : '—';
+    dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '';
+    row.querySelector('.totals').classList.toggle('empty', !res.worked);
     row.classList.toggle('bad', res.bad);
+    row.classList.toggle('incomplete', res.incomplete);
   });
 }
 
