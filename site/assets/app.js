@@ -266,7 +266,7 @@ function renderDays() {
       const last = si === day.segments.length - 1;
       const inSwitch = merSwitch(seg, 'inM', (day.label || 'Day') + ' clock in ' + (si + 1));
       const outSwitch = merSwitch(seg, 'outM', (day.label || 'Day') + ' clock out ' + (si + 1));
-      pairs.append(el('div', { class: 'pair' }, [
+      pairs.append(el('div', { class: 'pair' + ((seg.in || seg.out) ? '' : ' blank') }, [
         el('input', {
           class: 'time', placeholder: (di === 0 && si === 0) ? '9:00' : (si === 0 ? '' : 'in'), value: seg.in, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock in ' + (si + 1),
@@ -414,7 +414,7 @@ function tableRows() {
   const foot = [[], ['Regular hours', fmtDec(r.reg)], ['Overtime hours', fmtDec(r.ot)]];
   if (r.dt > 0) foot.push(['Double time hours', fmtDec(r.dt)]);
   foot.push(['Total hours', fmtDec(r.totalMinutes / 60)]);
-  if (r.pay > 0) foot.push(['Gross pay', money(r.pay)]);
+  if (r.pay > 0) foot.push(['Gross pay', r.pay.toFixed(2)]);
   return { head, body, foot };
 }
 
@@ -422,7 +422,10 @@ function toCSV() {
   const t = tableRows();
   const esc = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
   const lines = [];
-  if (state.employee) lines.push([esc('Employee'), esc(state.employee)].join(','));
+  if (state.employee.trim()) lines.push([esc('Employee'), esc(state.employee.trim())].join(','));
+  if (state.days.length && state.days[0].date) {
+    lines.push([esc('Period'), esc(state.days[0].date + ' to ' + state.days[state.days.length - 1].date)].join(','));
+  }
   lines.push(t.head.map(esc).join(','));
   for (const row of t.body) lines.push(row.map(esc).join(','));
   for (const row of t.foot) lines.push(row.map(esc).join(','));
@@ -456,7 +459,7 @@ function bind() {
   document.getElementById('btn-csv').addEventListener('click', () => {
     download('timecard.csv', toCSV(), 'text/csv;charset=utf-8');
   });
-  document.getElementById('btn-print').addEventListener('click', () => window.print());
+  document.getElementById('btn-print').addEventListener('click', () => { render(); window.print(); });
   document.getElementById('btn-clear').addEventListener('click', () => {
     if (!confirm('Clear every time you have entered?')) return;
     state.days = buildDays(state.start, state.period);
