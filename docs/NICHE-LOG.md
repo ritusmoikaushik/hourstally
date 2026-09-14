@@ -30,6 +30,9 @@ second, wedge third. A thin SERP on a tiny query is empty, not open.
   shipping, refunds, net, by month — and an Excel back. Browser only, nothing uploaded.
 - **Shape:** three head pages (PayPal, eBay, Stripe), each genuinely different fee logic, dated
   and updated the day a rate changes; plus the CSV summary page. Passes the swap test.
+- **Adjacent terms seen in the sweep:** `ebay shipping calculator` 10K–100K ₹394–1,170 (eBay and
+  USPS own it; would need carrier rate tables — not for launch), `commission calculator` 1K–10K
+  ₹4,777 (sales commission, different user).
 - **Ceiling:** a few thousand sessions a month at maturity. A small cheque, not a large one.
 - **Why parked:** founder chose to keep hunting for a bigger cluster first. Build this if
   nothing bigger with a wedge turns up.
@@ -68,6 +71,10 @@ different from thirty others. Revisit only with a wedge.
 | 2026-09-14 | BTU calculator | 10K–100K | ₹24–631 | Midea, retailers, heating shops |
 | 2026-09-14 | Macro, TDEE, percentage, cap rate, roof pitch, puppy weight, random group, FERS, pdf to excel, cubic yard, stair, tank volume, running pace | 10K–1M | high bid under ₹150, or under ₹300 with retailers/YMYL on page one | Bids or ownership |
 | 2026-09-14 | Wedding budget/alcohol, cake serving, cat age, passport photo, electricity cost, generator size, tow capacity, closing costs, real estate commission, csv/vcf, image/invoice to excel, gpx | 1K–10K or below | various | Demand |
+| 2026-09-14 | Margin / markup / profit margin | 100K–1M / 10K–100K | ₹160–1,720 | Shopify, Sage, Zendesk, Mercury, Yotpo bait; forex brokers inflate the bid on `margin calculator` |
+| 2026-09-14 | Dilution / ppm / density (lab) | 10K–100K | ₹594–4,250 | Sigma-Aldrich, Tocris, Qiagen, Selleck — the suppliers own it |
+| 2026-09-14 | Body type / body shape | 10K–100K | ₹129–619 | Clothing retailers, omni, calculator.net |
+| 2026-09-14 | Full Keyword Planner sweep — seeds `calculator`, `converter`, `generator`, `checker`, `template`, 2,791 terms | 449 at 10K+ and ₹150+ | — | Banks and lenders (mortgage, loan, tax, refinance), currency pairs (Google widget), maths solvers (Desmos), physical generators (Generac), payroll (hourstally's own cluster: `time card calculator` 100K–1M ₹137–1,568). `checker` is the board game; templates bid under ₹131. Nothing unowned with money that was not already screened |
 | 2026-09-14 | Shift, PTO accrual, FTE, day rate, soap, lye, candle, quilt, fabric, sourdough, DoorDash pay, rotating shift, 12-hour shift | all 1K–10K or below | various | Demand |
 
 ## Standing lessons
