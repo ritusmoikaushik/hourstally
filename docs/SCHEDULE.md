@@ -48,6 +48,9 @@ No new URLs. Work goes into the pages that exist:
 - Reading the Search Console queries report for what people actually typed to arrive, and
   adjusting titles and explanations to match — the single cheapest ranking lever there is
 
+- Distribution that is not Google organic — Bing, IndexNow, Pinterest, a YouTube Short, directories —
+  is listed in `DISTRIBUTION.md` with who does what. IndexNow ping after every publish.
+
 None of this creates a page, so none of it counts against the cadence.
 
 ## The ninety-day review — 2026-12-10
