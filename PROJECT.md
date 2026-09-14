@@ -35,6 +35,12 @@ Evidence behind the scores:
   free-online-calculator-use — small, old, plain. Plus SaaS bait pages from QuickBooks,
   Jibble, Harvest, Toggl, Clockify. Google ranks a **Pinterest pin** at #10 for
   `biweekly time card calculator`, which is what a thin SERP looks like.
+  - **Missed in this screen, found 2026-09-14:** countworkhours.com. New (© 2026, no
+    ads yet), one in/out pair per day, PDF only, no Excel. Covers weekly, biweekly,
+    military time, decimal hours, overtime, holiday pay, salary-to-hourly, plus
+    off-topic pages (IRS penalty, "Iran war cost") — a stamp-out site. Both wedges
+    hold against it. Score unchanged. It is the newest direct competitor, so it is
+    the one to track at every 28-day pull, not redcort.
 - **Durability.** Payroll runs every week of every year. No seasonality.
 
 Roofing was rejected despite 5–20x the click value: nine competitor domains registered
@@ -72,3 +78,7 @@ written explanation, not just a form.**
   Google's scaled-content-abuse policy names, and it is the top enforcement priority
   of 2026.
 - Every calculator page must be usable on a phone.
+- **Before each new page ships, re-run the "who is there" check for its target query.**
+  The 2026-09-10 screen missed countworkhours.com. One search per query, list every
+  small site on page one, note whether any already does what the page's "what makes it
+  its own tool" cell says. Write the result in the page's `SCHEDULE.md` row.

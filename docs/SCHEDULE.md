@@ -16,7 +16,7 @@ Pages are counted as *indexable* only when they are in the sitemap without `noin
 | 2026-09-11 | done | `/`, `/time-to-decimal`, `/about` live. Search Console verified, sitemap submitted, indexing requested | 3 |
 | 2026-09-11 | done | Email routing live · `www` answers · Cloudflare Web Analytics found already on · privacy page updated · phone test done on the founder's handset, both tools, print and CSV included. Every finding fixed the same day: number keypad, am/pm switches, aligned rows, row notes, print as a document, chart layout, logo, favicon | 3 |
 | 2026-09-25 | assistant | `/how-it-counts` moves from noindex into the sitemap | 4 |
-| 2026-10-09 | founder + assistant | **First 28-day measurement.** Search Console and analytics into `MEASUREMENTS.md`. Sitemap status, indexed pages, impressions, any Google update in the window | 4 |
+| 2026-10-09 | founder + assistant | **First 28-day measurement.** Search Console and analytics into `MEASUREMENTS.md`. Sitemap status, indexed pages, impressions, any Google update in the window. Competitor watch row for countworkhours.com | 4 |
 | 2026-10-09 | assistant | `/with-lunch` — time card with lunch break, auto-deduct rule, meal-break table | 5 |
 | 2026-10-23 | assistant | `/biweekly` — two-week grid, week subtotals, pay-period calendar | 6 |
 | 2026-11-06 | founder + assistant | **Second measurement** | 6 |

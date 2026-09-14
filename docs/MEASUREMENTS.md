@@ -16,3 +16,12 @@ does not exist. Rule 10 in `GOOGLE-RULES.md`.
 | Pulled | Window | Clicks | Impressions | Avg position | Tier-1 sessions | Google updates in window | Notes |
 |---|---|---|---|---|---|---|---|
 | — | — | — | — | — | — | — | first pull due 2026-10-09 (28 days after launch) |
+
+## Competitor watch
+
+Checked at every 28-day pull, same day as the numbers. Position is for `time card calculator`
+and `biweekly time card calculator`, US, incognito.
+
+| Pulled | countworkhours.com position | Ads showing? | Multiple in/out yet? | Excel yet? | Notes |
+|---|---|---|---|---|---|
+| 2026-09-14 | not checked — found today via a trucking query | no | no | no (PDF only) | © 2026, stamp-out site: time card tools next to IRS penalty and "Iran war cost" pages. Missed in the 2026-09-10 screen |
