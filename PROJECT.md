@@ -54,6 +54,17 @@ multiple in and out`** under two different searches. Redcort, Clockify and
 Calculator.net were each checked by hand: **none of them support more than one in/out
 pair per day.** Demand shown twice, supply absent.
 
+**Correction 2026-09-14, adversarial pass.** Three incumbents were checked, not the whole
+page. timecardcalculator.net (CalculatorSoup, since 2006, #2 on the US page) has a setting
+*Time Periods per Day: 1, 2 or 3* — up to two breaks with their own in/out times — plus
+California overtime, monthly periods, decimal hours and PDF print. No Excel, no ads. So the
+punches wedge is *unlimited against three*, not *many against one*. It still holds for
+multi-break shifts; for most users three is enough. **Excel with formulas is the wedge that
+nobody on page one has. Lead with it.** US page one today: Time Clock Wizard, Harvest and
+HRMware (SaaS bait) plus timecardcalculator.net, Redcort, calculator.net and
+timecardcalculatorgeek, all 15–25 years old. No AI Overview. "Can we win" rescored 3 → 2,
+total 27. Still over the bar; the 2026-12-10 review decides on the numbers.
+
 Second repeated signal in the same strips: **Excel**. `timesheet calculator excel`,
 `bi weekly timesheet with lunch break excel`. People want a file to keep, not only a
 number on a screen. gstextract's own Search Console data measured file-word queries
