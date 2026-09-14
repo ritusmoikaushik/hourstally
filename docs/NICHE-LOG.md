@@ -75,6 +75,8 @@ different from thirty others. Revisit only with a wedge.
 | 2026-09-14 | Dilution / ppm / density (lab) | 10K–100K | ₹594–4,250 | Sigma-Aldrich, Tocris, Qiagen, Selleck — the suppliers own it |
 | 2026-09-14 | Body type / body shape | 10K–100K | ₹129–619 | Clothing retailers, omni, calculator.net |
 | 2026-09-14 | Full Keyword Planner sweep — seeds `calculator`, `converter`, `generator`, `checker`, `template`, 2,791 terms | 449 at 10K+ and ₹150+ | — | Banks and lenders (mortgage, loan, tax, refinance), currency pairs (Google widget), maths solvers (Desmos), physical generators (Generac), payroll (hourstally's own cluster: `time card calculator` 100K–1M ₹137–1,568). `checker` is the board game; templates bid under ₹131. Nothing unowned with money that was not already screened |
+| 2026-09-14 | Chart / graph makers | eight heads at 10K–100K (`bar graph maker`, `chart maker`, `graph maker`, `pie chart maker`, `line graph maker`, `flowchart maker`, `gantt chart maker`, `timeline maker`) | ₹265–623; flowchart ₹1,674, gantt ₹1,983 | AI. `line graph maker` and `timeline maker` down 90% YoY; AI Overview on `bar graph maker`; "AI bar graph maker" in the strip and in Google's ad block; Deepnote AI on page one. Generation, not transformation. Page one otherwise winnable (bargraphmaker.net #1, rapidtables, makechart.co beside Canva and Adobe) and the wedge — an .xlsx with a native chart — is real, but it would sit on a shrinking market. Score ~21 |
+| 2026-09-14 | Second Keyword Planner sweep — seeds `planner`, `maker`, `tracker`, `estimator`, `counter`, `schedule`, `chart`, 3,079 terms | 538 at 10K+ and ₹150+ | — | Sports scores and fixtures (ESPN), hospital MyChart portals, parcel tracking (carriers), paper planners (products), tax calculators (TurboTax, banks). Charts were the only new cluster; killed above |
 | 2026-09-14 | Shift, PTO accrual, FTE, day rate, soap, lye, candle, quilt, fabric, sourdough, DoorDash pay, rotating shift, 12-hour shift | all 1K–10K or below | various | Demand |
 
 ## Standing lessons
@@ -85,5 +87,7 @@ different from thirty others. Revisit only with a wedge.
   domain. If one is on page one for the head term, stop.
 - Volume without bids (image tools, word tools) is worthless under ads.
 - The wedge that has worked: the user's own file in, an Excel out.
+- A head term down 90% year on year with an AI Overview on it is AI eating the category. Two in
+  one cluster is a kill, whatever the wedge.
 - Google's "People also search for" strip is where the hourstally wedge came from. Read it before
   scoring "can we win".
