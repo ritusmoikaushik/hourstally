@@ -62,6 +62,12 @@ different from thirty others. Revisit only with a wedge.
 | 2026-09-14 | Aviation (crosswind, density altitude, E6B, W&B) | 10K–100K (−90%) / 1K–10K / 1K–10K / 100–1K | ₹0–507 | Cluster too small, head term falling, no bids on it |
 | 2026-09-14 | Word counter, HEIC to JPG | 1M–10M / 100K–1M | ₹2–44 / ₹1–5 | Nobody bids. Ads pay nothing |
 | 2026-09-14 | Board foot, gravel, paint, pool volume, gear ratio, voltage drop, wire size, tile | 10K–100K each | ₹1–265, mostly under ₹100 | Suppliers and retailers bid nothing and own page one |
+| 2026-09-14 | Sleep calculator | 100K–1M | ₹116–559 | Sleep Foundation, AASM, Healthline, mattress brands. Health authority, YMYL |
+| 2026-09-14 | One rep max | 100K–1M | ₹102–592 | strengthlevel.com is complete and ad-funded; NASM, Barbell Medicine behind it |
+| 2026-09-14 | SAT score calculator | 10K–100K | ₹214–1,291 | Magoosh, Albert and five other test-prep companies; all use the same College Board tables |
+| 2026-09-14 | BTU calculator | 10K–100K | ₹24–631 | Midea, retailers, heating shops |
+| 2026-09-14 | Macro, TDEE, percentage, cap rate, roof pitch, puppy weight, random group, FERS, pdf to excel, cubic yard, stair, tank volume, running pace | 10K–1M | high bid under ₹150, or under ₹300 with retailers/YMYL on page one | Bids or ownership |
+| 2026-09-14 | Wedding budget/alcohol, cake serving, cat age, passport photo, electricity cost, generator size, tow capacity, closing costs, real estate commission, csv/vcf, image/invoice to excel, gpx | 1K–10K or below | various | Demand |
 | 2026-09-14 | Shift, PTO accrual, FTE, day rate, soap, lye, candle, quilt, fabric, sourdough, DoorDash pay, rotating shift, 12-hour shift | all 1K–10K or below | various | Demand |
 
 ## Standing lessons
