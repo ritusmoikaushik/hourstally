@@ -14,6 +14,6 @@ Run `python scripts/serve.py` and open http://localhost:8000 — it serves clean
     docs/MEASUREMENTS.md   publish log and 28-day Search Console / GA4 pulls
     PROJECT.md             why this niche — the scorecard and the evidence
 
-Tests: `node test/engine.test.js`
+Tests: `node test/engine.test.js && node test/decimal.test.js && node test/xlsx.test.js`
 
 Deploy target: Cloudflare Pages, root `site/`.

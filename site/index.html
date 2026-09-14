@@ -94,7 +94,7 @@
     </div>
 
     <div class="actions">
-      <button class="btn" id="btn-csv" type="button">Download for Excel</button>
+      <button class="btn" id="btn-xlsx" type="button">Download as Excel</button>
       <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
       <button class="btn quiet" id="btn-clear" type="button">Clear the card</button>
     </div>
@@ -153,10 +153,14 @@
 
     <h2>What the download contains</h2>
 
-    <p>The Excel download is a CSV, which opens directly in Excel, Google Sheets, Numbers and
-    LibreOffice. It carries every day, every in and out pair, the break minutes, both hour formats,
-    and the regular, overtime and total lines at the bottom. If you entered a rate it carries the
-    gross pay too. Print gives you the same card on paper, or save it as a PDF from the print
+    <p>The download is a real Excel file (<code>.xlsx</code>), which also opens in Google Sheets,
+    Numbers and LibreOffice. It carries every day, every in and out pair, the break minutes, both
+    hour formats, and the regular, overtime and total lines at the bottom. The hours are stored as
+    numbers, not text: the h:mm column adds up as time and the decimal column adds up as a plain
+    number. The total line is a formula, so if you correct one day's hours in the sheet the total
+    follows. If you entered a rate, the rate and the gross pay are on the sheet too, and the pay is
+    a formula off the rate. Regular and overtime are fixed figures, because the split depends on the
+    rule you chose. Print gives you the same card on paper, or save it as a PDF from the print
     dialog — that is usually the format a payroll department wants attached to an email.</p>
 
     <h2 id="faq">Questions people ask</h2>
@@ -240,6 +244,7 @@
   </div>
 </footer>
 
+<script src="/assets/xlsx.js"></script>
 <script src="/assets/app.js"></script>
 </body>
 </html>

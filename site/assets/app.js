@@ -157,6 +157,8 @@ function money(n) {
   return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+const XLSX = typeof module !== 'undefined' ? require('./xlsx.js') : window.HourstallyXlsx;
+
 const KEY = 'hourstally.v1';
 
 function newSeg(index) {
@@ -417,39 +419,68 @@ function segLabel(seg) {
   return (a ? fmt12(a.minutes) : (seg.in || '?')) + ' - ' + (b ? fmt12(b.minutes) : (seg.out || '?'));
 }
 
-function tableRows() {
+// The sheet Excel opens. Hours are real numbers, not text: h:mm cells hold a fraction of a day
+// with an [h]:mm format, decimal cells hold exact minutes / 60 shown to two places. The total,
+// and the pay if a rate was given, are formulas, so a day corrected in Excel carries through.
+function toXlsxRows() {
   const r = compute(state);
-  const head = ['Date', 'Day', 'In / out', 'Unpaid break (min)', 'Hours (h:mm)', 'Hours (decimal)'];
-  const body = state.days.map((d, i) => {
-    const punches = d.segments.filter(s => s.in || s.out)
-      .map(segLabel).join('; ');
-    const row = r.rows[i];
-    return [d.date, d.label, punches, d.breakMins || '0',
-      row.worked ? fmtHM(row.minutes) : '', row.worked ? fmtDec(row.minutes / 60) : ''];
-  });
-  const foot = [[], ['Regular hours', fmtDec(r.reg)], ['Overtime hours', fmtDec(r.ot)]];
-  if (r.dt > 0) foot.push(['Double time hours', fmtDec(r.dt)]);
-  foot.push(['Total hours', fmtDec(r.totalMinutes / 60)]);
-  if (r.pay > 0) foot.push(['Gross pay', r.pay.toFixed(2)]);
-  return { head, body, foot };
-}
-
-function toCSV() {
-  const t = tableRows();
-  const esc = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
-  const lines = [];
-  if (state.employee.trim()) lines.push([esc('Employee'), esc(state.employee.trim())].join(','));
+  const S = XLSX.STYLE;
+  const rows = [];
+  const employee = (state.employee || '').trim();
+  if (employee) rows.push([{ v: 'Employee', s: S.bold }, employee]);
   if (state.days.length && state.days[0].date) {
-    lines.push([esc('Period'), esc(state.days[0].date + ' to ' + state.days[state.days.length - 1].date)].join(','));
+    rows.push([{ v: 'Period', s: S.bold }, { d: state.days[0].date }, 'to', { d: state.days[state.days.length - 1].date }]);
   }
-  lines.push(t.head.map(esc).join(','));
-  for (const row of t.body) lines.push(row.map(esc).join(','));
-  for (const row of t.foot) lines.push(row.map(esc).join(','));
-  return '﻿' + lines.join('\r\n');
+  if (rows.length) rows.push([]);
+
+  rows.push(['Date', 'Day', 'In / out', 'Unpaid break (min)', 'Hours (h:mm)', 'Hours (decimal)'].map(v => ({ v, s: S.bold })));
+  const firstDay = rows.length + 1;
+  state.days.forEach((d, i) => {
+    const row = r.rows[i];
+    const punches = d.segments.filter(sg => sg.in || sg.out).map(segLabel).join('; ');
+    const brk = parseInt(d.breakMins, 10);
+    rows.push([
+      d.date ? { d: d.date } : '',
+      d.label,
+      punches,
+      brk > 0 ? { v: brk, s: S.int } : '',
+      row.worked ? { v: row.minutes / 1440, s: S.hm } : '',
+      row.worked ? { v: row.minutes / 60, s: S.dec } : ''
+    ]);
+  });
+  const lastDay = rows.length;
+  rows.push([]);
+
+  const line = (label, v, bold) => { rows.push([{ v: label, s: bold ? S.bold : S.text }, '', '', '', '', { v, s: bold ? S.boldDec : S.dec }]); return rows.length; };
+  const regRow = line('Regular hours', r.reg);
+  const otRow = line('Overtime hours', r.ot);
+  const dtRow = r.dt > 0 ? line('Double time hours', r.dt) : 0;
+  rows.push([
+    { v: 'Total hours', s: S.bold }, '', '', '',
+    { v: r.totalMinutes / 1440, s: S.boldHm, f: 'SUM(E' + firstDay + ':E' + lastDay + ')' },
+    { v: r.totalMinutes / 60, s: S.boldDec, f: 'SUM(F' + firstDay + ':F' + lastDay + ')' }
+  ]);
+
+  const rate = parseFloat(state.rate) || 0;
+  if (rate > 0) {
+    rows.push([{ v: 'Hourly rate', s: S.text }, '', '', '', '', { v: rate, s: S.money }]);
+    const rateRow = rows.length;
+    let f = 'F' + regRow + '*F' + rateRow + '+F' + otRow + '*F' + rateRow + '*1.5';
+    if (dtRow) f += '+F' + dtRow + '*F' + rateRow + '*2';
+    rows.push([{ v: 'Gross pay', s: S.bold }, '', '', '', '', { v: Math.round(r.pay * 100) / 100, s: S.boldMoney, f }]);
+  }
+  return rows;
 }
 
-function download(name, text, mime) {
-  const blob = new Blob([text], { type: mime });
+const XLSX_WIDTHS = [13, 6, 36, 18, 13, 15];
+
+function xlsxName() {
+  const d = state.days.length && state.days[0].date;
+  return 'timecard' + (d ? '-' + d : '') + '.xlsx';
+}
+
+function download(name, data, mime) {
+  const blob = new Blob([data], { type: mime });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = name;
@@ -472,8 +503,9 @@ function bind() {
   document.getElementById('rate').addEventListener('input', e => { state.rate = e.target.value; save(); renderTotals(); });
   document.getElementById('employee').addEventListener('input', e => { state.employee = e.target.value; save(); });
 
-  document.getElementById('btn-csv').addEventListener('click', () => {
-    download('timecard.csv', toCSV(), 'text/csv;charset=utf-8');
+  document.getElementById('btn-xlsx').addEventListener('click', () => {
+    download(xlsxName(), XLSX.buildXlsx(toXlsxRows(), XLSX_WIDTHS, 'Time card'),
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   });
   document.getElementById('btn-print').addEventListener('click', () => { render(); window.print(); });
   document.getElementById('btn-clear').addEventListener('click', () => {
@@ -488,5 +520,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { fmtHMlabel, parseTime, parseTimeEx, applyMeridian, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }

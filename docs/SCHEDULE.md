@@ -43,7 +43,7 @@ the measurement numbers, not on a feeling that the site needs more pages.
 No new URLs. Work goes into the pages that exist:
 
 - Bugs and edge cases reported by real users become tests, then fixes
-- A true `.xlsx` download to replace the CSV, once the CSV has been used by real people
+- ~~A true `.xlsx` download to replace the CSV~~ — done 2026-09-14, no library, formulas for total and pay
 - Speed and phone checks on every page
 - Reading the Search Console queries report for what people actually typed to arrive, and
   adjusting titles and explanations to match — the single cheapest ranking lever there is
