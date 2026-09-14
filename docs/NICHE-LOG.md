@@ -10,34 +10,37 @@ second, wedge third. A thin SERP on a tiny query is empty, not open.
 
 ## Parked — passes the bar, not built yet
 
-### Marketplace fee calculators — score 26 — parked 2026-09-14
+Nothing at present. VAT below is borderline and has no wedge.
+
+### Marketplace fee calculators — was 26, killed 2026-09-14 after the adversarial pass
+
+Parked at 26 in the morning; founder asked for failure cases before committing; killed the same
+evening. Kept here in full so the reasoning is not redone.
 
 - **Head terms:** `paypal fee calculator` 10K–100K (₹237–716), `ebay fee calculator` 10K–100K
   (₹147–815), `ebay calculator` 10K–100K (₹206–966), `stripe fee calculator` 1K–10K (₹205–777).
-  Etsy is out: 1K–10K and ₹3 bids. Cluster 449 keywords, US+CA.
-- **AI Overview:** none on either head term. People Also Ask only. Ads live on the SERP.
-- **Page one:** small ad sites — ebayfeescalculator.com (#1, "Updated on Jul 30 2026"),
-  salecalc.com, finalfeecalc.com, designhill, fee-calculator.org — plus SaaS bait: Yotpo,
-  SaleHoo, ZIK, AutoDS, Spocket, Osome, Wise.
-- **"People also search for":** international, euro, dollar, 2026, friends and family, "best
-  ebay fee calculator reddit". The reddit one says people do not trust the numbers they get —
-  eBay runs 2.5–15.3% by category plus store tier plus promoted listings and most tools flatten
-  it. Accuracy and freshness are the moat.
-- **Wedge:** every page-one tool takes one sale at a time. Sellers already have a CSV — PayPal
-  Activity download, eBay transaction report — and eBay community threads ask for "a report of
-  your eBay fees for the year" and "add up my total revenue from the PayPal CSV" by hand in
-  Excel at tax time. The wedge page: drop the CSV, get the year summarised — gross, fees,
-  shipping, refunds, net, by month — and an Excel back. Browser only, nothing uploaded.
-- **Shape:** three head pages (PayPal, eBay, Stripe), each genuinely different fee logic, dated
-  and updated the day a rate changes; plus the CSV summary page. Passes the swap test.
-- **Adjacent terms seen in the sweep:** `ebay shipping calculator` 10K–100K ₹394–1,170 (eBay and
-  USPS own it; would need carrier rate tables — not for launch), `commission calculator` 1K–10K
-  ₹4,777 (sales commission, different user).
-- **Ceiling:** a few thousand sessions a month at maturity. A small cheque, not a large one.
-- **Why parked:** founder chose to keep hunting for a bigger cluster first. Build this if
-  nothing bigger with a wedge turns up.
-- Score: Demand 4 · Money 4 · Who is there 3 · Can we win 3 · AI 4 · Monetisable 4 ·
-  Durability 4.
+  Etsy 1K–10K and ₹3 bids. Cluster 449 keywords, US+CA. No AI Overview on either head term.
+- **The wedge as proposed:** drop the seller's PayPal or eBay CSV, get the year summarised — gross,
+  fees, shipping, refunds, net, by month — Excel back. Based on eBay community threads asking for
+  exactly that.
+- **Why it died:**
+  1. **The platforms now do it.** eBay Seller Hub → Payments → Reports → *Financial overview*, custom
+     date range, PDF or CSV. PayPal: annual financial summary, monthly statements with a fee
+     summary, fees report on the 6th of each month, PDF/Excel/CSV. The threads I relied on were
+     from the 2020 managed-payments changeover.
+  2. **The #1 incumbent is funded.** ebayfeescalculator.com is run by Flyp, a reseller SaaS:
+     category-accurate, store tiers, promoted listings, international, seven countries, nine
+     platforms, iOS and Android apps, updated Jul 2026. I had called it a small ad site from the
+     domain name without opening it.
+  3. **Page one is bait all the way down:** 3Dsellers, ResellBot, Closo, ZIK, AutoDS, Spocket,
+     Yotpo, Wise, Statrys, Mercury, Karbon. More every quarter.
+  4. **The real accuracy gap cannot be closed from outside.** Sellers' loudest complaint is that no
+     calculator matches the statement, because eBay nets promoted-listing fees from earlier
+     unsettled sales that no outside tool can see. Platform withholds the data — same lesson as
+     the Google education APIs.
+  5. **Trademark.** eBay has taken thousands of "ebay…" domains by UDRP. Any domain must be generic.
+- Rescored: Demand 4 · Money 4 · Who is there 2 · Can we win 2 · AI 4 · Monetisable 4 ·
+  Durability 3 = **23**.
 
 ### VAT calculator — borderline 25 — parked 2026-09-14
 
@@ -87,6 +90,11 @@ different from thirty others. Revisit only with a wedge.
   domain. If one is on page one for the head term, stop.
 - Volume without bids (image tools, word tools) is worthless under ads.
 - The wedge that has worked: the user's own file in, an Excel out.
+- **Open the incumbent before scoring it.** Twice in one day a domain name was read as "small ad
+  site" — countworkhours (missed entirely) and ebayfeescalculator.com (run by a funded SaaS).
+  The score for "who is there" comes from the page, not the URL.
+- **Forum threads have dates.** An ask from 2020 may have been answered by the platform since.
+  Check the platform's own reports page before calling a summary or export job unserved.
 - A head term down 90% year on year with an AI Overview on it is AI eating the category. Two in
   one cluster is a kill, whatever the wedge.
 - Google's "People also search for" strip is where the hourstally wedge came from. Read it before
