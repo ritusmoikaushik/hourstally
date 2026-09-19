@@ -11,6 +11,14 @@ does not exist. Rule 10 in `GOOGLE-RULES.md`.
 | 2026-09-11 | `/time-to-decimal` | 2 | launched together with the time card |
 | 2026-09-11 | `/about` | 3 | launch page three; `/how-it-counts` published noindex the same day, joins the index 2026-09-25 |
 
+## Early signal — not a pull
+
+Written down because it exists, not because it decides anything. The first real pull is 2026-10-09.
+
+| Seen | Window | Clicks | Impressions | Queries | Notes |
+|---|---|---|---|---|---|
+| 2026-09-19 | 10–16 Sep | 0 | 17 | 13 | Site six days old in the window. Every query is the target phrase or its neighbour: "time card calculator with multiple in and out" (3), "time punches" (3), "time punch calculator", "punch in punch out calculator", "payroll decimal", "20 mins in decimal". The page is being served for the words on it. Zero clicks on seventeen impressions means it sits deep; no title change on a sample this small |
+
 ## 28-day pulls
 
 | Pulled | Window | Clicks | Impressions | Avg position | Tier-1 sessions | Google updates in window | Notes |
