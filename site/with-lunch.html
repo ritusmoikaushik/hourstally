@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time Card Calculator with Lunch Break | HoursTally</title>
+<meta name="description" content="Free time card calculator that deducts a lunch break automatically — only on days the shift runs long enough — and lets you mark a lunch you worked through. Overtime, decimal hours, Excel download.">
+<link rel="canonical" href="https://hourstally.com/with-lunch">
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="Time card calculator with lunch break">
+<meta property="og:description" content="Deducts lunch automatically by the rule your employer uses, and lets you mark the days you worked through it. Overtime, decimal hours, Excel download. No signup.">
+<meta property="og:url" content="https://hourstally.com/with-lunch">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Time card calculator with lunch break","url":"https://hourstally.com/with-lunch","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["One clock in and one clock out a day","Lunch deducted automatically, only when the shift runs past 5, 6 or 8 hours, or every day","Any lunch length in minutes","Mark a day as worked through lunch, so nothing is deducted","Override the lunch on any single day","Count of lunches deducted and lunches worked through","Weekly, biweekly, semi-monthly and monthly pay periods","Overtime: over 40 a week, over 8 a day, both, California 8/12, or none","Totals in hours and minutes and in decimal","Excel (.xlsx) download with a shift column and a lunch column","Print or save as PDF","Nothing entered leaves the browser"],"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-10-09","dateModified":"2026-10-09"}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#1b2a41" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="/with-lunch" aria-current="page">With lunch</a>
+      <a href="/time-to-decimal">Time to decimal</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Time card calculator with lunch break</h1>
+  <p class="lede">One clock in and one clock out a day, and the lunch comes off by itself — only on the
+  days the shift ran long enough for one, which is how most employer systems behave. Mark a day you
+  worked through and nothing is deducted. Overtime split out, decimal hours, and the card downloads as
+  Excel with the lunch on its own column. Nothing to sign up for.</p>
+
+  <section class="tc lunch" data-tool="lunch" aria-label="Time card with lunch">
+    <div class="tc-fields">
+      <div class="field">
+        <label for="period">Pay period</label>
+        <select id="period">
+          <option value="week">Weekly, 7 days</option>
+          <option value="biweekly">Biweekly, 14 days</option>
+          <option value="semimonthly">Semi-monthly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="start">First day</label>
+        <input type="date" id="start">
+      </div>
+      <div class="field">
+        <label for="lunch-min">Lunch, minutes</label>
+        <input type="number" id="lunch-min" min="0" step="5" value="30" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="lunch-when">Deduct when</label>
+        <select id="lunch-when">
+          <option value="over6">Shift runs over 6 hours</option>
+          <option value="over5">Shift runs over 5 hours</option>
+          <option value="over8">Shift runs over 8 hours</option>
+          <option value="always">Every day worked</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rule">Overtime</label>
+        <select id="rule">
+          <option value="weekly40">Over 40 a week</option>
+          <option value="daily8">Over 8 a day</option>
+          <option value="both">Over 8 a day, 40 a week</option>
+          <option value="california">California 8 / 12</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rate">Hourly rate</label>
+        <input type="number" id="rate" min="0" step="0.01" placeholder="optional" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="employee">Name on the card</label>
+        <input type="text" id="employee" placeholder="optional" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="tc-cols" aria-hidden="true">
+      <div>Day</div><div>Clock in and out</div><div>Lunch deducted</div><div class="num">Worked</div><div class="num">Decimal</div>
+    </div>
+
+    <div id="days"></div>
+
+    <div class="stub">
+      <div class="stub-total">
+        <div class="stub-label">Total for the period, after lunch</div>
+        <div class="stub-value"><span id="t-total-hm">0h 00m</span><small><span id="t-total-dec">0.00</span> hrs</small></div>
+      </div>
+      <dl class="stub-breakdown">
+        <dt>On the clock</dt><dd id="t-shift">0.00</dd>
+        <dt>Lunch deducted</dt><dd id="t-lunch">0h 00m</dd>
+        <div id="throughrow" hidden><dt>Worked through</dt><dd id="t-through">0</dd></div>
+        <dt>Regular</dt><dd id="t-reg">0.00</dd>
+        <dt>Overtime</dt><dd id="t-ot">0.00</dd>
+        <div id="dtrow" hidden><dt>Double time</dt><dd id="t-dt">0.00</dd></div>
+        <dt>Days worked</dt><dd id="t-days">0</dd>
+        <div id="payrow" class="pay" hidden><dt>Gross pay</dt><dd id="t-pay">0.00</dd></div>
+      </dl>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="btn-xlsx" type="button">Download as Excel</button>
+      <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
+      <button class="btn quiet" id="btn-clear" type="button">Clear the card</button>
+    </div>
+
+    <p class="print-note">Prepared with the free time card calculator at hourstally.com. Times as entered; lunch deducted per the rule shown above; overtime per the rule shown above.</p>
+    <p class="hint">Type the time as digits — <code>8</code>, <code>830</code>, <code>8:30</code> — and tap
+    <strong>am</strong> / <strong>pm</strong> beside it if the switch is wrong. The lunch box shows what the
+    rule took off that day; type over it for a day that was different, or press
+    <strong>worked through</strong> for a day you had no lunch at all. If you clock out and back in for lunch
+    instead, the <a href="/">time card with multiple punches</a> is the right tool.
+    Nothing you enter leaves this browser.</p>
+    <p class="hint noprint">Missing something, or got a total you think is wrong? Email
+    <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Bugs get fixed and become tests.</p>
+  </section>
+
+  <div class="body">
+  <article>
+
+    <h2 id="how">How this card takes off lunch</h2>
+
+    <p>Most time clocks do not have a punch for lunch. You clock in once in the morning and out once
+    in the evening, and the payroll system takes thirty minutes off in the middle whether or not you
+    stopped. That is called an automatic deduction, and it is the setting this card copies, because
+    it is the one you need to check your pay against.</p>
+
+    <p>Two things control it. <strong>Lunch, minutes</strong> is how long the deduction is — thirty
+    is the usual figure, some workplaces use forty-five or sixty. <strong>Deduct when</strong> is when
+    it applies. The default is <em>shift runs over 6 hours</em>, which is the most
+    common rule in employer systems: a five hour shift gets no lunch taken off, a nine hour shift
+    gets thirty minutes. Pick <em>every day worked</em> if your employer deducts regardless, or the
+    five or eight hour thresholds if that is what your handbook says.</p>
+
+    <p>Each day shows what the rule decided in the lunch box, in grey. If one day was different —
+    a longer lunch, or a short one — type the real minutes over it and that day uses your figure.
+    If you had no lunch at all, press <strong>worked through</strong>. The day is marked, nothing is
+    deducted, and the count of worked-through days appears in the summary so you can say to
+    payroll, in one line, how many lunches you are owed.</p>
+
+    <h2 id="legal">When an automatic deduction is allowed, and when it is not</h2>
+
+    <p>Under federal law a real meal period — usually thirty minutes or more, during which you are
+    completely relieved of duty — does not have to be paid. A break of twenty minutes or less
+    counts as work time and must be paid. So an employer may deduct a thirty minute lunch
+    automatically, and it is lawful, <em>provided the lunch was actually taken</em>.</p>
+
+    <p>The trouble starts when it was not. If you ate at your desk answering the phone, stayed on
+    the floor because nobody came to cover, or were called back ten minutes in, that was not a meal
+    period and it has to be paid. The deduction still happens, because the system does not know.
+    Employers are expected to have a way for you to reverse it — a form, a manager's correction, a
+    note on the timesheet — and to pay the time when they knew or should have known you worked
+    through. An automatic deduction with no way to cancel it is the thing that turns into a claim.</p>
+
+    <p>That is what the worked-through button is for. It does not change what your employer's
+    system did. It shows what the total <em>should</em> be, day by day, and gives you the count and
+    the minutes to ask for.</p>
+
+    <h2 id="states">Meal break rules by state</h2>
+
+    <p>Federal law does not require a lunch break at all. About twenty states do, and the trigger —
+    how long the shift has to be before a break is owed — is different in each. The rule matters
+    here because it usually decides the <strong>Deduct when</strong> setting: where the state requires a
+    thirty minute break after five hours, employer systems tend to deduct after five.</p>
+
+    <table>
+      <tr><th>State</th><th>Break</th><th>Owed when the shift runs</th></tr>
+      <tr><td>California</td><td>30 min, unpaid</td><td>Over 5 hours; a second one over 10</td></tr>
+      <tr><td>Colorado</td><td>30 min</td><td>Over 5 hours</td></tr>
+      <tr><td>Connecticut</td><td>30 min</td><td>7½ hours or more</td></tr>
+      <tr><td>Delaware</td><td>30 min</td><td>7½ hours or more</td></tr>
+      <tr><td>Illinois</td><td>20 min</td><td>7½ hours or more</td></tr>
+      <tr><td>Kentucky</td><td>Reasonable meal period</td><td>Between the 3rd and 5th hour</td></tr>
+      <tr><td>Maine</td><td>30 min</td><td>Over 6 hours</td></tr>
+      <tr><td>Massachusetts</td><td>30 min</td><td>Over 6 hours</td></tr>
+      <tr><td>Minnesota</td><td>30 min</td><td>6 hours or more</td></tr>
+      <tr><td>Nevada</td><td>30 min</td><td>8 hours or more</td></tr>
+      <tr><td>New Hampshire</td><td>30 min</td><td>Over 5 hours</td></tr>
+      <tr><td>New York</td><td>30 to 60 min</td><td>Over 6 hours, and it depends on the shift</td></tr>
+      <tr><td>North Dakota</td><td>30 min</td><td>Over 5 hours</td></tr>
+      <tr><td>Oregon</td><td>30 min</td><td>6 hours or more</td></tr>
+      <tr><td>Rhode Island</td><td>20 to 30 min</td><td>6 to 8 hour shifts</td></tr>
+      <tr><td>Tennessee</td><td>30 min</td><td>6 hours or more</td></tr>
+      <tr><td>Washington</td><td>30 min</td><td>Over 5 hours</td></tr>
+      <tr><td>West Virginia</td><td>20 min</td><td>Over 6 hours</td></tr>
+    </table>
+
+    <p>Everywhere else, the break is whatever your employer's policy or your contract says. Union
+    agreements, hospital and public-sector rules often set their own. This table is a starting point
+    for choosing the setting, not a statement of your rights — those come from your state labor
+    department, and they change.</p>
+
+    <h2 id="dispute">If the system took a lunch you worked through</h2>
+
+    <ol>
+      <li>Fill in this card for the pay period from your own clock-in and clock-out times, with the
+      same lunch rule your employer uses. Press <strong>worked through</strong> on the days you had
+      no break.</li>
+      <li>Compare the total with your pay stub. The difference is the summary line
+      <em>worked through</em> times the lunch length.</li>
+      <li>Download the Excel. It lists every day with the shift, the lunch that was or was not
+      deducted, and the hours, so the person in payroll can see the same thing you see.</li>
+      <li>Raise it in writing with whoever runs payroll, in the same pay period if you can. Most
+      employers correct it on the next run. Keep the sheet.</li>
+    </ol>
+
+    <p>If it keeps happening, or the answer is that the deduction cannot be reversed, that is a
+    question for your state labor department or the federal Wage and Hour Division, not for a
+    calculator.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+
+    <details>
+      <summary>My employer deducts thirty minutes after five hours. Which setting?</summary>
+      <p>Lunch 30, <em>shift runs over 5 hours</em>. A five hour shift on the dot gets
+      nothing deducted; five hours and one minute gets thirty.</p>
+    </details>
+
+    <details>
+      <summary>I clock out for lunch and back in. Can I use this card?</summary>
+      <p>You can, but the <a href="/">time card with multiple in and out punches</a> is the right
+      one — it counts the punches themselves and takes nothing off automatically. This card is for
+      the single-punch day where the lunch is deducted by rule.</p>
+    </details>
+
+    <details>
+      <summary>Is my lunch paid?</summary>
+      <p>Usually not, if it is a real break of thirty minutes or more. If your employer pays lunch,
+      set the lunch to 0 minutes and the card counts the whole shift.</p>
+    </details>
+
+    <details>
+      <summary>Does it handle a night shift that ends the next morning?</summary>
+      <p>Yes. Enter 10:00pm and 6:30am and it counts eight and a half hours, and takes the lunch off
+      if the rule says so.</p>
+    </details>
+
+    <details>
+      <summary>Does it round the times?</summary>
+      <p>No. It counts the exact minutes you enter, and it deducts the exact lunch you set. If your
+      employer rounds punches to the quarter hour, the totals here may differ by a few minutes a day.
+      Rounding that always favors the employer is not lawful under the FLSA.</p>
+    </details>
+
+    <details>
+      <summary>Is my time card sent anywhere?</summary>
+      <p>No. Everything is worked out inside your browser, and what you type is kept in this
+      browser only so the card is still here if you come back. Clear removes it. Nothing reaches a
+      server.</p>
+    </details>
+
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. The arithmetic is set out on <a href="/how-it-counts">how it counts</a>. Last updated 9 October 2026.</p>
+  </article>
+    <aside class="rail">
+      <div class="rail-box">
+        <h3>Tools</h3>
+        <ul>
+        <li><a href="/">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li aria-current="page"><a href="/with-lunch">Time card with lunch break</a><small>Lunch deducted by rule, worked-through days marked</small></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        </ul>
+      </div>
+      <div class="rail-box">
+        <h3>On this page</h3>
+        <ul>
+        <li><a href="#how">How it takes off lunch</a></li>
+        <li><a href="#legal">When a deduction is allowed</a></li>
+        <li><a href="#states">Meal break rules by state</a></li>
+        <li><a href="#dispute">A lunch you worked through</a></li>
+        <li><a href="#faq">Questions people ask</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. Built by <a href="/about">Ritusmoi Kaushik</a>. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/with-lunch">Time card with lunch break</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/how-it-counts">How it counts</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/xlsx.js"></script>
+<script src="/assets/app.js"></script>
+<script src="/assets/lunch.js"></script>
+</body>
+</html>

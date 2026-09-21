@@ -131,6 +131,20 @@ input.time::placeholder, input.brk::placeholder, .field input::placeholder { col
 }
 .pair .add:hover { color: var(--ink); border-color: var(--ink-soft); border-style: solid; }
 
+/* the lunch card: one pair a day, and a wider middle column for the lunch and its switch */
+.tc.lunch .tc-cols, .tc.lunch .day { grid-template-columns: 92px minmax(0, 1fr) 236px 72px 72px; }
+.pair.single { grid-template-columns: 84px 34px 22px 84px 34px; }
+.lunchwrap { display: flex; align-items: center; gap: 6px; }
+.lunchwrap input.brk { width: 64px; }
+.through {
+  font: inherit; font-size: 12px; font-weight: 600; letter-spacing: .2px; cursor: pointer; white-space: nowrap;
+  height: 36px; padding: 0 9px; border-radius: 3px;
+  border: 1px dashed var(--rule-strong); background: transparent; color: var(--ink-soft);
+}
+.through:hover { border-style: solid; color: var(--ink); }
+.through.on { border: 1px solid var(--stamp); background: var(--stamp); color: #fff; }
+.day.nolunch:not(.bad) .daynotes { color: var(--ink-soft); }
+
 input.brk { width: 76px; height: 36px; font-size: 16px; padding: 0 8px; text-align: right; background: var(--field); border: 1px solid var(--rule-strong); border-radius: 3px; color: var(--ink); }
 .hm, .dec { text-align: right; line-height: 34px; font-size: 16px; }
 .totals.empty .hm { color: #c4bca3; }
@@ -145,6 +159,9 @@ input.brk { width: 76px; height: 36px; font-size: 16px; padding: 0 8px; text-ali
 .stub-breakdown dt { color: var(--ink-soft); }
 .stub-breakdown dd { margin: 0; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
 .stub-breakdown .pay dd { color: var(--ok); font-weight: 600; }
+/* a row that can be hidden is wrapped in a div; the div must not become a grid cell */
+.stub-breakdown > div { display: contents; }
+.stub-breakdown > div[hidden] { display: none; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 20px 0; }
 .btn {
@@ -239,6 +256,9 @@ details p { margin: 10px 0 0; }
   .totals:not(.empty) .dec::before { content: "= "; color: var(--ink-soft); }
   .totals:not(.empty) .dec::after { content: " hrs"; color: var(--ink-soft); font-family: "IBM Plex Sans", sans-serif; font-size: 13px; }
   .pair { grid-template-columns: minmax(0, 1fr) 38px 18px minmax(0, 1fr) 38px 24px 36px; gap: 4px; }
+  .pair.single { grid-template-columns: minmax(0, 1fr) 38px 18px minmax(0, 1fr) 38px; }
+  .tc.lunch .day { grid-template-columns: minmax(0, 1fr) auto; }
+  .lunchwrap { flex-wrap: wrap; }
   input.time { padding: 0 4px; }
   .stub { grid-template-columns: 1fr; }
   .stub-breakdown { text-align: left; grid-template-columns: auto 1fr; }
@@ -257,7 +277,7 @@ details p { margin: 10px 0 0; }
   @page { margin: 14mm; }
   body { background: #fff; color: #000; }
   .site-head nav, .lede, .actions, .hint, .site-foot, article, aside.rail,
-  .pair .add, .pair .x, .pair .slot, .daynotes, .noprint { display: none !important; }
+  .pair .add, .pair .x, .pair .slot, .daynotes, .noprint, .through:not(.on) { display: none !important; }
   .site-head { border-bottom: 1px solid #000; }
   .site-head .wrap { height: 44px; }
   h1 { font-size: 18px; margin: 12px 0 10px; }
@@ -297,10 +317,6 @@ details p { margin: 10px 0 0; }
   .stub-breakdown .pay dd { color: #000; }
   .print-note { display: block !important; font-size: 11px; color: #666; margin-top: 8px; }
 }
-}
-
-.stub-breakdown > div { display: contents; }
-.stub-breakdown > div[hidden] { display: none; }
 
 @media (max-width: 340px) {
   .pair { grid-template-columns: minmax(0, 1fr) 34px 16px minmax(0, 1fr) 34px 22px 34px; gap: 3px; }

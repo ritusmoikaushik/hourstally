@@ -515,8 +515,13 @@ function bind() {
   });
 }
 
+// The engine is shared, the page is not: /with-lunch loads this file for the
+// arithmetic and runs its own screen, so the time card only wires itself up
+// where its own section is on the page.
 if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => { load(); bind(); render(); });
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('[data-tool="timecard"]')) { load(); bind(); render(); }
+  });
 }
 
 if (typeof module !== 'undefined') {
