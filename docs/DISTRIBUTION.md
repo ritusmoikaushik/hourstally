@@ -16,15 +16,12 @@ also a Google signal, and this estate has lost two domains to signals.
 | 2026-09-11 | Cloudflare Web Analytics | On |
 | 2026-09-14 | IndexNow | Key file live at `/10206f9edaa086337d546f9fa7031118.txt`. All four URLs submitted to api.indexnow.org and bing.com — both returned 202. Bing, DuckDuckGo, Yandex and Naver read IndexNow. Bing carried gstextract when Google dropped it |
 | 2026-09-14 | Structured data | Author, dates and feature list on both tool pages; sitemap carries `lastmod` |
+| 2026-09-21 | Bing Webmaster Tools | Site added, sitemap submitted. Reports take up to 48 hours to appear |
 | 2026-09-14 | Pinterest pin images | Three pins made, in `D:\tmp\hourstally-pins\` (time card, biweekly, decimal). Waiting on the account — see below |
 
 ## Founder's queue — short tasks, in order
 
-### 1. Bing Webmaster Tools — 3 minutes
-
-bing.com/webmasters → sign in → **Import from Google Search Console**. One click brings the site
-and the sitemap across. Bing then shows its own index status and queries, which arrive weeks before
-Google's. Bing plus DuckDuckGo is 5–8% of US search and it indexes a new domain in days.
+### ~~1. Bing Webmaster Tools~~ — done 2026-09-21
 
 ### 2. Pinterest — 15 minutes once, then 2 minutes per page
 
