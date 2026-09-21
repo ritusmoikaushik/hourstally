@@ -3,6 +3,11 @@
 Search Console and GA4, pulled every 28 days, written here the same day. Anything not written here
 does not exist. Rule 10 in `GOOGLE-RULES.md`.
 
+**The pull is one command:** `python scripts/gsc_export.py` — prints the 28-day totals, every page
+and the top queries, and writes the rows to `docs/gsc/` so each pull is on the record. It reads
+Search Console through the service account gstextract already uses, added as a Restricted user on
+this property on 2026-09-21; the key stays in the gstextract repo and is never copied here.
+
 ## Publish log
 
 | Date | Page | Indexable pages after this | Notes |
@@ -17,6 +22,7 @@ Written down because it exists, not because it decides anything. The first real 
 
 | Seen | Window | Clicks | Impressions | Queries | Notes |
 |---|---|---|---|---|---|
+| 2026-09-21 | 23 Aug–19 Sep, by API | 0 | 26 | 14 | First API pull. Average position **57** — page five and beyond, which is why 26 impressions gave no click. Six of the impressions were on the `http://` and `www` copies, before the redirects of 21 Sep |
 | 2026-09-19 | 10–16 Sep | 0 | 17 | 13 | Site six days old in the window. Every query is the target phrase or its neighbour: "time card calculator with multiple in and out" (3), "time punches" (3), "time punch calculator", "punch in punch out calculator", "payroll decimal", "20 mins in decimal". The page is being served for the words on it. Zero clicks on seventeen impressions means it sits deep; no title change on a sample this small |
 
 ## 28-day pulls
