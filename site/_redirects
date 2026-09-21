@@ -1,9 +1,8 @@
-# One host, one scheme. Google crawled www and http copies of every page and
-# filed them as "alternative page with proper canonical tag" - harmless, but a
-# 301 is what it wants. Rules with a full URL match on host and scheme.
-https://www.hourstally.com/* https://hourstally.com/:splat 301
-http://www.hourstally.com/* https://hourstally.com/:splat 301
-http://hourstally.com/* https://hourstally.com/:splat 301
+# www and http are not handled here. Cloudflare Pages ignores a source with a
+# host in it ("domain-level redirects: not supported"). They are zone settings:
+# Always Use HTTPS, and a Redirect Rule from www to the root - both in the
+# Cloudflare dashboard, both set by the founder. Verified 2026-09-21 that the
+# three rules that used to sit here did nothing.
 
 /index.html / 301
 /time-to-decimal.html /time-to-decimal 301
