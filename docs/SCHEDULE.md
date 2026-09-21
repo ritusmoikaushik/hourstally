@@ -2,8 +2,16 @@
 
 Dated plan from launch. Built from `PLAN.md` (what and in what order) and `GOOGLE-RULES.md`
 (how fast is allowed). The rules cap a seven-day window at two new indexable pages and the
-first ninety days at eight. This schedule runs slower than the cap on purpose: one page every
-two weeks. A young domain gains nothing from speed and has lost everything to it twice.
+first ninety days at eight.
+
+**Pace: one page a week — decided 2026-09-21.** It ran at one every two weeks from launch.
+The founder asked whether faster was unsafe. The honest reading of the two incidents is that
+neither site died of speed alone: gradekar put up 33 find-and-replace pages, gstextract 38 in a
+day. What killed them was templated pages in a burst, and the swap test is the lock on that
+door. One a week stays inside the seven-day cap, every page still gets the founder's read, and
+the eight pages are indexed four weeks earlier — Google's clock on each starts sooner. The cost
+is seven idle weeks between the eighth page and the ninety-day review; those go to distribution,
+bugs and reading what people typed. The eight-in-ninety cap stays. Bursts stay banned.
 
 Launch day: **2026-09-11**. Ninety-day cap lifts: **2026-12-10**.
 
@@ -17,24 +25,25 @@ Pages are counted as *indexable* only when they are in the sitemap without `noin
 | 2026-09-11 | done | Email routing live · `www` answers · Cloudflare Web Analytics found already on · privacy page updated · phone test done on the founder's handset, both tools, print and CSV included. Every finding fixed the same day: number keypad, am/pm switches, aligned rows, row notes, print as a document, chart layout, logo, favicon | 3 |
 | 2026-09-21 | done | www → root 301 as a Cloudflare Redirect Rule; http → https was already on. Search Console had filed the www and http copies as "alternative page with proper canonical tag" — harmless, now gone. `_redirects` cannot do host rules | 3 |
 | 2026-09-25 | assistant | `/how-it-counts` moves from noindex into the sitemap | 4 |
-| 2026-10-09 | founder + assistant | **First 28-day measurement.** Search Console and analytics into `MEASUREMENTS.md`. Sitemap status, indexed pages, impressions, any Google update in the window. Competitor watch row for countworkhours.com | 4 |
-| 2026-10-09 | assistant | `/with-lunch` — time card with lunch break, auto-deduct rule, meal-break table | 5 |
-| 2026-10-23 | assistant | `/biweekly` — two-week grid, week subtotals, pay-period calendar | 6 |
-| 2026-11-06 | founder + assistant | **Second measurement** | 6 |
-| 2026-11-06 | assistant | `/with-overtime-and-pay` — rate first, two rates in one week, FLSA blended rate | 7 |
-| 2026-11-20 | assistant | `/military-time` — 24-hour entry, conversion chart, 0000 vs 2400 | 8 — **ninety-day cap reached** |
+| 2026-10-02 | assistant | `/with-lunch` — time card with lunch break, auto-deduct rule, meal-break table. **Built 2026-09-21, live noindex; needs the founder's read first** | 5 |
+| 2026-10-09 | founder + assistant | **First 28-day measurement.** `python scripts/gsc_export.py` and analytics into `MEASUREMENTS.md`. Sitemap status, indexed pages, impressions, any Google update in the window. Competitor watch row for countworkhours.com | 5 |
+| 2026-10-09 | assistant | `/biweekly` — two-week grid, week subtotals, pay-period calendar | 6 |
+| 2026-10-16 | assistant | `/with-overtime-and-pay` — rate first, two rates in one week, FLSA blended rate | 7 |
+| 2026-10-23 | assistant | `/military-time` — 24-hour entry, conversion chart, 0000 vs 2400 | 8 — **ninety-day cap reached** |
+| 2026-11-06 | founder + assistant | **Second measurement** | 8 |
+| 2026-11-06 | — | No pages until the review. Bing and Search Console queries read, titles adjusted, bugs to tests, Pinterest pins for every page | 8 |
 | 2026-12-04 | founder + assistant | **Third measurement** | 8 |
 | 2026-12-10 | founder + assistant | **Ninety-day review.** See below. Decides whether the schedule continues | 8 |
 | 2026-12-11 | assistant | `/monthly` — real calendar month, working-day count, pro-rata | 9 |
-| 2027-01-01 | founder + assistant | **Fourth measurement** | 9 |
-| 2027-01-08 | assistant | `/hours-and-minutes` | 10 |
-| 2027-01-22 | assistant | `/payroll-hours` — many employees, one sheet | 11 |
-| 2027-01-29 | founder + assistant | **Fifth measurement** | 11 |
-| 2027-02-05 | assistant | `/schedule-maker` | 12 |
-| 2027-02-19 | assistant | `/rounding` | 13 |
-| 2027-02-26 | founder + assistant | **Sixth measurement.** First check against the 1,000-sessions milestone | 13 |
-| 2027-03-05 | assistant | `/hourly-to-salary` | 14 |
-| 2027-03-19 | assistant | `/minutes-to-decimal-chart` — only if it can stand on its own; else it stays inside `/time-to-decimal` | 14 or 15 |
+| 2026-12-18 | assistant | `/hours-and-minutes` | 10 |
+| 2027-01-01 | founder + assistant | **Fourth measurement** | 10 |
+| 2027-01-08 | assistant | `/payroll-hours` — many employees, one sheet | 11 |
+| 2027-01-15 | assistant | `/schedule-maker` | 12 |
+| 2027-01-22 | assistant | `/rounding` | 13 |
+| 2027-01-29 | founder + assistant | **Fifth measurement** | 13 |
+| 2027-02-05 | assistant | `/hourly-to-salary` | 14 |
+| 2027-02-12 | assistant | `/minutes-to-decimal-chart` — only if it can stand on its own; else it stays inside `/time-to-decimal` | 14 or 15 |
+| 2027-02-26 | founder + assistant | **Sixth measurement.** First check against the 1,000-sessions milestone | 14 or 15 |
 
 After that the list in `PLAN.md §4` is exhausted. Anything further is a new decision, taken on
 the measurement numbers, not on a feeling that the site needs more pages.
@@ -60,7 +69,7 @@ Three measurements will exist by then. The review asks one question: **is Google
 site at all?** Impressions on the three original pages, trend across the three pulls, and
 whether indexed pages equal sitemap pages.
 
-- Impressions rising, pages indexed → continue on schedule
+- Impressions rising, pages indexed → continue on schedule, one a week
 - Flat at near zero → continue, but slower: one page a month. Gstextract took four to five months
   in a weaker market; day ninety is early
 - A drop of 50% or more between two pulls on every page at once → stop publishing, follow
