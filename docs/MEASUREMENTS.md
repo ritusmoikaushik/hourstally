@@ -17,7 +17,7 @@ this property on 2026-09-21; the key stays in the gstextract repo and is never c
 | 2026-09-11 | `/` time card calculator | 1 | site went live on hourstally.com via Cloudflare Pages, repo `main` |
 | 2026-09-11 | `/time-to-decimal` | 2 | launched together with the time card |
 | 2026-09-11 | `/about` | 3 | launch page three; `/how-it-counts` published noindex the same day, joins the index 2026-09-25 |
-| 2026-09-28 | `/how-it-counts` | 4 | out of noindex, into the sitemap, three days after its slot. IndexNow pinged. Nothing else indexable within seven days either side until `/with-lunch` on 2026-10-02 |
+| 2026-09-28 | `/how-it-counts` | 4 | out of noindex, into the sitemap, three days after its slot. IndexNow pinged; indexing requested in Search Console by the founder the same day. Nothing else indexable within seven days either side until `/with-lunch` on 2026-10-02 |
 
 ## Early signal — not a pull
 
