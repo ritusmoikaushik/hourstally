@@ -1,2 +1,5 @@
 node_modules/
 .DS_Store
+
+# Cloudflare API token, Account Analytics: Read only. Never commit.
+.cf-token
