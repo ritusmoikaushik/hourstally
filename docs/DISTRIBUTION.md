@@ -78,7 +78,7 @@ never more than one link per week anywhere. I can draft answers; posting is your
 
 ## Assistant's queue
 
-- **2026-09-25** — `/how-it-counts` into the sitemap; IndexNow ping the same hour; new pin.
+- ~~**2026-09-25** — `/how-it-counts` into the sitemap; IndexNow ping the same hour~~ — done 2026-09-28. The new pin waits on the Pinterest account.
 - **2026-10-09, first measurement** — read the Search Console *queries* report and Bing's. Every
   query that brought an impression that the page title does not already say is a title or
   paragraph change. This is the cheapest ranking lever there is and it only exists once data does.

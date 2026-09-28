@@ -6,7 +6,15 @@
 <title>How it counts | HoursTally</title>
 <meta name="description" content="Every rule the HoursTally time card calculator applies - reading times, breaks, overtime, decimal - with worked examples.">
 <link rel="canonical" href="https://hourstally.com/how-it-counts">
-<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="How the HoursTally time card calculator counts">
+<meta property="og:description" content="Every rule the time card calculator applies: reading times, breaks, overtime, decimal. With worked examples you can check.">
+<meta property="og:url" content="https://hourstally.com/how-it-counts">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"How it counts","description":"Every rule the HoursTally time card calculator applies - reading times, breaks, overtime, decimal - with worked examples.","url":"https://hourstally.com/how-it-counts","about":{"@type":"WebApplication","name":"Time card calculator with multiple in and out punches","url":"https://hourstally.com/"},"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-09-11","dateModified":"2026-09-28"}
+</script>
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
 <link rel="stylesheet" href="/assets/style.css">
@@ -35,13 +43,18 @@
     <code>9:15am</code>, <code>915</code>, <code>0915</code> and <code>13:45</code> are all
     accepted. Minutes above 59 or hours above 23 are rejected and the row turns pink.</p>
     <p>A time with no am or pm and an hour from 1 to 12 is ambiguous: <code>4</code> could be
-    four in the morning or four in the afternoon. The am/pm switch beside each box decides it. The
-    switch starts on am for a clock-in and pm for a clock-out (pm for both on a second or later pair
-    in the same day). A typed <code>4am</code>, <code>4pm</code>, <code>04:00</code> or
-    <code>0400</code> is never ambiguous and ignores the switch &mdash; a leading zero or a
-    four-digit form is treated as deliberate 24-hour time.</p>
-    <p>If a time somehow reaches the calculator still ambiguous, it takes the reading that gives the
-    shorter shift, so <code>8</code> to <code>4</code> is eight hours rather than twenty.</p>
+    four in the morning or four in the afternoon. The am/pm switch beside each box decides it.</p>
+    <p>The day's first clock-in has nothing before it, so its switch starts on am and you flip it
+    for a night shift. Every time after that is read as the next time on the clock after the punch
+    before it. <code>7</code> to <code>11</code> is 7am to 11am, not 11pm. Back from lunch at
+    <code>11:30</code> is 11:30am. <code>8</code> to <code>4</code> is 8am to 4pm, eight hours
+    rather than twenty. After a 10pm clock-in, a bare <code>6</code> is 6am the next morning. The
+    switch always shows the reading it chose.</p>
+    <p>The one day this reads wrong is a shift of twelve hours or more typed without am or pm:
+    <code>6</code> to <code>9</code> is read as three hours, not fifteen. Tap the switch, or type
+    <code>9pm</code>. A switch you tapped, a typed <code>4am</code> or <code>4pm</code>, and a
+    24-hour time like <code>04:00</code> or <code>0400</code> are never second-guessed &mdash; a
+    leading zero or a four-digit form is treated as deliberate 24-hour time.</p>
 
     <h2>Totalling a day</h2>
     <p>Each in and out pair is one segment. A segment's length is clock-out minus clock-in. If the
@@ -110,6 +123,8 @@
     <p>Send the exact times and the answer you expected to
     <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Every reported case becomes a
     permanent test so it cannot come back.</p>
+
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. Last updated 28 September 2026.</p>
   </article>
   </div>
 </main>
