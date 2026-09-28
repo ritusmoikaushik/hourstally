@@ -42,6 +42,13 @@ check('a missing clock-in is flagged', () => { const r = l.lunchDay(day('', '5')
 check('gibberish is bad', () => assert.ok(l.lunchDay(day('lunch', '5'), cfg30over6).bad));
 check('an empty day is not worked', () => assert.ok(!l.lunchDay(day('', ''), cfg30over6).worked));
 
+check('7 to 3:30 typed bare is 8 hours after lunch', () => assert.strictEqual(l.lunchDay(day('7', '3:30'), cfg30over6).minutes, 480));
+check('6 to 11 typed bare is a 5 hour morning, not 17', () => {
+  const d = day('6', '11');
+  assert.strictEqual(l.lunchDay(d, cfg30over6).shift, 300); assert.strictEqual(d.outM, 'am');
+});
+check('a tapped clock-out switch stands', () => assert.strictEqual(l.lunchDay(day('6', '11', { outL: true }), cfg30over6).shift, 1020));
+
 console.log('the period');
 function week(opts) {
   const days = l.lunchBuildDays('2026-09-14', 'week');

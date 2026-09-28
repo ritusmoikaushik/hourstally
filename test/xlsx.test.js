@@ -124,7 +124,7 @@ check('rate given: pay is a formula off the rate cell', () => {
 });
 check('california double time adds a row and a pay term', () => {
   const days = e.buildDays('2026-09-07', 'week');
-  days[0].segments = [{ in: '6', out: '9', inM: 'am', outM: 'pm' }];
+  days[0].segments = [{ in: '6', out: '9pm', inM: 'am', outM: 'pm' }];
   e._setState({ period: 'week', start: '2026-09-07', rule: 'california', rate: '10', employee: '', days });
   const rows = e.toXlsxRows();
   const dt = rows.find(r => r[0] && r[0].v === 'Double time hours');

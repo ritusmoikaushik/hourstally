@@ -43,6 +43,7 @@ function lunchDay(day, cfg) {
   if (!day.in || !day.out || bad) {
     return { shift: 0, lunch: 0, auto: true, minutes: 0, worked: false, bad, missingIn, missingOut, long: false };
   }
+  L.inferMeridians([day]);
   const shift = L.segmentMinutes(day.in, day.out, day.inM, day.outM);
   if (shift === null) {
     return { shift: 0, lunch: 0, auto: true, minutes: 0, worked: false, bad: true, missingIn, missingOut, long: false };
@@ -122,23 +123,24 @@ function lunchRenderDays() {
       day.date ? L.el('small', {}, [L.shortDate(day.date)]) : null
     ]));
 
-    const inSwitch = L.merSwitch(day, 'inM', (day.label || 'Day') + ' clock in');
-    const outSwitch = L.merSwitch(day, 'outM', (day.label || 'Day') + ' clock out');
+    const changed = () => { lsave(); lunchRenderTotals(); };
+    const inSwitch = L.merSwitch(day, 'inM', (day.label || 'Day') + ' clock in', changed);
+    const outSwitch = L.merSwitch(day, 'outM', (day.label || 'Day') + ' clock out', changed);
     const pairs = L.el('div', { class: 'pairs' }, [
       L.el('div', { class: 'pair single' + ((day.in || day.out) ? '' : ' blank') }, [
         L.el('input', {
           class: 'time', placeholder: di === 0 ? '8:00' : '', value: day.in, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock in',
-          oninput: e => { day.in = e.target.value; lsave(); lunchRenderTotals(); },
-          onblur: e => L.tidyTime(e.target, day, 'in', 'inM', inSwitch)
+          oninput: e => { day.in = e.target.value; day.inL = false; changed(); },
+          onblur: e => L.tidyTime(e.target, day, 'in', 'inM', inSwitch, changed)
         }),
         inSwitch,
         L.el('span', { class: 'to' }, ['to']),
         L.el('input', {
           class: 'time', placeholder: di === 0 ? '4:30' : '', value: day.out, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock out',
-          oninput: e => { day.out = e.target.value; lsave(); lunchRenderTotals(); },
-          onblur: e => L.tidyTime(e.target, day, 'out', 'outM', outSwitch)
+          oninput: e => { day.out = e.target.value; day.outL = false; changed(); },
+          onblur: e => L.tidyTime(e.target, day, 'out', 'outM', outSwitch, changed)
         }),
         outSwitch
       ])
@@ -196,6 +198,7 @@ function lunchRenderTotals() {
   document.querySelectorAll('#days .day').forEach((row, i) => {
     const day = lstate.days[i];
     const res = lunchDay(day, cfg);
+    L.syncSwitches(row, [day]);
     row.querySelector('.hm').textContent = res.worked ? L.fmtHMlabel(res.minutes) : '—';
     row.querySelector('.dec').textContent = res.worked ? L.fmtDec(res.minutes / 60) : '';
     row.querySelector('.totals').classList.toggle('empty', !res.worked);

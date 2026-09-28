@@ -55,6 +55,30 @@ function applyMeridian(t, mer) {
   return { minutes: h * 60 + m, ambiguous: false };
 }
 
+// A time typed without am or pm is read as the first time on the clock after the
+// punch before it: 7 to 11 is 7am to 11am, and back from lunch at 11:30 is 11:30am.
+// The day's first clock-in has nothing before it, so its switch decides. A switch
+// that was tapped (inL / outL) or an am/pm typed into the box is never overridden.
+function inferMeridians(segs) {
+  let prev = null;
+  for (const seg of segs) {
+    for (const [key, merKey, lockKey] of [['in', 'inM', 'inL'], ['out', 'outM', 'outL']]) {
+      const t = parseTimeEx(seg[key]);
+      if (t === null) continue;
+      if (t.ambiguous && !seg[lockKey] && prev !== null) {
+        let best = null;
+        for (const mer of ['am', 'pm']) {
+          let d = applyMeridian(t, mer).minutes - prev;
+          if (d < 0 || (d === 0 && key === 'out')) d += 1440;
+          if (best === null || d < best.d) best = { d, mer };
+        }
+        seg[merKey] = best.mer;
+      }
+      prev = applyMeridian(t, seg[merKey]).minutes;
+    }
+  }
+}
+
 function segmentMinutes(inRaw, outRaw, inMer, outMer) {
   const a = applyMeridian(parseTimeEx(inRaw), inMer), b = applyMeridian(parseTimeEx(outRaw), outMer);
   if (a === null || b === null) return null;
@@ -72,6 +96,7 @@ function segmentMinutes(inRaw, outRaw, inMer, outMer) {
 // bad = something typed that cannot be read. incomplete = one box of a pair still empty.
 function dayMinutes(day) {
   let total = 0, any = false, bad = false, missingIn = false, missingOut = false, long = false;
+  inferMeridians(day.segments);
   for (const seg of day.segments) {
     if (!seg.in && !seg.out) continue;
     if (seg.in && parseTimeEx(seg.in) === null) bad = true;
@@ -273,7 +298,7 @@ function renderDays() {
         el('input', {
           class: 'time', placeholder: (di === 0 && si === 0) ? '9:00' : (si === 0 ? '' : 'in'), value: seg.in, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock in ' + (si + 1),
-          oninput: e => { seg.in = e.target.value; save(); renderTotals(); },
+          oninput: e => { seg.in = e.target.value; seg.inL = false; save(); renderTotals(); },
           onblur: e => tidyTime(e.target, seg, 'in', 'inM', inSwitch)
         }),
         inSwitch,
@@ -281,7 +306,7 @@ function renderDays() {
         el('input', {
           class: 'time', placeholder: (di === 0 && si === 0) ? '5:30' : (si === 0 ? '' : 'out'), value: seg.out, autocomplete: 'off',
           inputmode: 'numeric', 'aria-label': (day.label || 'Day') + ' clock out ' + (si + 1),
-          oninput: e => { seg.out = e.target.value; save(); renderTotals(); },
+          oninput: e => { seg.out = e.target.value; seg.outL = false; save(); renderTotals(); },
           onblur: e => tidyTime(e.target, seg, 'out', 'outM', outSwitch)
         }),
         outSwitch,
@@ -322,31 +347,49 @@ function renderDays() {
 }
 
 // On leaving a box, show what was understood: 852 -> 8:52, 7 -> 7:00, 1930 -> 7:30 with pm.
-function tidyTime(input, seg, key, merKey, switchEl) {
+// A typed am, pm or 24-hour time sets the switch and locks it, the same as a tap.
+// onChange is the page's own save and redraw; /with-lunch passes its own, so it
+// never writes over the time card saved by the home page.
+function tidyTime(input, seg, key, merKey, switchEl, onChange) {
   const r = parseTimeEx(input.value);
   if (r === null) return;
   let h = Math.floor(r.minutes / 60), m = r.minutes % 60;
   if (!r.ambiguous) {
     seg[merKey] = h >= 12 ? 'pm' : 'am';
-    switchEl.textContent = seg[merKey];
-    switchEl.className = 'mer ' + seg[merKey];
+    seg[merKey.replace('M', 'L')] = true;
+    paintSwitch(switchEl, seg[merKey]);
     h = h % 12 === 0 ? 12 : h % 12;
   }
   const clean = h + ':' + String(m).padStart(2, '0');
   seg[key] = clean;
   input.value = clean;
-  save(); renderTotals();
+  (onChange || (() => { save(); renderTotals(); }))();
 }
 
-function merSwitch(seg, key, label) {
+function paintSwitch(b, mer) {
+  if (!b || b.textContent === mer) return;
+  b.textContent = mer;
+  b.className = 'mer ' + mer;
+  b.setAttribute('aria-label', b.dataset.label + ' ' + mer + ', tap to switch');
+}
+
+// The switches show what the card is counting, including a reading guessed
+// after they were drawn. A row's switches run in, out, in, out.
+function syncSwitches(row, segs) {
+  const b = row.querySelectorAll('.mer');
+  segs.forEach((seg, i) => { paintSwitch(b[2 * i], seg.inM); paintSwitch(b[2 * i + 1], seg.outM); });
+}
+
+function merSwitch(seg, key, label, onChange) {
   const b = el('button', {
-    class: 'mer ' + seg[key], type: 'button',
+    class: 'mer ' + seg[key], type: 'button', 'data-label': label,
     'aria-label': label + ' ' + seg[key] + ', tap to switch',
     title: 'Switch am / pm',
     onclick: () => {
       seg[key] = seg[key] === 'am' ? 'pm' : 'am';
-      b.textContent = seg[key]; b.className = 'mer ' + seg[key];
-      save(); renderTotals();
+      seg[key.replace('M', 'L')] = true;
+      paintSwitch(b, seg[key]);
+      (onChange || (() => { save(); renderTotals(); }))();
     }
   }, [seg[key]]);
   return b;
@@ -386,6 +429,7 @@ function renderTotals() {
 
   document.querySelectorAll('#days .day').forEach((row, i) => {
     const res = dayMinutes(state.days[i]);
+    syncSwitches(row, state.days[i].segments);
     const hm = row.querySelector('.hm'), dec = row.querySelector('.dec');
     hm.textContent = res.worked ? fmtHMlabel(res.minutes) : '—';
     dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '';
@@ -525,5 +569,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }

@@ -90,7 +90,7 @@ check('unreadable text is bad even with the other box empty', () => {
   assert.strictEqual(r.bad, true);
 });
 check('a 23-hour stretch is counted but flagged long', () => {
-  const r = e.dayMinutes(day([{ in: '3', out: '2', inM: 'am', outM: 'am' }], ''));
+  const r = e.dayMinutes(day([{ in: '3', out: '2', inM: 'am', outM: 'am', outL: true }], ''));
   assert.strictEqual(r.minutes, 23 * 60); assert.strictEqual(r.long, true);
 });
 check('a 12-hour stretch is not flagged', () => {
@@ -98,6 +98,38 @@ check('a 12-hour stretch is not flagged', () => {
 });
 check('blank day is not worked', () => {
   assert.strictEqual(e.dayMinutes(day([{ in: '', out: '' }], '')).worked, false);
+});
+
+console.log('reading a bare time from the punch before it');
+const seg = (i, o, extra) => Object.assign({ in: i, out: o, inM: 'am', outM: 'pm' }, extra || {});
+check('7 to 11 on the default switches is four hours, not sixteen', () => {
+  const d = day([seg('7', '11')], '');
+  assert.strictEqual(e.dayMinutes(d).minutes, 240);
+  assert.strictEqual(d.segments[0].outM, 'am');
+});
+check('the lunch-break day typed bare: 7-11, 11:30-2, 2:30-6 is ten hours', () => {
+  const d = day([seg('7', '11'), seg('11:30', '2', { inM: 'pm' }), seg('2:30', '6', { inM: 'pm' })], '');
+  assert.strictEqual(e.dayMinutes(d).minutes, 600);
+  assert.deepStrictEqual(d.segments.map(s => s.inM + s.outM), ['amam', 'ampm', 'pmpm']);
+});
+check('8 to 4 is still eight hours', () => assert.strictEqual(e.dayMinutes(day([seg('8', '4')], '')).minutes, 480));
+check('night shift needs one switch: 10pm, then a bare 6 is 6am', () => {
+  assert.strictEqual(e.dayMinutes(day([seg('10', '6', { inM: 'pm' })], '')).minutes, 480);
+});
+check('a tapped switch is never overridden', () => {
+  const d = day([seg('7', '11', { outL: true })], '');
+  assert.strictEqual(e.dayMinutes(d).minutes, 960);
+  assert.strictEqual(d.segments[0].outM, 'pm');
+});
+check('a typed am or pm is never overridden', () => assert.strictEqual(e.dayMinutes(day([seg('8am', '4am')], '')).minutes, 1200));
+check('the first clock-in keeps its own switch', () => {
+  const d = day([seg('9', '5')], '');
+  e.dayMinutes(d);
+  assert.strictEqual(d.segments[0].inM, 'am');
+});
+check('a second pair after a night out reads forward past midnight', () => {
+  const d = day([seg('6', '10', { inM: 'pm' }), seg('10:30', '2')], '');
+  assert.strictEqual(e.dayMinutes(d).minutes, 240 + 210);
 });
 
 console.log('overtime');
