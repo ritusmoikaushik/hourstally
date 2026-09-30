@@ -194,11 +194,14 @@ function lunchRenderTotals() {
   const dtRow = document.getElementById('dtrow');
   if (dtRow) dtRow.hidden = r.dt <= 0;
 
+  document.getElementById('days').classList.toggle('filled', lstate.days.some(d => d.in || d.out));
+
   const cfg = { minutes: lstate.lunchMinutes, when: lstate.lunchWhen };
   document.querySelectorAll('#days .day').forEach((row, i) => {
     const day = lstate.days[i];
     const res = lunchDay(day, cfg);
     L.syncSwitches(row, [day]);
+    row.querySelector('.pair').classList.toggle('blank', !(day.in || day.out));
     row.querySelector('.hm').textContent = res.worked ? L.fmtHMlabel(res.minutes) : '—';
     row.querySelector('.dec').textContent = res.worked ? L.fmtDec(res.minutes / 60) : '';
     row.querySelector('.totals').classList.toggle('empty', !res.worked);

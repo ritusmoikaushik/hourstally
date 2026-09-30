@@ -316,7 +316,26 @@ details p { margin: 10px 0 0; }
   .stub-breakdown > div[hidden] { display: none; }
   .stub-breakdown .pay dd { color: #000; }
   .print-note { display: block !important; font-size: 11px; color: #666; margin-top: 8px; }
+
+  /* The lunch card. An A4 page is narrow enough to trip the phone layout, and
+     .tc.lunch .day out-ranks the plain .day above, so its rows fell into two
+     columns and scattered. Its own five columns, and the lunch the rule
+     took off printed in ink - on screen it is a placeholder. */
+  .tc.lunch .tc-cols, .tc.lunch .day { grid-template-columns: 92px minmax(0, 1fr) 110px 72px 72px; grid-template-areas: none; }
+  .tc.lunch .pair.single { grid-template-columns: auto auto auto auto auto; }
+  .tc.lunch .day .lunchwrap { display: flex; justify-content: flex-end; align-items: baseline; gap: 6px; }
+  .tc.lunch input.brk { width: 4ch; }
+  .tc.lunch input.brk::placeholder { color: #000; }
+  .through.on { background: none; border: 0; color: #000; padding: 0; font-size: 12px; font-weight: 400; }
+  .tc.lunch .lunchwrap:has(.through.on) input.brk { display: none; }
 }
+
+/* A long choice needs the room: "Shift runs over 6 hours" was cut off. */
+@media screen { .tc-fields .field.wide { grid-column: span 2; } }
+
+/* The sample times on an empty card are a hint. Once anything is typed they
+   go, or an untouched row reads as a day already filled in. */
+#days.filled input.time::placeholder { color: transparent; }
 
 @media (max-width: 340px) {
   .pair { grid-template-columns: minmax(0, 1fr) 34px 16px minmax(0, 1fr) 34px 22px 34px; gap: 3px; }

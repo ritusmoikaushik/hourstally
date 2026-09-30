@@ -426,10 +426,17 @@ function renderTotals() {
   if (r.pay > 0) { payRow.hidden = false; set('t-pay', money(r.pay)); } else { payRow.hidden = true; }
   const dtRow = document.getElementById('dtrow');
   if (dtRow) dtRow.hidden = r.dt <= 0;
+  document.getElementById('days').classList.toggle('filled',
+    state.days.some(d => d.segments.some(s => s.in || s.out)));
 
   document.querySelectorAll('#days .day').forEach((row, i) => {
     const res = dayMinutes(state.days[i]);
     syncSwitches(row, state.days[i].segments);
+    // A pair drawn empty is hidden in print; typing into it has to undo that.
+    row.querySelectorAll('.pair').forEach((el, si) => {
+      const sg = state.days[i].segments[si];
+      el.classList.toggle('blank', !(sg && (sg.in || sg.out)));
+    });
     const hm = row.querySelector('.hm'), dec = row.querySelector('.dec');
     hm.textContent = res.worked ? fmtHMlabel(res.minutes) : '—';
     dec.textContent = res.worked ? fmtDec(res.minutes / 60) : '';
