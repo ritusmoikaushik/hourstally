@@ -18,6 +18,7 @@ this property on 2026-09-21; the key stays in the gstextract repo and is never c
 | 2026-09-11 | `/time-to-decimal` | 2 | launched together with the time card |
 | 2026-09-11 | `/about` | 3 | launch page three; `/how-it-counts` published noindex the same day, joins the index 2026-09-25 |
 | 2026-09-28 | `/how-it-counts` | 4 | out of noindex, into the sitemap, three days after its slot. IndexNow pinged; indexing requested in Search Console by the founder the same day. Nothing else indexable within seven days either side until `/with-lunch` on 2026-10-02 |
+| 2026-09-30 | `/with-lunch` | 5 | into the sitemap two days before its 2 Oct slot, on the founder's instruction; linked from every footer for the first time. IndexNow pinged |
 
 ## Early signal — not a pull
 

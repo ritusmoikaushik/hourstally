@@ -6,7 +6,6 @@
 <title>Time Card Calculator with Lunch Break | HoursTally</title>
 <meta name="description" content="Free time card calculator that deducts a lunch break automatically — only on days the shift runs long enough — and lets you mark a lunch you worked through. Overtime, decimal hours, Excel download.">
 <link rel="canonical" href="https://hourstally.com/with-lunch">
-<meta name="robots" content="noindex, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HoursTally">
 <meta property="og:title" content="Time card calculator with lunch break">
@@ -14,7 +13,7 @@
 <meta property="og:url" content="https://hourstally.com/with-lunch">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Time card calculator with lunch break","url":"https://hourstally.com/with-lunch","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["One clock in and one clock out a day","Lunch deducted automatically, only when the shift runs past 5, 6 or 8 hours, or every day","Any lunch length in minutes","Mark a day as worked through lunch, so nothing is deducted","Override the lunch on any single day","Count of lunches deducted and lunches worked through","Weekly, biweekly, semi-monthly and monthly pay periods","Overtime: over 40 a week, over 8 a day, both, California 8/12, or none","Totals in hours and minutes and in decimal","Excel (.xlsx) download with a shift column and a lunch column","Print or save as PDF","Nothing entered leaves the browser"],"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-10-09","dateModified":"2026-10-09"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Time card calculator with lunch break","url":"https://hourstally.com/with-lunch","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["One clock in and one clock out a day","Lunch deducted automatically, only when the shift runs past 5, 6 or 8 hours, or every day","Any lunch length in minutes","Mark a day as worked through lunch, so nothing is deducted","Override the lunch on any single day","Count of lunches deducted and lunches worked through","Weekly, biweekly, semi-monthly and monthly pay periods","Overtime: over 40 a week, over 8 a day, both, California 8/12, or none","Totals in hours and minutes and in decimal","Excel (.xlsx) download with a shift column and a lunch column","Print or save as PDF","Nothing entered leaves the browser"],"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-09-30","dateModified":"2026-09-30"}
 </script>
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
@@ -185,20 +184,23 @@
       <tr><td>Delaware</td><td>30 min</td><td>7½ hours or more</td></tr>
       <tr><td>Illinois</td><td>20 min</td><td>7½ hours or more</td></tr>
       <tr><td>Kentucky</td><td>Reasonable meal period</td><td>Between the 3rd and 5th hour</td></tr>
-      <tr><td>Maine</td><td>30 min</td><td>Over 6 hours</td></tr>
+      <tr><td>Maine</td><td>30 min</td><td>Over 6 hours; not where fewer than 3 are on duty and breaks are frequent</td></tr>
       <tr><td>Massachusetts</td><td>30 min</td><td>Over 6 hours</td></tr>
       <tr><td>Minnesota</td><td>30 min</td><td>6 hours or more</td></tr>
-      <tr><td>Nevada</td><td>30 min</td><td>8 hours or more</td></tr>
+      <tr><td>Nevada</td><td>30 min</td><td>8 hours or more; not where only one person works</td></tr>
       <tr><td>New Hampshire</td><td>30 min</td><td>Over 5 hours</td></tr>
       <tr><td>New York</td><td>30 to 60 min</td><td>Over 6 hours, and it depends on the shift</td></tr>
-      <tr><td>North Dakota</td><td>30 min</td><td>Over 5 hours</td></tr>
+      <tr><td>North Dakota</td><td>30 min</td><td>Over 5 hours, when two or more employees are on duty</td></tr>
       <tr><td>Oregon</td><td>30 min</td><td>6 hours or more</td></tr>
       <tr><td>Rhode Island</td><td>20 to 30 min</td><td>6 to 8 hour shifts</td></tr>
       <tr><td>Tennessee</td><td>30 min</td><td>6 hours or more</td></tr>
+      <tr><td>Vermont</td><td>Reasonable opportunity to eat</td><td>No fixed length or threshold</td></tr>
       <tr><td>Washington</td><td>30 min</td><td>Over 5 hours</td></tr>
-      <tr><td>West Virginia</td><td>20 min</td><td>Over 6 hours</td></tr>
+      <tr><td>West Virginia</td><td>20 min</td><td>6 hours or more, unless already given breaks or allowed to eat while working</td></tr>
     </table>
 
+    <p>Each row was checked against the state's own statute or labor department page on 30 September
+    2026.</p>
     <p>Everywhere else, the break is whatever your employer's policy or your contract says. Union
     agreements, hospital and public-sector rules often set their own. This table is a starting point
     for choosing the setting, not a statement of your rights — those come from your state labor
@@ -263,7 +265,7 @@
       server.</p>
     </details>
 
-    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. The arithmetic is set out on <a href="/how-it-counts">how it counts</a>. Last updated 9 October 2026.</p>
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. The arithmetic is set out on <a href="/how-it-counts">how it counts</a>. Last updated 30 September 2026.</p>
   </article>
     <aside class="rail">
       <div class="rail-box">
