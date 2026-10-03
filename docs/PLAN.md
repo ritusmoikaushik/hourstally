@@ -97,6 +97,25 @@ Built only after section 3 is done and the ninety-day cap has passed. Same rules
 **What is not on the list and will not be.** Anything per state, per city, per job title or per
 industry. Anything outside hours and pay. See `GOOGLE-RULES.md` Rules 2 and 5.
 
+### Candidates screened 2026-10-03 — from a ChatGPT list of 185 page names
+
+Most of the 185 were already pages 4–14 under other names, or banned shapes (one page per
+pattern, industry or job; unit converters Google answers itself; date tools; take-home pay).
+Four were new tools and were screened: autocomplete, page one opened, wedge, adversarial pass,
+then Keyword Planner (US+UK+CA+AU, founder's pull). The pass mark, set before the volumes came
+in: head term 1K–10K or more, a tool on page one we visibly beat, passes the swap test, survives
+the adversarial pass.
+
+| Candidate | Volume | Verdict |
+|---|---|---|
+| **PTO and sick leave accrual** | `pto accrual calculator` 1K–10K (₹236–764), `pto calculator` 1K–10K (₹256–957), `sick time calculator` 1K–10K, `vacation accrual` and `sick leave accrual calculator` 100–1K each | **Passes. Candidate page 15**, slot decided at the ninety-day review. Wedge: no tool on page one carries the accrual cap, use cap and carryover across a year; none has Excel or print; getfigured.co still shows California's old 48-hour cap (80 since 2024). Built as a pay-period table with running balance and the date the cap is hit, plus one dated state paid-sick-leave table inside the page. Against: the head term is payroll-SaaS bait (ClockIt, Paycor, Timesheets.com, VacationTracker); ptopayout.com is a strong ad-funded rival with 20 states cited; leave is beside hours-and-pay, not inside it; the state table needs a yearly check |
+| **UK holiday pay, irregular hours** | `holiday entitlement calculator` 10K–100K, `annual leave calculator` 10K–100K, `holiday pay calculator` / `…uk` / `holiday accrual calculator` 1K–10K each, `12.07 holiday pay calculator` 100–1K. Bids low (₹18–684) | **Passes volume; blocked on the UK decision** (`DISTRIBUTION.md`). Second UK page, never the first. Wedge: gov.uk answers one pay period at a time — nobody keeps the 12.07% running balance over a leave year, works the 52-week average skipping unpaid weeks back to 104, or gives Excel. Against: gov.uk ranks first; ten clone calculators; Great Britain only until Northern Ireland is checked; `annual leave calculator` is mostly Australia, where the law differs |
+| Comp time | `comp time calculator` 100–1K (₹193–1,033), the rest 10–100 or none | **Fails volume.** Becomes a comp-time switch inside `/with-overtime-and-pay` if it fits: 1.5 hours per overtime hour, the 240/480 cap, cash-out at the higher of final or three-year average rate, and the 7(k) 28-day periods for police (171 h) and fire (212 h) that no tool handles |
+| Shift pattern calendar | best terms 100–1K (`4 on 4 off calendar`, `dupont schedule calendar`, `shift calendar generator`); the hours-and-pay terms 10–100 | **Killed.** Page one ranks with one page per pattern, which Rule 2 bans; shiftscheduleup.com already does calendar, pay and overtime; Supershift has 1M+ installs. Only the hours-and-pay half was in scope, and it has no volume |
+
+Lesson repeated from `NICHE-LOG.md`: the thinnest page one found — `1 hour for every 30 hours
+worked calculator`, forum threads and one tool — is 10–100 searches. Thin and tiny is empty.
+
 ---
 
 ## 5. How each page is built

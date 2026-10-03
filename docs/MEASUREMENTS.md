@@ -46,6 +46,17 @@ and `biweekly time card calculator`, US, incognito.
 |---|---|---|---|---|---|
 | 2026-09-14 | not checked — found today via a trucking query | no | no | no (PDF only) | © 2026, stamp-out site: time card tools next to IRS penalty and "Iran war cost" pages. Missed in the 2026-09-10 screen |
 
+### clocktally.com — found 2026-10-03, the closest rival yet
+
+Registered **2026-06-10**, three months before us, with about nineteen pages already: time card
+with lunch, overtime pay, blended overtime, shift differential, rounding, pay period, decimal
+converter, hours calculator, shift schedules (six pattern pages), timesheet templates, guides,
+glossary, an embed page and a "best free time card calculators" list. Much of our page list is
+already there. Found by the shift-pattern screen, not by a time card search — so check its
+position for `time card calculator` and `time card calculator with lunch` at every pull, and
+whether it has multiple in/out pairs and a real `.xlsx`. Its pace is the one our rules forbid;
+watch whether Google rewards or drops it.
+
 ### hourtally.app — name one letter from ours
 
 Android shift and overtime tracker from Kumpir Software (Turkey), Turkish and English,
