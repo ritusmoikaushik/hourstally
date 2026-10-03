@@ -349,6 +349,7 @@ function renderDays() {
         }, ['+']) : el('span', { class: 'slot' })
       ]));
     });
+    pairs.append(copyButton(() => copyDay(di)));
     row.append(pairs);
 
     row.append(el('div', { class: 'brkwrap' }, [
@@ -433,6 +434,39 @@ function noteText(res) {
   return clockText(res.clocks);
 }
 
+// The days a "copy to rest of week" fills: the empty ones after this day in its own seven-day
+// block - the same blocks overtime is counted in. A weekday copies to weekdays only and a weekend
+// day to weekend days, so a Monday never lands on Saturday. A day already typed in is never
+// written over. isEmpty is the card's own test, since the two cards hold a day differently.
+function copyTargets(days, di, isEmpty) {
+  const weekend = l => l === 'Sat' || l === 'Sun';
+  const end = Math.min(days.length, Math.floor(di / 7) * 7 + 7);
+  const out = [];
+  for (let i = di + 1; i < end; i++) {
+    if (weekend(days[i].label) === weekend(days[di].label) && isEmpty(days[i])) out.push(i);
+  }
+  return out;
+}
+
+const dayEmpty = d => d.segments.every(s => !s.in && !s.out) && !d.breakMins;
+
+function copyInto(days, di) {
+  const src = days[di];
+  copyTargets(days, di, dayEmpty).forEach(i => {
+    days[i].segments = JSON.parse(JSON.stringify(src.segments));
+    days[i].breakMins = src.breakMins;
+  });
+}
+
+function copyDay(di) { copyInto(state.days, di); save(); render(); }
+
+function copyButton(onclick) {
+  return el('button', {
+    class: 'copyweek noprint', type: 'button', onclick,
+    title: 'Fill the empty days after this one, in the same week, with these times'
+  }, ['Copy to rest of week ↓']);
+}
+
 function focusLastIn(di) {
   const rows = document.querySelectorAll('#days .day');
   const ins = rows[di] && rows[di].querySelectorAll('input.time');
@@ -472,6 +506,7 @@ function renderTotals() {
     row.classList.toggle('bad', res.bad);
     row.classList.toggle('long', res.long);
     row.classList.toggle('clocked', !!res.clocks);
+    row.classList.toggle('cancopy', res.worked && !res.bad && !res.incomplete && copyTargets(state.days, i, dayEmpty).length > 0);
     const text = noteText(res);
     row.querySelector('.daynotes .note').textContent = text;
     row.classList.toggle('noted', !!text);
@@ -606,5 +641,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, clockChange, clockText, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, clockChange, clockText, copyTargets, dayEmpty, copyInto, copyButton, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }

@@ -58,6 +58,16 @@ function lunchDay(day, cfg) {
            missingIn: false, missingOut: false, long: clock > 16 * 60, through: !!day.through, clocks };
 }
 
+// A lunch-card day is one pair, its lunch box and its worked-through mark; all of it copies.
+const lunchDayEmpty = d => !d.in && !d.out && (d.lunch === '' || d.lunch == null) && !d.through;
+
+function lunchCopyInto(days, di) {
+  const src = days[di];
+  L.copyTargets(days, di, lunchDayEmpty).forEach(i => {
+    for (const k of ['in', 'out', 'inM', 'outM', 'inL', 'outL', 'lunch', 'through']) days[i][k] = src[k];
+  });
+}
+
 function lunchCompute(state) {
   const cfg = { minutes: state.lunchMinutes, when: state.lunchWhen };
   const rows = state.days.map(d => {
@@ -148,7 +158,8 @@ function lunchRenderDays() {
           onblur: e => L.tidyTime(e.target, day, 'out', 'outM', outSwitch, changed)
         }),
         outSwitch
-      ])
+      ]),
+      L.copyButton(() => { lunchCopyInto(lstate.days, di); lsave(); lunchRenderDays(); })
     ]);
     row.append(pairs);
 
@@ -213,6 +224,7 @@ function lunchRenderTotals() {
     row.classList.toggle('bad', res.bad);
     row.classList.toggle('long', res.long);
     row.classList.toggle('clocked', !!res.clocks);
+    row.classList.toggle('cancopy', res.worked && !res.bad && L.copyTargets(lstate.days, i, lunchDayEmpty).length > 0);
     const box = row.querySelector('input.brk');
     box.placeholder = res.worked && res.auto ? String(res.lunch) : '';
     box.value = day.lunch;
@@ -330,6 +342,6 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { LUNCH_WHEN, lunchMinutes, lunchDay, lunchCompute, lunchBuildDays, lunchXlsxRows, lunchXlsxName,
+  module.exports = { LUNCH_WHEN, lunchDayEmpty, lunchCopyInto, lunchMinutes, lunchDay, lunchCompute, lunchBuildDays, lunchXlsxRows, lunchXlsxName,
                      _setState: s => { lstate = s; } };
 }

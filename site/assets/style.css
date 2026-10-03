@@ -318,7 +318,10 @@ details p { margin: 10px 0 0; }
   .stub-breakdown > div { display: contents; }
   .stub-breakdown > div[hidden] { display: none; }
   .stub-breakdown .pay dd { color: #000; }
-  .print-note { display: block !important; font-size: 11px; color: #666; margin-top: 8px; }
+  .print-note { display: block !important; font-size: 11px; color: #666; margin-top: 6px; padding: 0 12px 6px; }
+  /* Many cards are handed in on paper, so the printout carries a place to sign it. */
+  .signoff { display: grid !important; grid-template-columns: 1fr 90px 1fr 90px; gap: 0 20px; margin-top: 22px; padding: 0 12px; font-size: 11px; color: #444; break-inside: avoid; }
+  .sigline { display: block; border-bottom: 1px solid #000; height: 18px; margin-bottom: 3px; }
 
   /* The lunch card. An A4 page is narrow enough to trip the phone layout, and
      .tc.lunch .day out-ranks the plain .day above, so its rows fell into two
@@ -352,3 +355,10 @@ details p { margin: 10px 0 0; }
 .privacy strong { color: var(--ink); }
 @media (max-width: 760px) { .privacy { padding-left: 14px; padding-right: 14px; } }
 @media print { .privacy { display: none; } }
+
+/* "Copy to rest of week" sits under a filled day's times, and only while there are empty
+   days after it in the same week to fill. */
+.signoff { display: none; }
+.copyweek { display: none; justify-self: start; align-self: flex-start; background: none; border: 0; padding: 2px 0; font: inherit; font-size: 13px; color: var(--navy); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.copyweek:hover { color: var(--ink); }
+.day.cancopy .copyweek { display: inline-block; }
