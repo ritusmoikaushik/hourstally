@@ -44,14 +44,18 @@ function lunchDay(day, cfg) {
     return { shift: 0, lunch: 0, auto: true, minutes: 0, worked: false, bad, missingIn, missingOut, long: false };
   }
   L.inferMeridians([day]);
-  const shift = L.segmentMinutes(day.in, day.out, day.inM, day.outM);
-  if (shift === null) {
+  const clock = L.segmentMinutes(day.in, day.out, day.inM, day.outM);
+  if (clock === null) {
     return { shift: 0, lunch: 0, auto: true, minutes: 0, worked: false, bad: true, missingIn, missingOut, long: false };
   }
+  // The shift is the time really worked, so a clock change counts before the lunch rule looks.
+  const a = L.applyMeridian(L.parseTimeEx(day.in), day.inM).minutes;
+  const clocks = L.clockChange(day.date, a, a + clock);
+  const shift = clock + clocks;
   const l = lunchMinutes(shift, cfg, day);
   const minutes = Math.max(0, shift - l.minutes);
   return { shift, lunch: l.minutes, auto: l.auto, minutes, worked: true, bad: false,
-           missingIn: false, missingOut: false, long: shift > 16 * 60, through: !!day.through };
+           missingIn: false, missingOut: false, long: clock > 16 * 60, through: !!day.through, clocks };
 }
 
 function lunchCompute(state) {
@@ -105,6 +109,7 @@ function lunchNote(res) {
   if (res.missingIn) return 'A clock-in is missing';
   if (res.missingOut) return 'A clock-out is missing';
   if (res.long) return 'A shift over 16 hours — check am and pm';
+  if (res.clocks) return L.clockText(res.clocks);
   if (res.worked && res.through) return 'Worked through lunch — nothing deducted';
   return '';
 }
@@ -207,6 +212,7 @@ function lunchRenderTotals() {
     row.querySelector('.totals').classList.toggle('empty', !res.worked);
     row.classList.toggle('bad', res.bad);
     row.classList.toggle('long', res.long);
+    row.classList.toggle('clocked', !!res.clocks);
     const box = row.querySelector('input.brk');
     box.placeholder = res.worked && res.auto ? String(res.lunch) : '';
     box.value = day.lunch;
@@ -256,7 +262,7 @@ function lunchXlsxRows() {
       d.date ? { d: d.date } : '',
       d.label,
       a ? L.fmt12(a.minutes) : (d.in || ''),
-      b ? L.fmt12(b.minutes) : (d.out || ''),
+      (b ? L.fmt12(b.minutes) : (d.out || '')) + (row.clocks > 0 ? ' (clocks back 1h)' : row.clocks < 0 ? ' (clocks forward 1h)' : ''),
       row.worked ? { v: row.shift / 1440, s: S.hm } : '',
       row.worked ? { v: row.lunch, s: S.int } : '',
       row.worked ? { v: row.minutes / 1440, s: S.hm } : '',

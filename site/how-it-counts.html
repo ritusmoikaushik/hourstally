@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://hourstally.com/how-it-counts">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TechArticle","headline":"How it counts","description":"Every rule the HoursTally time card calculator applies - reading times, breaks, overtime, decimal - with worked examples.","url":"https://hourstally.com/how-it-counts","about":{"@type":"WebApplication","name":"Time card calculator with multiple in and out punches","url":"https://hourstally.com/"},"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-09-11","dateModified":"2026-09-28"}
+{"@context":"https://schema.org","@type":"TechArticle","headline":"How it counts","description":"Every rule the HoursTally time card calculator applies - reading times, breaks, overtime, decimal - with worked examples.","url":"https://hourstally.com/how-it-counts","about":{"@type":"WebApplication","name":"Time card calculator with multiple in and out punches","url":"https://hourstally.com/"},"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-09-11","dateModified":"2026-10-03"}
 </script>
 <link rel="stylesheet" href="/assets/fonts.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
@@ -73,12 +73,27 @@
     <p>If you punched out for lunch, the punches already exclude it. Enter a break only for time
     that is deducted without a punch. Entering both deducts it twice.</p>
 
+    <h3>The night the clocks change</h3>
+    <p>Times on a card are what the clock on the wall said. Twice a year that is not the same as
+    the time worked. When the clocks go back an hour in autumn, a <code>10:00pm</code> to
+    <code>6:00am</code> shift is <strong>nine hours</strong> of work, not eight; when they go
+    forward in spring it is seven. Pay is owed on the hours actually worked, so the calculator
+    counts the real length.</p>
+    <p>It knows when your clocks change from your device's own time zone: in most of the United
+    States and Canada that is 2:00am on the first Sunday of November and the second Sunday of
+    March; in the UK, the last Sundays of October and March; in Arizona and Hawaii, never, and
+    nothing is added. The adjustment needs dates, so it only happens once you set the first day of
+    the card. The day shows a note saying an hour was added or taken off, and the Excel download
+    says so beside the punches.</p>
+
     <h2>What the row notes mean</h2>
     <p>A line under a day, in red, means the card cannot be submitted as it stands: a time the
     calculator cannot read (the row also turns pink), a clock-in that is missing, or a clock-out
     that is missing. The affected pair is left out of the total until it is fixed. A line in amber
     means one stretch runs over sixteen hours &mdash; counted in full, because it might be true, but
-    almost always an am that should be a pm. Notes never appear on the printed card.</p>
+    almost always an am that should be a pm. A grey line marks a shift the clocks changed during, as
+    above; it is the one note that also prints, so payroll can see why the hours differ from the
+    punches. No other note appears on the printed card.</p>
 
     <h2>Hours and decimal</h2>
     <p>On screen a day's total is written <code>8h 11m</code> rather than 8:11, so it cannot be
@@ -125,7 +140,7 @@
     <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Every reported case becomes a
     permanent test so it cannot come back.</p>
 
-    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. Last updated 28 September 2026.</p>
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. Last updated 3 October 2026.</p>
   </article>
   </div>
 </main>

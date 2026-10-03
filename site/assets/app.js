@@ -93,9 +93,30 @@ function segmentMinutes(inRaw, outRaw, inMer, outMer) {
   return best;
 }
 
+// The hour a clock change adds to, or takes from, a stretch of work. A card holds what the
+// wall clock said, and on the night the clocks go back 10pm to 6am is nine hours worked, not
+// eight - pay is owed on the hours worked. The browser's own time zone knows when its clocks
+// change, and that Arizona's never do, so no table of dates is kept. from and to are minutes
+// after midnight on dateISO as the clock read them; without a date nothing can be known.
+function clockChange(dateISO, from, to) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateISO || '');
+  if (!m) return 0;
+  const y = +m[1], mo = +m[2] - 1, d = +m[3];
+  const real = Math.round((new Date(y, mo, d, 0, to) - new Date(y, mo, d, 0, from)) / 60000);
+  return real - (to - from);
+}
+
+function clockText(clocks) {
+  if (clocks > 0) return 'Clocks went back during this shift — the extra hour is counted';
+  if (clocks < 0) return 'Clocks went forward during this shift — the lost hour is not counted';
+  return '';
+}
+
 // bad = something typed that cannot be read. incomplete = one box of a pair still empty.
+// clocks = minutes a clock change added (+60) or took away (-60), already in the total.
 function dayMinutes(day) {
   let total = 0, any = false, bad = false, missingIn = false, missingOut = false, long = false;
+  let pos = null, clocks = 0;
   inferMeridians(day.segments);
   for (const seg of day.segments) {
     if (!seg.in && !seg.out) continue;
@@ -107,12 +128,18 @@ function dayMinutes(day) {
     const m = segmentMinutes(seg.in, seg.out, seg.inM, seg.outM);
     if (m === null) continue;
     if (m > 16 * 60) long = true;
+    // Each pair reads forward from the one before, the way inferMeridians reads the times.
+    const a = applyMeridian(parseTimeEx(seg.in), seg.inM).minutes;
+    const from = pos === null ? a : pos + (a - pos % 1440 + 1440) % 1440;
+    pos = from + m;
+    clocks += clockChange(day.date, from, pos);
     total += m; any = true;
   }
+  total += clocks;
   const brk = parseInt(day.breakMins, 10);
   if (any && brk > 0) total -= brk;
   if (total < 0) total = 0;
-  return { minutes: any ? total : 0, worked: any, bad, missingIn, missingOut, incomplete: missingIn || missingOut, long };
+  return { minutes: any ? total : 0, worked: any, bad, missingIn, missingOut, incomplete: missingIn || missingOut, long, clocks };
 }
 
 function splitDay(minutes, rule) {
@@ -150,7 +177,7 @@ function computeWeek(days, rule) {
 function compute(state) {
   const rows = state.days.map(d => {
     const r = dayMinutes(d);
-    return { date: d.date, label: d.label, minutes: r.minutes, worked: r.worked, bad: r.bad };
+    return { date: d.date, label: d.label, minutes: r.minutes, worked: r.worked, bad: r.bad, clocks: r.clocks };
   });
 
   let reg = 0, ot = 0, dt = 0;
@@ -340,6 +367,7 @@ function renderDays() {
     ]));
     row.append(el('div', { class: 'daynotes' }, [el('span', { class: 'note' }, [noteText(res)])]));
     row.classList.toggle('long', res.long);
+    row.classList.toggle('clocked', !!res.clocks);
     row.classList.toggle('noted', !!noteText(res));
 
     host.append(row);
@@ -402,7 +430,7 @@ function noteText(res) {
   if (res.missingIn) return 'A clock-in is missing';
   if (res.missingOut) return 'A clock-out is missing';
   if (res.long) return 'A shift over 16 hours — check am and pm';
-  return '';
+  return clockText(res.clocks);
 }
 
 function focusLastIn(di) {
@@ -443,6 +471,7 @@ function renderTotals() {
     row.querySelector('.totals').classList.toggle('empty', !res.worked);
     row.classList.toggle('bad', res.bad);
     row.classList.toggle('long', res.long);
+    row.classList.toggle('clocked', !!res.clocks);
     const text = noteText(res);
     row.querySelector('.daynotes .note').textContent = text;
     row.classList.toggle('noted', !!text);
@@ -488,7 +517,8 @@ function toXlsxRows() {
   const firstDay = rows.length + 1;
   state.days.forEach((d, i) => {
     const row = r.rows[i];
-    const punches = d.segments.filter(sg => sg.in || sg.out).map(segLabel).join('; ');
+    const punches = d.segments.filter(sg => sg.in || sg.out).map(segLabel).join('; ')
+      + (row.clocks > 0 ? ' (clocks went back 1h)' : row.clocks < 0 ? ' (clocks went forward 1h)' : '');
     const brk = parseInt(d.breakMins, 10);
     rows.push([
       d.date ? { d: d.date } : '',
@@ -576,5 +606,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { fmtHMlabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, clockChange, clockText, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
 }

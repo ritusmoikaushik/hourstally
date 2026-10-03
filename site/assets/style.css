@@ -144,6 +144,7 @@ input.time::placeholder, input.brk::placeholder, .field input::placeholder { col
 .through:hover { border-style: solid; color: var(--ink); }
 .through.on { border: 1px solid var(--stamp); background: var(--stamp); color: #fff; }
 .day.nolunch:not(.bad) .daynotes { color: var(--ink-soft); }
+.day.clocked:not(.bad):not(.long) .daynotes { color: var(--ink-soft); }
 
 input.brk { width: 76px; height: 36px; font-size: 16px; padding: 0 8px; text-align: right; background: var(--field); border: 1px solid var(--rule-strong); border-radius: 3px; color: var(--ink); }
 .hm, .dec { text-align: right; line-height: 34px; font-size: 16px; }
@@ -278,6 +279,8 @@ details p { margin: 10px 0 0; }
   body { background: #fff; color: #000; }
   .site-head nav, .lede, .actions, .hint, .site-foot, article, aside.rail,
   .pair .add, .pair .x, .pair .slot, .daynotes, .noprint, .through:not(.on) { display: none !important; }
+  /* The one note payroll needs: why a night shift is an hour longer or shorter than its punches. */
+  .day.clocked:not(.bad):not(.long) .daynotes { display: block !important; color: #000; }
   .site-head { border-bottom: 1px solid #000; }
   .site-head .wrap { height: 44px; }
   h1 { font-size: 18px; margin: 12px 0 10px; }
@@ -342,3 +345,10 @@ details p { margin: 10px 0 0; }
   input.time { font-size: 15px; padding: 0 2px; }
   .mer { font-size: 11px; }
 }
+
+/* The privacy promise sits under the buttons, where the card is downloaded. */
+.privacy { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--ink-soft); padding: 12px 20px 0; max-width: var(--text-max); margin: 0; }
+.privacy .lock { flex: none; width: 14px; height: 14px; margin-top: 3px; color: var(--ink); }
+.privacy strong { color: var(--ink); }
+@media (max-width: 760px) { .privacy { padding-left: 14px; padding-right: 14px; } }
+@media print { .privacy { display: none; } }
