@@ -57,6 +57,16 @@ position for `time card calculator` and `time card calculator with lunch` at eve
 whether it has multiple in/out pairs and a real `.xlsx`. Its pace is the one our rules forbid;
 watch whether Google rewards or drops it.
 
+Compared tool by tool on 2026-10-03, running its own `time.js`. **Where we are ahead:** it has no
+am/pm switch and reads a bare time as 24-hour, so `8:00` to `5:00` is 21 hours and `8:30` to
+`4:30` is 20, with no warning; `8` to `5` cannot be read; phone boxes open the letter keyboard. No
+Excel (print and blank PDFs only), no clock-change handling, no California seventh day, no state
+meal-break table, anonymous About page. Analytics only, no ads yet (Astro build, GA4). **Where it
+was ahead, and what we took:** signature lines on the printout and a fast way to repeat a week —
+both shipped the same day as "Copy to rest of week" and the sign-off row. Still theirs: named
+templates, configurable OT thresholds and punch rounding on the main card (ours is `/rounding`),
+an iframe embed code that earns links from HR blogs — revisit after the first measurement.
+
 ### hourtally.app — name one letter from ours
 
 Android shift and overtime tracker from Kumpir Software (Turkey), Turkish and English,
