@@ -18,12 +18,13 @@ also a Google signal, and this estate has lost two domains to signals.
 | 2026-09-14 | Structured data | Author, dates and feature list on both tool pages; sitemap carries `lastmod` |
 | 2026-09-21 | Bing Webmaster Tools | Site added, sitemap submitted. Reports take up to 48 hours to appear |
 | 2026-09-14 | Pinterest pin images | Three pins made, in `D:\tmp\hourstally-pins\` (time card, biweekly, decimal). Waiting on the account — see below |
+| 2026-10-03 | Pinterest | Business account HoursTally (founder's Gmail login, country India). `p:domain_verify` tag on the home page, Verify clicked. Board *Time card calculators and payroll hours*. Four pins live: time card, biweekly, decimal, and `pin4-with-lunch.png` → `/with-lunch`, made the same day because that page shipped 30 September without one. `/how-it-counts` gets no pin — it explains, it is not a tool |
 
 ## Founder's queue — short tasks, in order
 
 ### ~~1. Bing Webmaster Tools~~ — done 2026-09-21
 
-### 2. Pinterest — 15 minutes once, then 2 minutes per page
+### ~~2. Pinterest~~ — done 2026-10-03. From here: one pin per page, the day it ships
 
 Google ranks a Pinterest pin at #10 for `biweekly time card calculator`. A pin is the one social
 object Google indexes as a page of its own.
