@@ -45,3 +45,19 @@ and `biweekly time card calculator`, US, incognito.
 | Pulled | countworkhours.com position | Ads showing? | Multiple in/out yet? | Excel yet? | Notes |
 |---|---|---|---|---|---|
 | 2026-09-14 | not checked — found today via a trucking query | no | no | no (PDF only) | © 2026, stamp-out site: time card tools next to IRS penalty and "Iran war cost" pages. Missed in the 2026-09-10 screen |
+
+### hourtally.app — name one letter from ours
+
+Android shift and overtime tracker from Kumpir Software (Turkey), Turkish and English,
+closed beta on 2026-10-03, free with ads plus a Pro tier. Its only web tool is
+`/en/overtime-calculator/`: hours in, overtime pay out, no clock in/out times, no download,
+but plenty of written explanation and an FAQ. Not a rival today; it targets
+`overtime calculator`, which we do not. hourtally.com is a GoDaddy parked page (registered
+2026-04-15), not theirs as far as we can tell.
+
+Watch for two things: a web page that takes clock in/out times, and the brand name showing
+up in our Search Console queries (confusion runs both ways).
+
+| Pulled | Web time card tool yet? | Ranks for `time card calculator`? | "hourtally" in our GSC queries? | Notes |
+|---|---|---|---|---|
+| 2026-10-03 | no (overtime pay only) | not checked | no data yet | found when the founder asked about the name |
