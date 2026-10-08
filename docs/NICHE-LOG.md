@@ -8,6 +8,38 @@ noted, pulled by the founder. SERP checks by the assistant.
 **Order of gates, learned the hard way on 2026-09-14:** volume first (Keyword Planner), SERP
 second, wedge third. A thin SERP on a tiny query is empty, not open.
 
+## Screening now — waiting on volumes
+
+### Depreciation / MACRS schedule — opened 2026-10-08
+
+Founder asked the same day for one more US/UK tool site. Found by SERP shape, not volume yet.
+
+- **Pass condition, fixed before the pull:** `depreciation calculator` at 10K–100K or more, and at
+  least two of `macrs depreciation calculator`, `rental property depreciation calculator`,
+  `section 179 calculator`, `depreciation schedule excel` at 10K–100K. Top-of-page high bid ₹150+
+  on the head term. No AI Overview on the head term (founder looks in his own browser).
+- **Page one (Brave, US; Google not readable from here):** head term — calculator.net,
+  calculatorsoup, goodcalculators (2016), mydepreciation.org, omni. Old plain sites, the
+  hourstally shape. `section 179` and `bonus depreciation` — equipment-finance lenders
+  (crestcapital, ascentium, section179.org), which means the bids are real. Rental — Stessa and
+  TurboTenant bait beside mydepreciation and calculatorsoup.
+- **Opened, not guessed:** calculator.net has no MACRS, no 179, no bonus, no export.
+  goodcalculators MACRS — one asset, all three conventions, no 179/bonus, no export.
+  **mydepreciation.org is the rival to watch:** Next.js, © 2026, guides on the 2025 OBBBA bonus
+  rules, UK/CA/AU/IN/SG versions, claims PDF/CSV export. Multi-asset not confirmed. Same pattern
+  as clocktally — a new site building wide and fast.
+- **Google's own strip** (autocomplete, US): `depreciation calculator excel`,
+  `depreciation schedule template excel`, `depreciation calculator for rental property`,
+  `macrs schedule`. The Excel wedge is in the suggestions, as it was for time cards.
+- **Wedge, as proposed:** many assets in one schedule. Section 179 first, then bonus, then MACRS
+  on what is left, per asset. **The mid-quarter 40% test applied automatically** — a one-asset
+  calculator cannot do it by construction, the same way a one-pair time card cannot count a split
+  shift. Real `.xlsx` with formulas: fixed-asset register plus year-by-year schedule, Form 4562
+  line totals. Rental: land/building split, 27.5-year mid-month.
+- **Known weak spots:** US only — UK capital allowances are a different system and gov.uk owns
+  them. Tax limits change yearly (179 cap, bonus rate): one update a year. Tax software does this
+  inside the return, so the user is the landlord, bookkeeper or owner checking before filing.
+
 ## Parked — passes the bar, not built yet
 
 Nothing at present. VAT below is borderline and has no wedge.
