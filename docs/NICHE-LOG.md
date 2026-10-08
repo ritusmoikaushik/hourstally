@@ -82,7 +82,11 @@ different from thirty others. Revisit only with a wedge.
 | 2026-09-14 | Second Keyword Planner sweep — seeds `planner`, `maker`, `tracker`, `estimator`, `counter`, `schedule`, `chart`, 3,079 terms | 538 at 10K+ and ₹150+ | — | Sports scores and fixtures (ESPN), hospital MyChart portals, parcel tracking (carriers), paper planners (products), tax calculators (TurboTax, banks). Charts were the only new cluster; killed above |
 | 2026-09-14 | Shift, PTO accrual, FTE, day rate, soap, lye, candle, quilt, fabric, sourdough, DoorDash pay, rotating shift, 12-hour shift | all 1K–10K or below | various | Demand |
 | 2026-10-08 | Depreciation / MACRS schedule | `depreciation calculator` 1K–10K; rental 1K–10K; macrs, section 179, bonus, schedule excel/template 100–1K; car 10K–100K (−90%) | head ₹345–1,178; schedule excel ₹728–2,184; car ₹53–275 | Demand. Pass condition (head 10K+, two more at 10K+) fixed before the pull; failed. Bids rich, searches few. SERP was the hourstally shape (calculator.net, calculatorsoup, goodcalculators, new rival mydepreciation.org) — a thin SERP on a small query again |
-
+| 2026-10-08 | GS / federal pay | `gs pay scale` 10K–100K, `gs pay calculator` 1K–10K, `federal pay calculator` 100–1K | none on any | Money. Nobody bids on federal pay. Page one was small sites (federalpay.org, fedtools) — open, and worth nothing under ads |
+| 2026-10-08 | Amazon order history to Excel | `amazon order history report` 1K–10K (−90%), others 10–1K | ₹97 or none | Demand and money |
+| 2026-10-08 | Bank statement to Excel | `bank statement converter` 1K–10K, `bank statement to excel` 100–1K | ₹177–1,549 | Demand. Rich bids, few searches; page one is SaaS (DocuClipper, Nanonets, bankstatementconverter.com) |
+| 2026-10-08 | iPhone texts / WhatsApp chat to PDF | `export text messages from iphone` 1K–10K (−90%), `export whatsapp chat` 1K–10K, the PDF terms 10–100 | ₹53–278 | Demand and money |
+| 2026-10-08 | VA disability, trip fuel cost, blood alcohol | not pulled | — | Killed on page one before the pull: va.gov and law firms; fueleconomy.gov; universities and health bodies (YMYL) |
 ## Standing lessons
 
 - Any calculator next to a funded SaaS category has bait pages from that SaaS on page one.
@@ -100,3 +104,7 @@ different from thirty others. Revisit only with a wedge.
   one cluster is a kill, whatever the wedge.
 - Google's "People also search for" strip is where the hourstally wedge came from. Read it before
   scoring "can we win".
+- **Guessing candidates lands at 1K–10K.** Six guesses on 2026-10-08, all small. Heads at 100K+
+  are few and the seed sweeps already listed them. Next instrument: Keyword Planner seeded with
+  the *websites* of small tool sites that are visibly winning — their keyword list is both the
+  demand and the proof a small site can rank there.
