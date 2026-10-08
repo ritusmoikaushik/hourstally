@@ -28,49 +28,7 @@ employee cost 5 · debt snowball, debt payoff, turnover rate, cost per hire ~0.
 as big as each other. `/hourly-to-salary` sits at 2027-02-05 in `SCHEDULE.md`; the numbers say it
 belongs nearer `/with-overtime-and-pay`. Founder's call.
 
-### Grade and GPA calculators — opened 2026-10-08
-
-- **Trends:** grade 837, GPA 519 — the biggest unowned heads found so far. Date, paycheck, age,
-  retirement and 401k are bigger or similar but owned (timeanddate, payroll firms, brokers) or
-  bid nothing.
-- **Page one (Brave):** `grade calculator` — calculator.net, rapidtables, canvasgradecalculator.com,
-  gradecalculator.com, quickgra.de, omni. `final grade calculator` — rogerhub (one-person site,
-  #1). `gpa calculator` — calculator.net, gpacalculator.io, gpacalculator.net, then universities.
-  `high school gpa calculator` — gpacalculator.io/.net, gradecentric, gpanerd. Small independent
-  sites, and new exact-match ones still getting in.
-- **Opened:** canvasgradecalculator.com (© 2025) — manual entry only, weighted categories, what-if,
-  final needed; pages for each LMS. quickgra.de — a teacher's EZ-grader (questions wrong → score),
-  a second intent inside `grade calculator`.
-- **Wedge, as proposed:** paste the grades page from Canvas, PowerSchool, Schoology or Infinite
-  Campus; the tool reads assignments, categories and weights, then gives the current grade,
-  what-if, and the score needed on the final. Nobody on page one does it; every rival is typing.
-- **Against it, before the pull:** students are the heaviest AI users and ChatGPT will do the
-  same sum from a paste. A student audience may pay little per thousand visits. gradekar is a
-  grade site too, though Indian CGPA and a different market. Bids decide it.
-- **Pass condition:** `grade calculator` or `gpa calculator` at 100K–1M, at least three cluster
-  terms at 10K–100K, top bid ₹150+ on a head.
-
-- **Keyword Planner, 2026-10-08 afternoon:** `gpa calculator` 100K–1M, bids ₹165–508.
-  `cumulative gpa calculator` 10K–100K. Every `grade` term came back blank (grouped by the
-  planner, not zero). Filled with Trends against `cumulative gpa calculator` (= 100, 10K–100K):
-  grade 41,450 · final grade 12,800 · GPA 6,614 · high school GPA 1,800 · college GPA 781 ·
-  test grade 338 · weighted grade 250 · "what do I need on my final" 224 · class grade 172 ·
-  canvas grade 33. Trends counts every query that contains the words, so the big ones are
-  cluster totals. **The pass condition is met:** head 100K–1M, seven cluster terms at or above
-  10K–100K, bid ₹165 on a head.
-- **Adversarial pass, part one — do the platforms do it already?** Canvas: yes, native What-If
-  scores on the student Grades page, except when the teacher hides totals. PowerSchool: no native
-  what-if; Chrome extensions (PowerSchool Plus and others) add it. Schoology: Schoology Plus
-  extension, open source, popular. Infinite Campus: no native what-if found. Extensions are
-  often blocked on school-managed Chromebooks, which is where a website still works.
-- **What that does to the wedge:** paste-the-grades-page is a convenience, not a moat. Most
-  searchers want a plain calculator, and the fight is ranking beside calculator.net, rapidtables
-  and rogerhub. Rough score before the AI check: Demand 5 · Money 3 · Who is there 3 · Can we win 3 ·
-  AI 3 · Monetisable 3 · Durability 4 = **24**, one under the bar. Open: does Google show an AI
-  Overview on `grade calculator` and `gpa calculator` (founder's browser), and is a student
-  audience one the founder wants.
-
-### Inflation — second, weaker
+### Inflation — parked, not pulled further
 
 `inflation calculator` 419. Page one for `value of a dollar calculator`: usinflationcalculator,
 dollartimes, measuringworth (small sites) beside BLS and the Minneapolis Fed. Question-shaped
@@ -164,6 +122,8 @@ different from thirty others. Revisit only with a wedge.
 | 2026-10-08 | Bank statement to Excel | `bank statement converter` 1K–10K, `bank statement to excel` 100–1K | ₹177–1,549 | Demand. Rich bids, few searches; page one is SaaS (DocuClipper, Nanonets, bankstatementconverter.com) |
 | 2026-10-08 | iPhone texts / WhatsApp chat to PDF | `export text messages from iphone` 1K–10K (−90%), `export whatsapp chat` 1K–10K, the PDF terms 10–100 | ₹53–278 | Demand and money |
 | 2026-10-08 | VA disability, trip fuel cost, blood alcohol | not pulled | — | Killed on page one before the pull: va.gov and law firms; fueleconomy.gov; universities and health bodies (YMYL) |
+| 2026-10-08 | Grade / GPA / final grade | `gpa calculator` 100K–1M, `cumulative gpa` 10K–100K; grade terms blank in KP, Trends puts seven at 10K+ | ₹165–508 | **AI Overview builds the calculator.** Founder's browser (Guwahati, 2026-10-08): on `gpa calculator` the Overview says "Use this tool… add rows for each course" and renders a GPA tool; on `final grade calculator` it renders one too ("Calculate the grade you need… below"). Kill condition stated before the check. Also: Canvas has native What-If, extensions cover PowerSchool and Schoology; scored 24 before the check |
+
 ## Standing lessons
 
 - Any calculator next to a funded SaaS category has bait pages from that SaaS on page one.
@@ -191,3 +151,7 @@ different from thirty others. Revisit only with a wedge.
   crackdown targets. Route finds instead: work/hours/pay → a page on hourstally; a file job →
   a tool on fileoholic; a new site only for a related cluster of five or more terms with volume
   and bids.
+- **Google's AI Overview now builds calculators.** Seen 2026-10-08 on `gpa calculator` and
+  `final grade calculator`: the Overview renders a working tool above the organic results. A
+  formula anyone can state is now Google's to answer. Check the head term in a browser *before*
+  the pull, not after, and check hourstally's own head terms at every measurement.
