@@ -8,6 +8,63 @@ noted, pulled by the founder. SERP checks by the assistant.
 **Order of gates, learned the hard way on 2026-09-14:** volume first (Keyword Planner), SERP
 second, wedge third. A thin SERP on a tiny query is empty, not open.
 
+## Screening now — waiting on volumes
+
+### New instrument, 2026-10-08 — Google Trends against a known anchor
+
+`pytrends`, US, last 12 months, every term compared with `time card calculator` (= 100; Keyword
+Planner 100K–1M across four countries). Calibration: `depreciation calculator` (KP 1K–10K) scores
+about 21, `gs pay scale` (KP 10K–100K) about 170. **Under about 30 is probably too small.** Free,
+needs no pull, runs about 40 terms in ten minutes. Use it before asking the founder for volumes.
+
+Scores from the first run: grade 837 · date 812 · paycheck 689 · GPA 519 · age 505 · inflation 419 ·
+retirement 380 · tip 211 · 401k 208 · CD 166 · sales tax 159 · roth 125 · budget 99 · discount 90 ·
+bond 74 · annuity 72 · invoice generator 58 · salary to hourly 57 · hourly to salary 57 · overtime 52 ·
+future value 36 · ROI 31 · simple interest 21 · PFT 20 · credit card payoff 18 · gas mileage 18 ·
+gross pay 17 · military time converter 16 · present value 14 · pay raise 8 · labor cost 7 ·
+employee cost 5 · debt snowball, debt payoff, turnover rate, cost per hire ~0.
+
+**For hourstally, not a new site:** salary to hourly, hourly to salary and overtime score 52–57,
+as big as each other. `/hourly-to-salary` sits at 2027-02-05 in `SCHEDULE.md`; the numbers say it
+belongs nearer `/with-overtime-and-pay`. Founder's call.
+
+### Grade and GPA calculators — opened 2026-10-08
+
+- **Trends:** grade 837, GPA 519 — the biggest unowned heads found so far. Date, paycheck, age,
+  retirement and 401k are bigger or similar but owned (timeanddate, payroll firms, brokers) or
+  bid nothing.
+- **Page one (Brave):** `grade calculator` — calculator.net, rapidtables, canvasgradecalculator.com,
+  gradecalculator.com, quickgra.de, omni. `final grade calculator` — rogerhub (one-person site,
+  #1). `gpa calculator` — calculator.net, gpacalculator.io, gpacalculator.net, then universities.
+  `high school gpa calculator` — gpacalculator.io/.net, gradecentric, gpanerd. Small independent
+  sites, and new exact-match ones still getting in.
+- **Opened:** canvasgradecalculator.com (© 2025) — manual entry only, weighted categories, what-if,
+  final needed; pages for each LMS. quickgra.de — a teacher's EZ-grader (questions wrong → score),
+  a second intent inside `grade calculator`.
+- **Wedge, as proposed:** paste the grades page from Canvas, PowerSchool, Schoology or Infinite
+  Campus; the tool reads assignments, categories and weights, then gives the current grade,
+  what-if, and the score needed on the final. Nobody on page one does it; every rival is typing.
+- **Against it, before the pull:** students are the heaviest AI users and ChatGPT will do the
+  same sum from a paste. A student audience may pay little per thousand visits. gradekar is a
+  grade site too, though Indian CGPA and a different market. Bids decide it.
+- **Pass condition:** `grade calculator` or `gpa calculator` at 100K–1M, at least three cluster
+  terms at 10K–100K, top bid ₹150+ on a head.
+
+### Inflation — second, weaker
+
+`inflation calculator` 419. Page one for `value of a dollar calculator`: usinflationcalculator,
+dollartimes, measuringworth (small sites) beside BLS and the Minneapolis Fed. Question-shaped
+("what is $100 from 1980 worth"), so AI Overview risk is high and no file wedge. Pull only alongside.
+
+### Killed on page one, no pull needed
+
+HR/employer calculators (employee cost, turnover rate, cost per hire, Bradford factor) — QuickBooks,
+Deel, BambooHR, Breathe, Personio on page one, and Trends near zero in the US. Military fitness
+(AFT, PFT, CFT, PRT, Air Force PT) — Trends PFT 20, ACFT ~1; page one already has several
+all-branch hubs (thebattlebunker, combatfitness.co, vetrafi), and navy.mil / afpc.af.mil on two of
+them. UK employment calculators — gov.uk owns holiday entitlement, redundancy, maternity and sick
+pay; pension firms own salary sacrifice. UK Trends run failed on a script bug; not measured.
+
 ## Parked — passes the bar, not built yet
 
 Nothing at present. VAT below is borderline and has no wedge.
