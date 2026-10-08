@@ -50,6 +50,26 @@ belongs nearer `/with-overtime-and-pay`. Founder's call.
 - **Pass condition:** `grade calculator` or `gpa calculator` at 100K–1M, at least three cluster
   terms at 10K–100K, top bid ₹150+ on a head.
 
+- **Keyword Planner, 2026-10-08 afternoon:** `gpa calculator` 100K–1M, bids ₹165–508.
+  `cumulative gpa calculator` 10K–100K. Every `grade` term came back blank (grouped by the
+  planner, not zero). Filled with Trends against `cumulative gpa calculator` (= 100, 10K–100K):
+  grade 41,450 · final grade 12,800 · GPA 6,614 · high school GPA 1,800 · college GPA 781 ·
+  test grade 338 · weighted grade 250 · "what do I need on my final" 224 · class grade 172 ·
+  canvas grade 33. Trends counts every query that contains the words, so the big ones are
+  cluster totals. **The pass condition is met:** head 100K–1M, seven cluster terms at or above
+  10K–100K, bid ₹165 on a head.
+- **Adversarial pass, part one — do the platforms do it already?** Canvas: yes, native What-If
+  scores on the student Grades page, except when the teacher hides totals. PowerSchool: no native
+  what-if; Chrome extensions (PowerSchool Plus and others) add it. Schoology: Schoology Plus
+  extension, open source, popular. Infinite Campus: no native what-if found. Extensions are
+  often blocked on school-managed Chromebooks, which is where a website still works.
+- **What that does to the wedge:** paste-the-grades-page is a convenience, not a moat. Most
+  searchers want a plain calculator, and the fight is ranking beside calculator.net, rapidtables
+  and rogerhub. Rough score before the AI check: Demand 5 · Money 3 · Who is there 3 · Can we win 3 ·
+  AI 3 · Monetisable 3 · Durability 4 = **24**, one under the bar. Open: does Google show an AI
+  Overview on `grade calculator` and `gpa calculator` (founder's browser), and is a student
+  audience one the founder wants.
+
 ### Inflation — second, weaker
 
 `inflation calculator` 419. Page one for `value of a dollar calculator`: usinflationcalculator,
