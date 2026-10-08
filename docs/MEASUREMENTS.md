@@ -37,6 +37,23 @@ Written down because it exists, not because it decides anything. The first real 
 |---|---|---|---|---|---|---|---|
 | — | — | — | — | — | — | — | first pull due 2026-10-09 (28 days after launch) |
 
+## AI Overview watch
+
+Added 2026-10-08, after Google's AI Overview was seen *building* a working calculator on
+`gpa calculator` and `final grade calculator` (see `NICHE-LOG.md`). Read in the founder's browser
+(Guwahati) at every 28-day pull. What to look for: no Overview · text Overview · **a tool inside the
+Overview**, which is the one that changes the plan.
+
+| Seen | Query | Overview? | Where on the page | What it says | Notes |
+|---|---|---|---|---|---|
+| 2026-10-08 | `time card calculator` | Text, no tool | Below four organic results (Redcort, calculator.net, timecardcalculator.net, Time Clock Wizard) | Steps for entering punches, breaks, overtime; names Redcort and Calculator Soup; offers to work out pay if told the hours | **New since September**, when there was none on `timesheet calculator`. hourstally not on page one |
+| 2026-10-08 | `time card calculator with lunch` | Text, no tool | Below one organic result (calculatehours.com) | Formula (out − in − lunch), decimals; recommends Calculator Soup, Redcort, Time Clock Wizard; offers to calculate a schedule | In September it sat below three organic results; now below one |
+
+Google's "People also search for" strip on the same two pages, for the page plan:
+`time card calculator with multiple in and out` (the home page's own title and wedge), `time card
+calculator 2 weeks` and `2 weeks with lunch` (use "2 weeks" in `/biweekly`'s title and heading),
+`hours and minutes`, `with pay`, `with breaks`, `30-minute lunch break calculator`.
+
 ## Competitor watch
 
 Checked at every 28-day pull, same day as the numbers. Position is for `time card calculator`
