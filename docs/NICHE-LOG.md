@@ -108,3 +108,9 @@ different from thirty others. Revisit only with a wedge.
   are few and the seed sweeps already listed them. Next instrument: Keyword Planner seeded with
   the *websites* of small tool sites that are visibly winning — their keyword list is both the
   demand and the proof a small site can rank there.
+- **No general calculator site — founder agreed 2026-10-08.** A mix of unrelated calculators
+  fights calculator.net, Omni and calculatorsoup on every page, has no topic for Google to
+  credit, needs hundreds of pages our pace cannot reach, and is the shape the scaled-content
+  crackdown targets. Route finds instead: work/hours/pay → a page on hourstally; a file job →
+  a tool on fileoholic; a new site only for a related cluster of five or more terms with volume
+  and bids.
