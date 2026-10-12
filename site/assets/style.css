@@ -362,3 +362,57 @@ details p { margin: 10px 0 0; }
 .copyweek { display: none; justify-self: start; align-self: flex-start; background: none; border: 0; padding: 2px 0; font: inherit; font-size: 13px; color: var(--navy); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 .copyweek:hover { color: var(--ink); }
 .day.cancopy .copyweek { display: inline-block; }
+
+/* ---------- the biweekly card ---------- */
+
+/* Each week totalled on its own line, set in the card's own grid so its hours sit under the day's. */
+.weekband {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr) 84px 72px 72px; gap: 0 12px; align-items: baseline;
+  padding: 9px 20px; background: #f1e8cf; border-bottom: 1px solid var(--rule-strong); font-size: 15px;
+}
+.weekband .wk-name { font-weight: 600; }
+.weekband .wk-split { grid-column: 2 / 4; font-size: 14px; color: var(--ink-soft); }
+.weekband.over .wk-split { color: var(--stamp); }
+.weekband .wk-hm, .weekband .wk-dec { text-align: right; font-weight: 600; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* The pay-period calendar: a quieter sheet under the card. */
+.ppcal { background: var(--bar); border: 1px solid var(--hair); border-radius: 4px; padding: 16px 20px 18px; margin-bottom: 26px; }
+.pc-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 20px; }
+.pc-head h2 { margin: 0; font-size: 19px; }
+.pc-controls { display: flex; align-items: flex-end; gap: 8px; }
+.pc-controls .field select { width: auto; }
+.pc-controls .btn { padding: 7px 12px; font-size: 14px; }
+.pc-count { margin: 12px 0 8px; color: var(--ink-soft); }
+.pc-count.extra { color: var(--stamp); font-weight: 600; }
+.pc-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.pc-table th, .pc-table td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--hair); }
+.pc-table th { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
+.pc-table .num { text-align: right; width: 2.5em; font-family: "IBM Plex Mono", monospace; }
+.pc-table td small { color: var(--ink-soft); }
+.pc-table tr.mine td { background: var(--card); font-weight: 600; }
+.pc-use { background: none; border: 0; padding: 0; font: inherit; font-size: 14px; color: var(--navy); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.pc-mine { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+.ppcal .hint { padding: 10px 0 0; }
+
+@media (max-width: 760px) {
+  .weekband { grid-template-columns: minmax(0, 1fr) auto auto; gap: 2px 12px; padding: 9px 14px; }
+  .weekband .wk-split { grid-column: 1 / -1; grid-row: 2; }
+  .ppcal { padding: 14px 14px 16px; }
+  .pc-table th, .pc-table td { padding: 6px 6px; }
+  .pc-table td:last-child { text-align: right; }
+}
+
+@media print {
+  .weekband { background: none; border-bottom: 1px solid #000; padding: 5px 12px; grid-template-columns: 92px minmax(0, 1fr) 84px 72px 72px; font-size: 14px; }
+  .weekband .wk-split, .weekband.over .wk-split { grid-column: 2 / 4; grid-row: auto; color: #000; }
+}
+
+/* Four tools no longer fit beside the wordmark on a phone: the menu takes its own row under it,
+   each label on one line, and scrolls sideways rather than falling off the screen. */
+@media (max-width: 760px) {
+  .site-head .wrap { height: auto; flex-wrap: wrap; row-gap: 0; padding-top: 9px; padding-bottom: 3px; }
+  .site-head nav { margin-left: -7px; width: calc(100% + 7px); overflow-x: auto; scrollbar-width: none; }
+  .site-head nav::-webkit-scrollbar { display: none; }
+  .site-head nav a { white-space: nowrap; }
+}
+@media (max-width: 400px) { .site-head nav a { padding: 6px 5px; } }

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Biweekly Time Card Calculator for 2 Weeks, Overtime by Week | HoursTally</title>
+<meta name="description" content="Free 2-week time card: several clock in and out punches a day, each week totalled on its own line so overtime is counted the way the law counts it, and a calendar of every pay period and payday in the year. Excel download.">
+<link rel="canonical" href="https://hourstally.com/biweekly">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="Biweekly time card calculator for 2 weeks">
+<meta property="og:description" content="Two weeks of punches, each week totalled on its own line, overtime counted week by week, and every pay period and payday of the year. Excel download. No signup.">
+<meta property="og:url" content="https://hourstally.com/biweekly">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Biweekly time card calculator for 2 weeks","url":"https://hourstally.com/biweekly","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Fourteen days from the first day of the pay period","Unlimited clock in and out pairs per day","Week 1 and week 2 totalled on their own lines","Overtime counted week by week, never averaged over the fortnight","Overtime rules: over 40 a week, over 8 a day, both, California 8/12, the hospital 8 and 80 system, or none","Pay-period calendar: every biweekly period and payday in a year, with 27-payday years flagged","Months with three paydays marked","Excel (.xlsx) download with week subtotals as formulas and the year's pay periods","Print or save as PDF","Nothing entered leaves the browser"],"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-10-12","dateModified":"2026-10-12"}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#1b2a41" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="/with-lunch">With lunch</a>
+      <a href="/biweekly" aria-current="page">Biweekly</a>
+      <a href="/time-to-decimal">Time to decimal</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Biweekly time card calculator for 2 weeks</h1>
+  <p class="lede">Fourteen days of clock in and clock out times, with as many pairs a day as you
+  worked. Each week is totalled on its own line, because overtime is owed week by week and never on
+  the two weeks together. Under the card, every pay period and payday of the year. Downloads as Excel.
+  Nothing to sign up for.</p>
+
+  <section class="tc biweekly" data-tool="biweekly" aria-label="Biweekly time card">
+    <div class="tc-fields">
+      <div class="field">
+        <label for="start">First day of the pay period</label>
+        <input type="date" id="start">
+      </div>
+      <div class="field wide">
+        <label for="rule">Overtime</label>
+        <select id="rule">
+          <option value="weekly40">Over 40 a week</option>
+          <option value="daily8">Over 8 a day</option>
+          <option value="both">Over 8 a day, 40 a week</option>
+          <option value="california">California 8 / 12</option>
+          <option value="hosp880">8 and 80 — hospitals, nursing homes</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rate">Hourly rate</label>
+        <input type="number" id="rate" min="0" step="0.01" placeholder="optional" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="employee">Name on the card</label>
+        <input type="text" id="employee" placeholder="optional" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="tc-cols" aria-hidden="true">
+      <div>Day</div><div>Clock in and out</div><div>Unpaid break</div><div class="num">Worked</div><div class="num">Decimal</div>
+    </div>
+
+    <div id="days"></div>
+
+    <div class="stub">
+      <div class="stub-total">
+        <div class="stub-label">Total for the two weeks</div>
+        <div class="stub-value"><span id="t-total-hm">0h 00m</span><small><span id="t-total-dec">0.00</span> hrs</small></div>
+      </div>
+      <dl class="stub-breakdown">
+        <dt>Week 1</dt><dd id="t-w1">0h 00m</dd>
+        <dt>Week 2</dt><dd id="t-w2">0h 00m</dd>
+        <dt>Regular</dt><dd id="t-reg">0.00</dd>
+        <dt>Overtime</dt><dd id="t-ot">0.00</dd>
+        <div id="dtrow" hidden><dt>Double time</dt><dd id="t-dt">0.00</dd></div>
+        <dt>Days worked</dt><dd id="t-days">0</dd>
+        <div id="payrow" class="pay" hidden><dt>Gross pay</dt><dd id="t-pay">0.00</dd></div>
+      </dl>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="btn-xlsx" type="button">Download as Excel</button>
+      <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
+      <button class="btn quiet" id="btn-clear" type="button">Clear the card</button>
+    </div>
+    <p class="privacy noprint"><svg class="lock" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2.5" y="7" width="11" height="8" rx="1.5" fill="currentColor"/></svg><span><strong>Private.</strong> Nothing you type is sent anywhere — the card is kept only in this browser, on this device.</span></p>
+
+    <div class="signoff" aria-hidden="true">
+      <div><span class="sigline"></span>Employee signature</div><div><span class="sigline"></span>Date</div>
+      <div><span class="sigline"></span>Supervisor signature</div><div><span class="sigline"></span>Date</div>
+    </div>
+    <p class="print-note">Prepared with the free biweekly time card calculator at hourstally.com. Times as entered; totals exact to the minute; overtime counted in each week separately, per the rule shown above.</p>
+    <p class="hint">Type the time as digits — <code>9</code>, <code>915</code>, <code>9:15</code> — and tap
+    <strong>am</strong> / <strong>pm</strong> if the switch is wrong. Press <strong>+</strong> on a day for a
+    second clock in and out. <strong>Copy to rest of week</strong> fills the empty days that follow in the
+    same week, so a regular schedule takes two entries, one for each week.</p>
+    <p class="hint noprint">Missing something, or got a total you think is wrong? Email
+    <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Bugs get fixed and become tests.</p>
+  </section>
+
+  <section class="ppcal noprint" aria-labelledby="pc-h">
+    <div class="pc-head">
+      <h2 id="pc-h">Pay periods and paydays in <span id="pc-year"></span></h2>
+      <div class="pc-controls">
+        <div class="field">
+          <label for="pc-payday">Paid on the first</label>
+          <select id="pc-payday">
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+          </select>
+        </div>
+        <button class="btn quiet pc-nav" id="pc-prev" type="button" aria-label="Previous year">‹ Year</button>
+        <button class="btn quiet pc-nav" id="pc-next" type="button" aria-label="Next year">Year ›</button>
+      </div>
+    </div>
+    <p id="pc-count" class="pc-count"></p>
+    <table class="pc-table">
+      <thead><tr><th class="num">#</th><th>Pay period</th><th>Payday</th><th class="noprint"></th></tr></thead>
+      <tbody id="pc-body"></tbody>
+    </table>
+    <p class="hint">The year is counted by payday, the way payroll and the W-2 count it. Payday is taken as
+    the first chosen weekday after the period ends. Press <strong>Use this period</strong> to start the
+    card on that period.</p>
+  </section>
+
+  <div class="body">
+  <article>
+
+    <h2 id="how">How the two-week card counts</h2>
+
+    <p>Pick the first day of the pay period. The card fills with fourteen dated rows, split into week
+    one and week two. Type each clock in and clock out. A day you left and came back gets a second
+    pair with <strong>+</strong>, and there is no limit to the pairs. The unpaid break box is for time
+    taken off without a punch, such as a lunch the payroll system deducts by itself.</p>
+
+    <p>After the seventh day and after the fourteenth, a line totals that week on its own: hours
+    worked, then how many of them are regular and how many are overtime. The stub at the bottom adds
+    the two weeks together. Overtime is never worked out on the fourteen days as one block, because
+    that is not how it is owed.</p>
+
+    <p>The card takes the first day of the pay period as the first day of week one, which is how most
+    biweekly payrolls are set up. If your employer's workweek starts on a different day from the pay
+    period, the two weeks on this card will not line up with the weeks your overtime is counted in,
+    and you should start the card on the first day of a workweek instead.</p>
+
+    <h2 id="overtime">Why overtime is counted one week at a time</h2>
+
+    <p>Under the Fair Labor Standards Act, each workweek stands alone. The regulation says it plainly:
+    the Act "does not permit averaging of hours over 2 or more weeks." A workweek is any fixed run of
+    seven days your employer chooses, and overtime is owed on the hours over forty inside it, whatever
+    happens in the week before or after.</p>
+
+    <p>So a fortnight of 50 hours and then 30 hours is 80 hours in all, the same as two normal weeks,
+    but it is not two normal weeks. The first week has ten hours of overtime and the second has none.
+    Averaged, it would come out at forty a week and no overtime at all, and that average is exactly
+    the mistake the rule forbids. Type 50 and 30 into the card and the week lines show the ten hours
+    where they belong.</p>
+
+    <p>The overtime is paid on the payday of the period in which that workweek ends. On a biweekly
+    schedule where the weeks line up with the pay period, that is the same paycheck.</p>
+
+    <h3>The 8 and 80 system</h3>
+
+    <p>There is one exception, and it only exists on a two-week period. Hospitals and residential care
+    establishments such as nursing homes may agree with their staff, before the work is done, to count
+    overtime over 8 hours in any workday and over 80 hours in the fourteen days, instead of over 40 in
+    a week. Choose <strong>8 and 80</strong> under overtime and the card does it that way: the week lines
+    show the daily overtime, and anything over 80 for the fortnight is added once in the total. A 50
+    and 30 fortnight in eight hour days is no overtime at all under 8 and 80. A single twelve hour shift
+    is four hours of overtime, even in a short fortnight. If you do not work in a hospital or care home,
+    or there was no agreement, this rule is not yours.</p>
+
+    <h2 id="paydays">26 or 27 paydays</h2>
+
+    <p>Twenty-six two-week periods are 364 days, one day short of a year, and two days short in a leap
+    year. So your paydays fall a day earlier in the calendar every year. Most years that changes
+    nothing. But when a payday lands on the 1st of January, or on the 2nd in a leap year, that
+    year has a twenty-seventh payday. It happens about once every eleven years for any one
+    schedule.</p>
+
+    <p>It is about to happen to one of the two Friday schedules. Fridays fall on both the 1st of
+    January and the 31st of December 2027, so an employer paying every other Friday whose first 2027
+    payday is the 1st of January pays 27 times in 2027. The other Friday schedule, starting the 8th of
+    January, pays 26. The calendar above shows which one you are on: put in your own pay period and
+    read the count.</p>
+
+    <p>For someone paid by the hour, a 27th payday is just another paycheck. For a salaried employee
+    it is a question. If the employer divides the annual salary by 26, the 27th check is a whole extra
+    payment on the year. If it divides by 27, every check that year is smaller. Both are done, and the
+    time to ask which is before the year starts.</p>
+
+    <p>The calendar also marks the months with three paydays. With 26 paydays there are two of them a
+    year. They are the months people budget around, since most monthly bills only need two.</p>
+
+    <h2 id="semimonthly">Biweekly or semi-monthly</h2>
+
+    <p>Biweekly is every other week: 26 paychecks a year, always on the same weekday. Semi-monthly is
+    twice a month, usually on the 15th and the last day: 24 paychecks a year, on whatever weekday the
+    date falls. On a $52,000 salary a biweekly check is $2,000.00 and a semi-monthly check is
+    $2,166.67. The year comes out the same, but the checks are different sizes, and mixing the two up
+    is the most common reason a first paycheck looks wrong.</p>
+
+    <p>For hourly work the difference is overtime. A semi-monthly period does not line up with
+    workweeks, so a week often starts in one period and ends in the next, and its overtime belongs
+    to the period it ends in. A biweekly period is exactly two workweeks, so every week's overtime
+    is on the paycheck for that period. For a semi-monthly card, use the
+    <a href="/">time card calculator</a> and choose semi-monthly.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+
+    <details>
+      <summary>My pay period starts on a Sunday. Does that matter?</summary>
+      <p>Pick that Sunday as the first day and the card runs Sunday to Saturday twice. Any weekday
+      works; the card uses whatever date you give it.</p>
+    </details>
+
+    <details>
+      <summary>I worked 45 hours one week and 35 the next. Is that overtime?</summary>
+      <p>Yes, five hours of it, in the first week, under the usual over-40 rule. The fortnight total of
+      80 does not cancel it.</p>
+    </details>
+
+    <details>
+      <summary>Where do I find which Friday schedule I am on?</summary>
+      <p>Put any pay period you know into the card, using its first day. The calendar works out every
+      other period from it, before and after, and counts the paydays in the year.</p>
+    </details>
+
+    <details>
+      <summary>Does it round the times?</summary>
+      <p>No. It counts the exact minutes you enter. If your employer rounds punches to the quarter hour,
+      the totals here may differ by a few minutes a day.</p>
+    </details>
+
+    <details>
+      <summary>Is my time card sent anywhere?</summary>
+      <p>No. Everything is worked out inside your browser, and what you type is kept in this browser
+      only, so the card is still here if you come back. Clear removes it. Nothing reaches a server.</p>
+    </details>
+
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. The arithmetic is set out on <a href="/how-it-counts">how it counts</a>. Last updated 12 October 2026.</p>
+  </article>
+    <aside class="rail">
+      <div class="rail-box">
+        <h3>Tools</h3>
+        <ul>
+        <li><a href="/">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li><a href="/with-lunch">Time card with lunch break</a><small>Lunch deducted by rule, worked-through days marked</small></li>
+        <li aria-current="page"><a href="/biweekly">Biweekly time card</a><small>Two weeks, overtime by week, the year's paydays</small></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        </ul>
+      </div>
+      <div class="rail-box">
+        <h3>On this page</h3>
+        <ul>
+        <li><a href="#how">How the card counts</a></li>
+        <li><a href="#overtime">Overtime one week at a time</a></li>
+        <li><a href="#paydays">26 or 27 paydays</a></li>
+        <li><a href="#semimonthly">Biweekly or semi-monthly</a></li>
+        <li><a href="#faq">Questions people ask</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. Built by <a href="/about">Ritusmoi Kaushik</a>. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/with-lunch">Time card with lunch break</a></li>
+        <li><a href="/biweekly">Biweekly time card</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/how-it-counts">How it counts</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/xlsx.js"></script>
+<script src="/assets/app.js"></script>
+<script src="/assets/biweekly.js"></script>
+</body>
+</html>
