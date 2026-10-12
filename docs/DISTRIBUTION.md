@@ -29,7 +29,7 @@ claims. Founder's point the same day: most places are nofollow, and nobody answe
 |---|---|---|
 | **dev.to** | `noopener noreferrer`, also on accounts three days old | **Dofollow** |
 | **Substack** | no `rel` at all on links in a post | **Dofollow** |
-| **Uneed** (uneed.best) | listing's "Visit website" is `noopener` only, on small free calculators too | **Dofollow** |
+| **Uneed** (uneed.best) | listing's "Visit website" is `noopener` only, on small free calculators too. Free queue is about six months (founder, 2026-10-12); paying to skip it is buying a link — not allowed, here or on any launch site that sells a fast lane | **Dofollow**, slow |
 | Medium | `noopener ugc nofollow` | Nofollow |
 | Hashnode | `nofollow ugc` in the post body | Nofollow |
 | Indie Hackers | posts and product pages `nofollow` | Nofollow |
