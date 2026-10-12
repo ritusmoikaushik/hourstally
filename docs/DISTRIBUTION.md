@@ -20,6 +20,38 @@ also a Google signal, and this estate has lost two domains to signals.
 | 2026-09-14 | Pinterest pin images | Three pins made, in `D:\tmp\hourstally-pins\` (time card, biweekly, decimal). Waiting on the account — see below |
 | 2026-10-03 | Pinterest | Business account HoursTally (founder's Gmail login, country India). `p:domain_verify` tag on the home page, Verify clicked. Board *Time card calculators and payroll hours*. Four pins live: time card, biweekly, decimal, and `pin4-with-lunch.png` → `/with-lunch`, made the same day because that page shipped 30 September without one. `/how-it-counts` gets no pin — it explains, it is not a tool |
 
+## Links from other sites — which platforms give a dofollow link
+
+Checked 2026-10-12 by reading the `rel` attribute on real pages in a browser, not from blog
+claims. Founder's point the same day: most places are nofollow, and nobody answers cold email.
+
+| Platform | Link in a post or listing | Verdict |
+|---|---|---|
+| **dev.to** | `noopener noreferrer`, also on accounts three days old | **Dofollow** |
+| **Substack** | no `rel` at all on links in a post | **Dofollow** |
+| **Uneed** (uneed.best) | listing's "Visit website" is `noopener` only, on small free calculators too | **Dofollow** |
+| Medium | `noopener ugc nofollow` | Nofollow |
+| Hashnode | `nofollow ugc` in the post body | Nofollow |
+| Indie Hackers | posts and product pages `nofollow` | Nofollow |
+| BetaList | goes through `/visit`, `nofollow` | Nofollow |
+| SaaSHub | `nofollow` on every link | Nofollow |
+| npm, GitHub README | homepage and README links `nofollow` | Nofollow |
+| Product Hunt, AlternativeTo, Reddit, Quora | known nofollow; not re-tested | Nofollow |
+| WordPress.com, Peerlist, HackerNoon | no sample with an outside link found; HackerNoon is editor-reviewed | Unknown |
+| "Best free time card calculators" lists | written by time-tracking SaaS (jibble, Toggl, TMetric); TMetric links Redcort `nofollow` | Nofollow |
+
+**The rule that goes with it.** A dofollow link we put there ourselves is still a link we made.
+Google's link-spam policy lists links created mainly to manipulate ranking, low-quality directory
+links and mass self-published posts. So: **one listing on Uneed per site, at most one or two real
+articles per platform**, each one something a reader on that platform would want anyway. Never
+bought links, link swaps or paid guest posts — the estate has lost two domains to signals.
+
+**Articles worth writing** (the assistant drafts; the founder reads and posts):
+- dev.to — "A real .xlsx with working formulas in plain JavaScript, no library" (`xlsx.js`)
+- dev.to — "The night the clocks go back: the daylight-saving bug in time card maths"
+- Substack — "2027 has 27 paydays for some Friday payrolls" — November, linking `/biweekly`
+- dev.to, for fileoholic — "Opening Microsoft Publisher files in the browser with WebAssembly"
+
 ## Founder's queue — short tasks, in order
 
 ### ~~1. Bing Webmaster Tools~~ — done 2026-09-21
