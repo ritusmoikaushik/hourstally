@@ -35,7 +35,7 @@ Written down because it exists, not because it decides anything. The first real 
 
 | Pulled | Window | Clicks | Impressions | Avg position | Tier-1 sessions | Google updates in window | Notes |
 |---|---|---|---|---|---|---|---|
-| — | — | — | — | — | — | — | first pull due 2026-10-09 (28 days after launch) |
+| 2026-10-12 | 13 Sep–10 Oct | 0 | 92 | 34.6 | ~0 (Cloudflare: every visit has no referrer; none from a search engine) | **Google September 2026 spam update**, 24 Sep, about two weeks to roll out. No core update since 21 May | Three days late; due 9 Oct. 32 queries. Impressions 33 → 92 and position 51 → 35 since the 28 Sep early read. By page: `/` 32 at 37, `/time-to-decimal` 24 at 42, `/with-lunch` 19 at 28 (twelve days in the index), `/how-it-counts` 9 at 7, `/about` 3, plus 5 on the old `http` copy. Best single positions: "time clock calculator with multiple punches" **1**, "copley time card calculator" 3, "calculator soup time card" 7, "clock in clock-out calculator" 12, "my time card calculator" 13. The wedge phrases are the ones finding us. Cloudflare (sampled 1 in 10): about 25 recorded visits in the window, US desktop, no referrer — crawlers and tools, not searchers. No drop on any page, so nothing from the spam update. AI Overview read 8 Oct, see below. Rows in `docs/gsc/2026-10-10_*.csv` |
 
 ## AI Overview watch
 
