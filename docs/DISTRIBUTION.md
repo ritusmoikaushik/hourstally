@@ -37,7 +37,7 @@ object Google indexes as a page of its own.
 | File | Pin title | Link | Description |
 |---|---|---|---|
 | `pin1-time-card.png` | Free time card calculator with unlimited clock in and out per day | https://hourstally.com/ | Add every in and out pair you actually worked, deduct unpaid breaks, see overtime split out, and download the finished card as Excel with formula totals. No signup. |
-| `pin2-biweekly.png` | Biweekly time card calculator that downloads as Excel | https://hourstally.com/ | Pick a 14-day pay period, type your punches, get regular and overtime hours per week and a real .xlsx you can send to payroll. |
+| `pin2-biweekly.png` | Biweekly time card calculator that downloads as Excel | https://hourstally.com/biweekly (was `/` until the page shipped 2026-10-12; the founder edits the live pin's link) | Pick a 14-day pay period, type your punches, get regular and overtime hours per week and a real .xlsx you can send to payroll. |
 | `pin3-decimal.png` | Time to decimal converter for payroll | https://hourstally.com/time-to-decimal | 7:45 is 7.75, not 7.45. Convert one time or paste a whole column, with a printable 1–60 minutes chart. |
 
 Then one new pin for every page that ships, the day it ships. I make the image.
