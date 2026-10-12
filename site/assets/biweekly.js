@@ -372,7 +372,7 @@ function biweeklyXlsxRows() {
   return rows;
 }
 
-const BIWEEKLY_XLSX_WIDTHS = [22, 6, 36, 18, 13, 15];
+const BIWEEKLY_XLSX_WIDTHS = [22, 12, 36, 18, 13, 15];
 
 function biweeklyXlsxName() {
   const d = bstate.days[0].date;
@@ -413,5 +413,5 @@ if (typeof document !== 'undefined') {
 
 if (typeof module !== 'undefined') {
   module.exports = { addDays, paydayAfter, payCalendar, cardYear, compute880, biweeklyCompute, biweeklyBuildDays,
-                     biweeklyXlsxRows, biweeklyXlsxName, _setState: s => { bstate = s; } };
+                     biweeklyXlsxRows, biweeklyXlsxName, BIWEEKLY_XLSX_WIDTHS, _setState: s => { bstate = s; } };
 }

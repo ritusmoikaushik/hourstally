@@ -145,5 +145,27 @@ check('gross pay is a formula when a rate is given', () => {
 });
 check('file is named for the first day', () => assert.strictEqual(b.biweeklyXlsxName(), 'biweekly-timecard-2026-10-04.xlsx'));
 
+console.log('dates fit their columns in every sheet');
+// A date in a narrow column shows as ##### in Excel. "14 Oct 2026" needs about 11 characters.
+function datesFit(name, rows, widths) {
+  rows.forEach((r, ri) => r.forEach((c, ci) => {
+    if (c && c.d) assert.ok((widths[ci] || 8.43) >= 11, name + ': date in column ' + 'ABCDEFGH'[ci] + ' row ' + (ri + 1) + ' is ' + widths[ci] + ' wide');
+  }));
+}
+check('biweekly sheet', () => {
+  b._setState(card('2026-10-04', [ten, ten]));
+  datesFit('biweekly', b.biweeklyXlsxRows(), b.BIWEEKLY_XLSX_WIDTHS);
+});
+check('time card sheet', () => {
+  const a = require('../site/assets/app.js');
+  a._setState({ period: 'week', start: '2026-10-04', rule: 'weekly40', rate: '', employee: 'A', days: a.buildDays('2026-10-04', 'week') });
+  datesFit('time card', a.toXlsxRows(), a.XLSX_WIDTHS);
+});
+check('lunch sheet', () => {
+  const l = require('../site/assets/lunch.js');
+  l._setState({ period: 'week', start: '2026-10-04', rule: 'weekly40', rate: '', employee: 'A', lunchMinutes: '30', lunchWhen: 'over6', days: l.lunchBuildDays('2026-10-04', 'week') });
+  datesFit('lunch', l.lunchXlsxRows(), l.LUNCH_XLSX_WIDTHS);
+});
+
 if (failures) { console.log('\n' + failures + ' failing'); process.exit(1); }
 console.log('\nall passing');

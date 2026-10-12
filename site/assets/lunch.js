@@ -306,7 +306,7 @@ function lunchXlsxRows() {
   return rows;
 }
 
-const LUNCH_XLSX_WIDTHS = [13, 6, 10, 10, 13, 12, 13, 15];
+const LUNCH_XLSX_WIDTHS = [13, 12, 11, 12, 13, 12, 13, 15];
 
 function lunchXlsxName() {
   const d = lstate.days.length && lstate.days[0].date;
@@ -342,6 +342,6 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { LUNCH_WHEN, lunchDayEmpty, lunchCopyInto, lunchMinutes, lunchDay, lunchCompute, lunchBuildDays, lunchXlsxRows, lunchXlsxName,
+  module.exports = { LUNCH_WHEN, lunchDayEmpty, lunchCopyInto, lunchMinutes, lunchDay, lunchCompute, lunchBuildDays, lunchXlsxRows, lunchXlsxName, LUNCH_XLSX_WIDTHS,
                      _setState: s => { lstate = s; } };
 }
