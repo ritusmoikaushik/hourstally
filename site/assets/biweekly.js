@@ -271,10 +271,12 @@ function bRenderCalendar() {
     const three = months[p.payday.slice(0, 7)] === 3;
     host.append(B.el('tr', { class: mine ? 'mine' : '' }, [
       B.el('td', { class: 'num' }, [String(i + 1)]),
-      B.el('td', {}, [B.shortDate(p.start) + ' – ' + B.shortDate(p.end)]),
-      B.el('td', {}, [longDate(p.payday), three ? B.el('small', {}, [' · 3 this month']) : null]),
+      // A date never breaks inside itself on a phone; the line breaks after the dash.
+      B.el('td', {}, [B.el('span', { class: 'nw' }, [B.shortDate(p.start) + ' –']), ' ', B.el('span', { class: 'nw' }, [B.shortDate(p.end)])]),
+      B.el('td', {}, [B.el('span', { class: 'nw' }, [longDate(p.payday)]), three ? B.el('small', {}, ['3 this month']) : null]),
       B.el('td', { class: 'noprint' }, [mine ? B.el('span', { class: 'pc-mine' }, ['on the card'])
-        : B.el('button', { class: 'pc-use', type: 'button', onclick: () => useCalendarPeriod(p.start) }, ['Use this period'])])
+        : B.el('button', { class: 'pc-use', type: 'button', 'aria-label': 'Use the period ' + B.shortDate(p.start) + ' to ' + B.shortDate(p.end),
+            onclick: () => useCalendarPeriod(p.start) }, ['Use', B.el('span', { class: 'pc-long' }, [' this period'])])])
     ]));
   });
 }
