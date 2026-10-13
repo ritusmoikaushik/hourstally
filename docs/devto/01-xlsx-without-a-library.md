@@ -1,6 +1,6 @@
 ---
 title: "A Real .xlsx With Working Formulas in Plain JavaScript, No Library"
-published: false
+published: true  # posted 13 Oct 2026: https://dev.to/ritusmoikaushik/a-real-xlsx-with-working-formulas-in-plain-javascript-no-library-50bc
 description: An .xlsx is a zip of six XML files. Here's the 177-line writer behind a free time card calculator, the [h]:mm trap, Excel's 1900 date quirk, and the ##### bug a real Excel test caught.
 tags: javascript, excel, webdev, tutorial
 cover_image:
