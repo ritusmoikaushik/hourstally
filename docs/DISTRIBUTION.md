@@ -47,7 +47,7 @@ articles per platform**, each one something a reader on that platform would want
 bought links, link swaps or paid guest posts — the estate has lost two domains to signals.
 
 **Articles worth writing** (the assistant drafts; the founder reads and posts):
-- dev.to — "A real .xlsx with working formulas in plain JavaScript, no library" (`xlsx.js`)
+- dev.to — "A real .xlsx with working formulas in plain JavaScript, no library" (`xlsx.js`) — **drafted 13 Oct**, `docs/devto/01-xlsx-without-a-library.md`, written to gstextract's voice rules (`gstextract/docs/GSTExtract_Growth_PRD.md`, "Writing Style"); the founder reads and posts
 - dev.to — "The night the clocks go back: the daylight-saving bug in time card maths"
 - Substack — "2027 has 27 paydays for some Friday payrolls" — November, linking `/biweekly`
 - dev.to, for fileoholic — "Opening Microsoft Publisher files in the browser with WebAssembly"
