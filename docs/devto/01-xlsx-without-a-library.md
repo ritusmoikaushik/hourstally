@@ -7,7 +7,11 @@ cover_image:
 canonical_url:
 ---
 
-For its first few days my time card calculator offered a CSV download. CSV is fine for data. It's bad at being a timesheet, because Excel has to guess what every cell is. A total like 41:30 might stay text, or turn into a time, and if anyone then formats that column the usual way it reads 17:30. Nobody wants to explain to their manager why their timesheet says seventeen and a half hours.
+I run a small free website, a time card calculator. You type in when you clocked in and out each day, it adds up the week, splits regular hours from overtime, and gives you something to hand over. It's built for hourly workers checking their pay, and for small business owners doing payroll for a handful of staff on a Friday afternoon.
+
+That last part, "something to hand over", is the bit that matters most. A total on a web page is nice. What the manager or the payroll person actually wants is a file they can open in Excel, check, and keep.
+
+For its first few days the site offered a CSV download. CSV is fine for data. It's bad at being a timesheet, because Excel has to guess what every cell is. A total like 41:30 might stay text, or turn into a time, and if anyone then formats that column the usual way it reads 17:30. Nobody wants to explain to their manager why their timesheet says seventeen and a half hours.
 
 So I wanted a proper .xlsx. Real dates, real time cells, and a total that is an actual `=SUM()` formula, so if you fix a typo in Tuesday's hours the week total moves with it.
 
