@@ -467,8 +467,10 @@ details p { margin: 10px 0 0; }
    draws a wider arrow than Chromium's own, so "$ / hr", "11pm" and "Biweekly, 14 days" were cut
    off in the founder's browser at 140px columns (2026-10-15). */
 @media screen {
-  .tc.pay .tc-fields { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .tc.pay .tc-fields { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); grid-auto-flow: row dense; }
   .tc.pay .field .duo select { flex: 0 0 auto; width: auto; padding-right: 26px; }
+  /* Two dropdowns and "to" are wider than one column: they ran into "Name on the card" (2026-10-15). */
+  .tc.pay .tc-fields .field:has(#diff-from) { grid-column: span 2; }
 }
 @media screen and (max-width: 760px) {
   .tc.pay .tc-fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-flow: row dense; }
