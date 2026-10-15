@@ -48,7 +48,7 @@ bought links, link swaps or paid guest posts — the estate has lost two domains
 
 **Articles worth writing** (the assistant drafts; the founder reads and posts):
 - dev.to — "A real .xlsx with working formulas in plain JavaScript, no library" (`xlsx.js`) — **posted 13 Oct**: https://dev.to/ritusmoikaushik/a-real-xlsx-with-working-formulas-in-plain-javascript-no-library-50bc. Checked live the same day: the link to hourstally.com is `rel="noopener noreferrer"`, no `nofollow`, so dofollow; the page is indexable. Draft in `docs/devto/01-xlsx-without-a-library.md`, written to gstextract's voice rules (`gstextract/docs/GSTExtract_Growth_PRD.md`, "Writing Style")
-- dev.to — "The night the clocks go back: the daylight-saving bug in time card maths"
+- dev.to — "The night the clocks go back: the daylight-saving bug in time card maths" — **post in the week of 26 Oct**, before US clocks go back on Sun 1 Nov 2026; the assistant drafts it by 23 Oct (decided 15 Oct)
 - Substack — "2027 has 27 paydays for some Friday payrolls" — November, linking `/biweekly`
 - dev.to, for fileoholic — "Opening Microsoft Publisher files in the browser with WebAssembly"
 
