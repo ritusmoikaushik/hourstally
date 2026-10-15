@@ -262,7 +262,7 @@ check('the cached day values add up to the cached week', () => {
 check('dates fit their columns', () => {
   p._setState(Object.assign(card(two, [reg6]), { employee: 'A' }));
   p.payXlsxRows().forEach((r, ri) => r.forEach((c, ci) => {
-    if (c && c.d) assert.ok((p.PAY_XLSX_WIDTHS[ci] || 8.43) >= 11, 'date in column ' + ci + ' row ' + (ri + 1));
+    if (c && c.d) assert.ok((p.PAY_XLSX_WIDTHS[ci] || 8.43) >= 12, 'date in column ' + ci + ' row ' + (ri + 1));
   }));
 });
 check('the sheet builds as a zip', () => {

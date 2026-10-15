@@ -463,6 +463,18 @@ details p { margin: 10px 0 0; }
 .field .duo > * { flex: 1 1 0; min-width: 0; }
 .field .duo .to { flex: 0 0 auto; color: var(--ink-soft); font-size: 14px; }
 .field .duo select { padding: 0 2px 0 6px; }
+/* On screen a dropdown is as wide as its own words; the number box beside it gives way. Windows
+   draws a wider arrow than Chromium's own, so "$ / hr", "11pm" and "Biweekly, 14 days" were cut
+   off in the founder's browser at 140px columns (2026-10-15). */
+@media screen {
+  .tc.pay .tc-fields { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .tc.pay .field .duo select { flex: 0 0 auto; width: auto; padding-right: 26px; }
+}
+@media screen and (max-width: 760px) {
+  .tc.pay .tc-fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-flow: row dense; }
+  .tc.pay .tc-fields .field:has(#diff-from), .tc.pay .tc-fields .field:has(#diff-amt),
+  .tc.pay .tc-fields .field:has(#period) { grid-column: span 2; }
+}
 
 /* Four columns: no break box on this card, and the day's gross pay where the break would be. */
 .tc.pay .tc-cols, .tc.pay .day { grid-template-columns: 92px minmax(0, 1fr) 64px 100px; }

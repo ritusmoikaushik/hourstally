@@ -372,7 +372,7 @@ function biweeklyXlsxRows() {
   return rows;
 }
 
-const BIWEEKLY_XLSX_WIDTHS = [22, 12, 36, 18, 13, 15];
+const BIWEEKLY_XLSX_WIDTHS = [22, 12, 36, 21, 15, 15];
 
 function biweeklyXlsxName() {
   const d = bstate.days[0].date;

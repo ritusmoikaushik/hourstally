@@ -588,7 +588,7 @@ function toXlsxRows() {
   return rows;
 }
 
-const XLSX_WIDTHS = [13, 12, 36, 18, 13, 15];
+const XLSX_WIDTHS = [13, 12, 36, 21, 15, 15];
 
 function xlsxName() {
   const d = state.days.length && state.days[0].date;

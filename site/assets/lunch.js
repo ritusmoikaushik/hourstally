@@ -306,7 +306,7 @@ function lunchXlsxRows() {
   return rows;
 }
 
-const LUNCH_XLSX_WIDTHS = [13, 12, 11, 12, 13, 12, 13, 15];
+const LUNCH_XLSX_WIDTHS = [13, 12, 11, 12, 15, 14, 15, 15];
 
 function lunchXlsxName() {
   const d = lstate.days.length && lstate.days[0].date;

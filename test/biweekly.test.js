@@ -145,11 +145,21 @@ check('gross pay is a formula when a rate is given', () => {
 });
 check('file is named for the first day', () => assert.strictEqual(b.biweeklyXlsxName(), 'biweekly-timecard-2026-10-04.xlsx'));
 
-console.log('dates fit their columns in every sheet');
-// A date in a narrow column shows as ##### in Excel. "14 Oct 2026" needs about 11 characters.
+console.log('dates and labels fit their columns in every sheet');
+// A date in a narrow column shows as ##### in Excel. "14 Oct 2026" in Excel's default font needs 12:
+// a date in an 11-wide column showed ##### in the founder's Excel on 2026-10-15, one in a 12 did not.
+// A bold label is cut off where the next cell on its row is filled; bold runs about a tenth wider.
 function datesFit(name, rows, widths) {
   rows.forEach((r, ri) => r.forEach((c, ci) => {
-    if (c && c.d) assert.ok((widths[ci] || 8.43) >= 11, name + ': date in column ' + 'ABCDEFGH'[ci] + ' row ' + (ri + 1) + ' is ' + widths[ci] + ' wide');
+    const col = 'ABCDEFGHIJKL'[ci] + (ri + 1);
+    const w = widths[ci] || 8.43;
+    if (c && c.d) assert.ok(w >= 12, name + ': date in ' + col + ' is ' + w + ' wide');
+    const next = r[ci + 1];
+    const filled = next !== undefined && next !== '' && !(next && next.v === '');
+    if (c && typeof c.v === 'string' && filled) {
+      const need = Math.ceil(c.v.length * (c.s === 1 ? 1.1 : 1) + 1);
+      assert.ok(w >= need, name + ': "' + c.v + '" in ' + col + ' needs ' + need + ', column is ' + w);
+    }
   }));
 }
 check('biweekly sheet', () => {
@@ -165,6 +175,15 @@ check('lunch sheet', () => {
   const l = require('../site/assets/lunch.js');
   l._setState({ period: 'week', start: '2026-10-04', rule: 'weekly40', rate: '', employee: 'A', lunchMinutes: '30', lunchWhen: 'over6', days: l.lunchBuildDays('2026-10-04', 'week') });
   datesFit('lunch', l.lunchXlsxRows(), l.LUNCH_XLSX_WIDTHS);
+});
+
+check('pay sheet', () => {
+  const p = require('../site/assets/pay.js');
+  const days = p.payBlankDays('2026-10-04', 'biweekly');
+  days[1].segments = [{ in: '9', out: '5', inM: 'am', outM: 'pm', job: 1 }];
+  p._setState({ rateA: '15', rateB: '21', otMult: '1.5', dtMult: '2', diffAmount: '2', diffKind: 'dollar', diffFrom: '23', diffTo: '7',
+    period: 'biweekly', start: '2026-10-04', rule: 'weekly40', employee: 'A', days });
+  datesFit('pay', p.payXlsxRows(), p.PAY_XLSX_WIDTHS);
 });
 
 if (failures) { console.log('\n' + failures + ' failing'); process.exit(1); }

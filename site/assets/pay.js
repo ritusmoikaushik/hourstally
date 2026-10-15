@@ -477,7 +477,7 @@ function payXlsxRows() {
   return rows;
 }
 
-const PAY_XLSX_WIDTHS = [24, 12, 34, 11, 11, 11, 12, 9, 13, 11, 11, 12];
+const PAY_XLSX_WIDTHS = [26, 12, 34, 12, 12, 21, 19, 9, 20, 17, 20, 12];
 
 function payXlsxName() {
   const d = pstate.days[0].date;
