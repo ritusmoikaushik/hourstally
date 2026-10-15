@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Time Card Calculator with Overtime and Pay, Two Rates in a Week | HoursTally</title>
+<meta name="description" content="Free time card calculator that starts from your pay rate: two jobs at two rates in one week, overtime on the blended regular rate the way the FLSA counts it, shift differential, editable 1.5x and 2x, gross pay for every day. Excel download.">
+<link rel="canonical" href="https://hourstally.com/with-overtime-and-pay">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="Time card calculator with overtime and pay">
+<meta property="og:description" content="Your rate first, or two rates for two jobs in one week. Overtime on the blended regular rate, shift differential included, gross pay day by day. Excel download. No signup.">
+<meta property="og:url" content="https://hourstally.com/with-overtime-and-pay">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Time card calculator with overtime and pay","url":"https://hourstally.com/with-overtime-and-pay","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Two hourly rates in one week, each clock in and out tagged with the rate it was worked at","Overtime paid on the week's weighted average regular rate (29 CFR 778.115)","Shift differential in dollars or percent for the hours in a chosen window, counted into the regular rate","Overtime and double time multipliers editable","Gross pay for every day and every week","Comparison with the rate-in-effect method when two rates are used","Weekly or biweekly, each workweek priced on its own","Overtime rules: over 40 a week, over 8 a day, both, California 8/12, or none","Excel (.xlsx) download with every pay figure as a formula on the rates","Print or save as PDF","Nothing entered leaves the browser"],"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-10-15","dateModified":"2026-10-15"}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#1b2a41" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="/with-lunch">With lunch</a>
+      <a href="/biweekly">Biweekly</a>
+      <a href="/with-overtime-and-pay" aria-current="page">Overtime and pay</a>
+      <a href="/time-to-decimal">Time to decimal</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Time card calculator with overtime and pay</h1>
+  <p class="lede">Your rate first — or two, if you worked two jobs at two rates this week. Overtime is
+  paid on the week's blended rate, the way federal law counts it, a shift differential is added for the
+  hours it covers, and every day shows its gross pay. Excel download, no signup.</p>
+
+  <section class="tc pay" data-tool="pay" aria-label="Time card with overtime and pay">
+    <div class="tc-rates">
+      <div class="field">
+        <label for="rate-a">Rate A, $ an hour</label>
+        <input type="number" id="rate-a" min="0" step="0.01" placeholder="e.g. 15.00" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="rate-b">Rate B, second job</label>
+        <input type="number" id="rate-b" min="0" step="0.01" placeholder="optional" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="ot-mult">Overtime ×</label>
+        <input type="number" id="ot-mult" min="1" step="0.1" value="1.5" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="dt-mult">Double time ×</label>
+        <input type="number" id="dt-mult" min="1" step="0.1" value="2" inputmode="decimal">
+      </div>
+    </div>
+    <div class="tc-fields">
+      <div class="field">
+        <label for="period">Pay period</label>
+        <select id="period">
+          <option value="week">Weekly, 7 days</option>
+          <option value="biweekly">Biweekly, 14 days</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="start">First day</label>
+        <input type="date" id="start">
+      </div>
+      <div class="field wide">
+        <label for="rule">Overtime</label>
+        <select id="rule">
+          <option value="weekly40">Over 40 a week</option>
+          <option value="daily8">Over 8 a day</option>
+          <option value="both">Over 8 a day, 40 a week</option>
+          <option value="california">California 8 / 12</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="diff-amt">Shift differential</label>
+        <div class="duo">
+          <input type="number" id="diff-amt" min="0" step="0.05" placeholder="none" inputmode="decimal">
+          <select id="diff-kind" aria-label="Differential in dollars or percent">
+            <option value="dollar">$ / hr</option>
+            <option value="percent">% of rate</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="diff-from">Paid for hours from</label>
+        <div class="duo">
+          <select id="diff-from"></select>
+          <span class="to">to</span>
+          <select id="diff-to" aria-label="Differential hours end"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="employee">Name on the card</label>
+        <input type="text" id="employee" placeholder="optional" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="tc-cols" aria-hidden="true">
+      <div>Day</div><div>Clock in and out</div><div class="num">Hours</div><div class="num">Gross pay</div>
+    </div>
+
+    <div id="days"></div>
+
+    <div class="stub">
+      <div class="stub-total">
+        <div class="stub-label">Gross pay for the period, before tax</div>
+        <div class="stub-value"><span id="t-gross">$0.00</span><small><span id="t-hours">0.00</span> hrs</small></div>
+      </div>
+      <dl class="stub-breakdown">
+        <div id="straightrow" hidden><dt>Straight-time pay</dt><dd id="t-straight">$0.00</dd></div>
+        <div id="diffrow" hidden><dt>of which differential</dt><dd id="t-diffpay">$0.00</dd></div>
+        <div id="premrow" hidden><dt>Overtime premium</dt><dd id="t-premium">$0.00</dd></div>
+        <div id="rr1row" hidden><dt id="t-rr1-label">Regular rate</dt><dd id="t-rr1">$0.00</dd></div>
+        <div id="rr2row" hidden><dt>Week 2 rate</dt><dd id="t-rr2">$0.00</dd></div>
+        <dt>Regular hours</dt><dd id="t-reg">0.00</dd>
+        <dt>Overtime hours</dt><dd id="t-ot">0.00</dd>
+        <div id="dtrow" hidden><dt>Double time hours</dt><dd id="t-dt">0.00</dd></div>
+        <dt>Days worked</dt><dd id="t-days">0</dd>
+      </dl>
+    </div>
+    <p id="paynote" class="paynote" hidden></p>
+
+    <div class="actions">
+      <button class="btn" id="btn-xlsx" type="button">Download as Excel</button>
+      <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
+      <button class="btn quiet" id="btn-clear" type="button">Clear the card</button>
+    </div>
+    <p class="privacy noprint"><svg class="lock" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2.5" y="7" width="11" height="8" rx="1.5" fill="currentColor"/></svg><span><strong>Private.</strong> Nothing you type is sent anywhere — the card is kept only in this browser, on this device.</span></p>
+
+    <div class="signoff" aria-hidden="true">
+      <div><span class="sigline"></span>Employee signature</div><div><span class="sigline"></span>Date</div>
+      <div><span class="sigline"></span>Supervisor signature</div><div><span class="sigline"></span>Date</div>
+    </div>
+    <p class="print-note">Prepared with the free time card calculator with overtime and pay at hourstally.com. Times as entered; gross pay before tax; overtime on each workweek's weighted average regular rate (29 CFR 778.115), per the rule shown above.</p>
+    <p class="hint">Type your rate first. If you worked two jobs at two rates this week, put the second in
+    <strong>Rate B</strong> and an <strong>A</strong> / <strong>B</strong> switch appears beside every clock in
+    and out: tap it to <strong>B</strong> for the hours worked at that rate. Times go in as digits —
+    <code>9</code>, <code>915</code>, <code>9:15</code>. Clock out and back in for an unpaid lunch: there is no
+    break box on this card, because with two rates it could not know which job a deducted break came out of.</p>
+    <p class="hint noprint">Missing something, or got a total you think is wrong? Email
+    <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Bugs get fixed and become tests.</p>
+  </section>
+
+  <div class="body">
+  <article>
+
+    <h2 id="how">How the card turns hours into pay</h2>
+
+    <p>Start with the rate. With one job, put your hourly rate in <strong>Rate A</strong> and fill in your
+    clock in and out times; each day shows its hours and its gross pay, and the line under the week shows the
+    week's total. With two jobs at two rates, put the second in <strong>Rate B</strong>. Every clock in and out
+    then gets an <strong>A</strong> or <strong>B</strong> beside it, so a day spent on the register in the
+    morning and in the kitchen in the evening is two pairs, one of each.</p>
+
+    <p>The card prices a week in two steps, the same two steps the Department of Labor sets out. First, every
+    hour you worked is paid at its own rate, overtime hours included. That is the straight-time pay. Second,
+    each overtime hour earns an extra half of the week's regular rate on top, because the hour itself was
+    already paid once in step one. The regulation's own example is a $12 rate and a 46 hour week: 46 hours at
+    $12 plus 6 hours at $6, which is $588 (29 CFR 778.110).</p>
+
+    <p>With one rate and no differential, the regular rate is just your rate and none of this matters. It
+    starts to matter the moment a week has two rates in it.</p>
+
+    <h2 id="two-rates">Two jobs at two rates in one week</h2>
+
+    <p>When you do two kinds of work for the same employer in the same week at two different rates, the
+    regular rate for that week is neither of them. The regulation says it is "the weighted average of such
+    rates": your total straight-time pay from all the work, divided by the total hours worked at all of it
+    (29 CFR 778.115). People call it the blended rate. It is worked out fresh each week, from that week's
+    hours, and a week with more hours at the higher rate has a higher blended rate.</p>
+
+    <h3>A worked example</h3>
+
+    <p>A cashier at $15 an hour also covers the grill at $21. One week she works 8 hours on the grill on
+    Sunday and 7 on Monday, then 6 hours a day on the register from Tuesday to Saturday. That is 15 hours at
+    $21 and 30 hours at $15, 45 hours in all, so 5 hours of overtime.</p>
+
+    <table>
+      <tr><th>Step</th><th>Working</th><th>Result</th></tr>
+      <tr><td>Straight-time pay</td><td>30 × $15.00 + 15 × $21.00</td><td>$765.00</td></tr>
+      <tr><td>Regular rate</td><td>$765.00 ÷ 45 hours</td><td>$17.00</td></tr>
+      <tr><td>Overtime premium</td><td>5 × ½ × $17.00</td><td>$42.50</td></tr>
+      <tr><td>Gross pay</td><td>$765.00 + $42.50</td><td>$807.50</td></tr>
+    </table>
+
+    <p>Each overtime hour comes to $25.50 in all, one and a half times $17.00. Type the week into the card with
+    those rates and the week line reads <em>blended rate $17.00</em> and the total reads $807.50. The
+    Saturday shows $132.50: six hours at $15, plus the premium on the five overtime hours, which fell on that
+    day.</p>
+
+    <h2 id="not-higher">Why overtime is not 1.5 times the higher rate</h2>
+
+    <p>The easy guesses are 1.5 times $21, which is $31.50 an hour, or 1.5 times $15, which is $22.50. The law
+    asks for neither. It asks for 1.5 times the blended rate, $25.50, because the overtime is owed on the whole
+    week's work, not on whichever job happened to come last.</p>
+
+    <p>With just the two rates, paying overtime at 1.5 times the higher one is always at least what the law
+    requires, so an employer who does it has done nothing wrong; it has paid more than it had to. Paying
+    overtime at 1.5 times the rate of whichever job the overtime hours were spent on is different. That method is lawful only when you and
+    your employer agreed to it <em>before</em> the work was done, the rate is the one actually paid for that work
+    in ordinary hours, and the overtime paid at it covers every hour over the limit (29 CFR 778.419). Without
+    the agreement, the blended rate applies.</p>
+
+    <p>The method can cut either way. In the example the five overtime hours were on the register, so at the
+    rate in effect the week comes to $802.50, five dollars less than the blended $807.50. Turn the week round —
+    the register Sunday to Thursday, then the grill on Friday and Saturday — and the overtime falls on the grill:
+    the rate-in-effect week is $817.50, ten dollars more, while the blended week is still $807.50. Whenever a
+    week worked at both rates has overtime, the card shows the rate-in-effect figure under the total, so a pay
+    stub that was worked out that way can be recognised.</p>
+
+    <h2 id="differential">Shift differentials go into the regular rate</h2>
+
+    <p>A night or weekend premium is not overtime pay, and it cannot be left out of the overtime arithmetic.
+    The regulation names it: "nightshift differentials (whether they take the form of a percent of the base rate
+    or an addition of so many cents per hour)" must be included in the regular rate (29 CFR 778.207(b)). So
+    the differential pushes the blended rate up, and with it the overtime.</p>
+
+    <p>Put the differential in, in dollars an hour or as a percentage of the rate, and the hours it is paid
+    for. The card pays it only on the minutes inside that window, so a shift from 3pm to 1am with a $2
+    differential from 11pm to 7am gets it for two hours, not ten. Pick the same hour for both ends if it is
+    paid on every hour.</p>
+
+    <p>An example. Five shifts of 3pm to 1am at $20, with $2 an hour from 11pm: 50 hours, ten of them with the
+    differential. Straight time is 50 × $20 plus 10 × $2, which is $1,020.00. The regular rate is $1,020.00 ÷ 50
+    = $20.40, and the ten overtime hours earn ½ × $20.40 each, $102.00. Gross: $1,122.00. Paying the overtime
+    on the $20 base rate instead gives $1,120.00. Two dollars is small, but it is short every week.</p>
+
+    <h2 id="multipliers">Overtime and double time multipliers</h2>
+
+    <p>Federal law sets the floor at one and a half times the regular rate for hours over 40 in a workweek. It
+    has no double time at all. Double time comes from state law — in California, hours over 12 in a day and
+    over 8 on the seventh day in a row — or from a contract. Both multipliers are boxes on the card because
+    union agreements and handbooks often pay more, such as double time on Sundays or holidays. Any
+    multiplier works the same way as 1.5: the straight-time hour is already paid, and the premium is the rest of
+    the multiplier times the regular rate. The card warns you if overtime is set below 1.5.</p>
+
+    <h2 id="daily">Gross pay day by day</h2>
+
+    <p>A day's gross pay is its hours at their own rates, plus the premium on any overtime hours that fell on
+    that day. Under the over-40 rule the overtime is the hours after the fortieth, so it lands on the day the
+    fortieth hour was passed and the days after it. Under a daily rule it lands on the long days.</p>
+
+    <p>Because the regular rate belongs to the whole week, a day's pay is not final until the week is. Add a
+    Saturday at the higher rate and the blended rate rises, and the premium on Thursday's overtime rises with
+    it. The card works this out again on every change. Money is rounded to the cent only when it is shown; the
+    sums use the exact figures, so a day added up by hand from rounded amounts can be a cent away from the
+    total.</p>
+
+    <p>On a biweekly card each week is priced on its own, with its own blended rate, because each workweek
+    stands alone (29 CFR 778.104). The two week lines show both.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+
+    <details>
+      <summary>I have two jobs with two different employers. Is that one week of overtime?</summary>
+      <p>Usually not. The weighted average is for two kinds of work for the same employer. Hours for two
+      separate, unrelated employers are counted separately, and each owes overtime only on its own hours. Use
+      the card once for each job, with one rate.</p>
+    </details>
+
+    <details>
+      <summary>Is the blended rate the average of my two rates?</summary>
+      <p>Only if you worked the same hours at each. It is weighted by hours: 30 hours at $15 and 15 at $21 is
+      $17.00, not the $18.00 halfway between them.</p>
+    </details>
+
+    <details>
+      <summary>Can I take comp time instead of overtime pay?</summary>
+      <p>Only if you work for a state or local government agency. The FLSA lets public agencies give time off
+      instead of overtime pay, at one and a half hours for each overtime hour, up to 240 hours banked (480 for
+      police, fire, emergency and seasonal work), under a union agreement or one made with you before the work
+      (29 U.S.C. 207(o)). A private
+      employer has to pay overtime in money. This card does not keep a comp time balance; it prices the
+      overtime as pay.</p>
+    </details>
+
+    <details>
+      <summary>I got a production bonus that week. Does it change the overtime?</summary>
+      <p>Yes. A bonus you were promised for output or attendance goes into the regular rate too. The
+      regulation's example: 46 hours at $12 with a $46 bonus is a regular rate of $13, not $12 (29 CFR
+      778.110(b)). The card has no bonus box, so a week with a bonus will come out a little low.</p>
+    </details>
+
+    <details>
+      <summary>Does this work for California?</summary>
+      <p>Pick <strong>California 8 / 12</strong> under overtime and the card applies the week's blended rate
+      to the daily overtime and the double time. The state labor department's manual describes the same weighted average, but in 2021 a
+      California appeal court held it is not the only lawful method there, so check what your employer uses.</p>
+    </details>
+
+    <details>
+      <summary>Is my time card sent anywhere?</summary>
+      <p>No. Everything is worked out inside your browser, and what you type is kept in this browser only, so
+      the card and your rates are still here if you come back. Clear removes the times and keeps the rates.
+      Nothing reaches a server.</p>
+    </details>
+
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. The arithmetic is set out on <a href="/how-it-counts">how it counts</a>. Last updated 15 October 2026.</p>
+  </article>
+    <aside class="rail">
+      <div class="rail-box">
+        <h3>Tools</h3>
+        <ul>
+        <li><a href="/">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li><a href="/with-lunch">Time card with lunch break</a><small>Lunch deducted by rule, worked-through days marked</small></li>
+        <li><a href="/biweekly">Biweekly time card</a><small>Two weeks, overtime by week, the year's paydays</small></li>
+        <li aria-current="page"><a href="/with-overtime-and-pay">Time card with overtime and pay</a><small>Two rates in a week, blended overtime, pay per day</small></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        </ul>
+      </div>
+      <div class="rail-box">
+        <h3>On this page</h3>
+        <ul>
+        <li><a href="#how">How the card turns hours into pay</a></li>
+        <li><a href="#two-rates">Two jobs at two rates</a></li>
+        <li><a href="#not-higher">Not 1.5 times the higher rate</a></li>
+        <li><a href="#differential">Shift differentials</a></li>
+        <li><a href="#multipliers">Multipliers</a></li>
+        <li><a href="#daily">Gross pay day by day</a></li>
+        <li><a href="#faq">Questions people ask</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. Built by <a href="/about">Ritusmoi Kaushik</a>. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/with-lunch">Time card with lunch break</a></li>
+        <li><a href="/biweekly">Biweekly time card</a></li>
+        <li><a href="/with-overtime-and-pay">Time card with overtime and pay</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/how-it-counts">How it counts</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/xlsx.js"></script>
+<script src="/assets/app.js"></script>
+<script src="/assets/pay.js"></script>
+</body>
+</html>
