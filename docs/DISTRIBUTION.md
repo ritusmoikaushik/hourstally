@@ -71,6 +71,7 @@ object Google indexes as a page of its own.
 | `pin1-time-card.png` | Free time card calculator with unlimited clock in and out per day | https://hourstally.com/ | Add every in and out pair you actually worked, deduct unpaid breaks, see overtime split out, and download the finished card as Excel with formula totals. No signup. |
 | `pin2-biweekly.png` | Biweekly time card calculator that downloads as Excel | https://hourstally.com/biweekly (was `/` until the page shipped; the founder changed the live pin's link 2026-10-12) | Pick a 14-day pay period, type your punches, get regular and overtime hours per week and a real .xlsx you can send to payroll. |
 | `pin3-decimal.png` | Time to decimal converter for payroll | https://hourstally.com/time-to-decimal | 7:45 is 7.75, not 7.45. Convert one time or paste a whole column, with a printable 1–60 minutes chart. |
+| `pin5-overtime-and-pay.png` (made 2026-10-15, the day the page shipped) | Time card calculator with overtime and pay for two pay rates | https://hourstally.com/with-overtime-and-pay | Worked two jobs at two rates this week? Tag each shift A or B and overtime is paid on the blended rate, the way federal law counts it. Gross pay for every day, Excel download with formulas. Free, no signup. |
 
 Then one new pin for every page that ships, the day it ships. I make the image.
 
