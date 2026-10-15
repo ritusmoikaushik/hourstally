@@ -20,6 +20,7 @@ this property on 2026-09-21; the key stays in the gstextract repo and is never c
 | 2026-09-28 | `/how-it-counts` | 4 | out of noindex, into the sitemap, three days after its slot. IndexNow pinged; indexing requested in Search Console by the founder the same day; crawled and "Submitted and indexed" by 30 Sep. Nothing else indexable within seven days either side until `/with-lunch` on 2026-10-02 |
 | 2026-09-30 | `/with-lunch` | 5 | into the sitemap two days before its 2 Oct slot, on the founder's instruction; linked from every footer for the first time. IndexNow pinged |
 | 2026-10-12 | `/biweekly` | 6 | out of noindex and into the sitemap the day it was built, after the founder's test pass; linked from every header, rail and footer. Twelve days after `/with-lunch`, so the only indexable page in seven days. IndexNow pinged |
+| 2026-10-15 | `/with-overtime-and-pay` | 7 | out of noindex and into the sitemap the day it was built, after the founder's six-test pass; linked from every header, rail and footer, and from `/how-it-counts`. Three days after `/biweekly`, so two indexable pages in seven days — the cap. One page left in the first ninety days (`/military-time`, 23 Oct). IndexNow pinged |
 
 ## Early signal — not a pull
 
