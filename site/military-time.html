@@ -186,13 +186,13 @@
 
     <h2 id="how">How the card reads a time</h2>
 
-    <p>Every box takes the 24-hour clock and nothing else. Type four digits — 0700, 1930 — or a shorter form,
+    <p>Every box takes the 24-hour clock and nothing else. Type four digits (0700, 1930) or a shorter form,
     and when you leave the box the card writes it back as four digits: <code>7</code> becomes 0700,
     <code>730</code> becomes 0730, <code>19:30</code> becomes 1930. There is no am or pm switch, because on
     this clock there is nothing for one to decide. 0700 can only be morning and 1900 can only be evening.</p>
 
-    <p>If you type am or pm out of habit, the line turns red and tells you the 24-hour time to type instead —
-    7pm is 1900 — so nothing is counted on a guess. Times past the end of the day are refused too. The clock
+    <p>If you type am or pm out of habit, the line turns red and tells you the 24-hour time to type instead,
+    such as 1900 for 7pm, so nothing is counted on a guess. Times past the end of the day are refused too. The clock
     runs from 0000 to 2359, with 2400 allowed only as the end of a day, so 2430 is not a time (half past
     midnight is 0030), and neither is 1275.</p>
 
@@ -200,8 +200,8 @@
 
     <p>A night shift is the normal case on this card, not a special one. Type 1900 in and 0700 out and the day
     shows 12 hours. When the clock-out is earlier than the clock-in, the shift ran past midnight, and the
-    card counts forward to the next morning. Beside the clock-out it shows the day the shift ended — "→ Sat",
-    or "→ Sat 31 Oct" once you have picked the first day — so a look down the card shows which shifts crossed
+    card counts forward to the next morning. Beside the clock-out it shows the day the shift ended, "→ Sat",
+    or "→ Sat 31 Oct" once you have picked the first day, so a look down the card shows which shifts crossed
     midnight.</p>
 
     <p>The whole shift is counted on the line it started on: Friday night's shift is on Friday's line. If you
@@ -215,20 +215,23 @@
     next week. The card keeps the whole shift in the week it began, so move those hours yourself on that one
     night. Daily overtime in California is counted by the workday. The state labor department defines it as
     any 24 hours in a row, starting at whatever time the employer sets, and it does not have to start when
-    your shift does (Labor Code 500). This card counts a 1900 to 0700 shift as one day's work. If your
-    employer's workday starts at midnight, the same shift is five hours on one workday and seven on the next,
-    and neither has daily overtime.</p>
+    your shift does (Labor Code 500). This card counts a 1900 to 0700 shift as one day's work, which is right
+    when your employer's workday starts before the shift does. If it starts at midnight, each shift is split
+    across two workdays, five hours on one and seven on the next. For nights back to back that comes out much
+    the same, because every workday then holds seven hours from one night and five from the next, twelve in
+    all. The difference is at the edges: a single night on its own has no daily overtime at all when it is
+    split at midnight, and on this card it has four hours.</p>
 
     <h2 id="midnight">0000 or 2400 at midnight</h2>
 
     <p>Midnight has two names on the 24-hour clock. 0000 is midnight at the start of a day, and 2400 is
-    midnight at the end of one. They are the same moment — 2400 on Friday is 0000 on Saturday — so a shift
+    midnight at the end of one. They are the same moment (2400 on Friday is 0000 on Saturday), so a shift
     from 1600 to 2400 and a shift from 1600 to 0000 are both eight hours. The card takes both and shows the
     difference the way a paper card would: 1600 to 2400 ends on its own day, and 1600 to 0000 shows
     "→ Sat".</p>
 
     <p>Which name you are expected to write depends on whose system printed the card. Pennsylvania's state
-    HR office prints its rule on its military time chart: midnight "when used at the beginning of a shift it
+    HR office set out its rule on its military time chart: midnight "when used at the beginning of a shift it
     is considered 0000, when used at the end of a shift it is considered 2400." The Navy's correspondence
     manual does without 2400 altogether: "The time range is 0000 to 2359."</p>
 
@@ -246,7 +249,7 @@
 
     <p>Going the other way, for a system that wants military time, morning times keep their digits and gain
     a zero in front, and afternoon and evening hours gain 12. The usual shortcut, "add 1200 to a pm time",
-    breaks in the twelve o'clock hours. 12:15 pm is already 1215 — adding 1200 gives 2415, which does not
+    breaks in the twelve o'clock hours. 12:15 pm is already 1215; adding 1200 gives 2415, which does not
     exist. And 12:15 am, a quarter past midnight, is 0015, not 1215. The converter above takes either kind of
     time and gives you the other, and the chart prints on one page.</p>
 
@@ -255,7 +258,7 @@
     <p>A spreadsheet that works out hours as Out minus In fails on the first night shift. 0700 minus 1900 is
     a negative time, and Excel shows a negative time as #####. In the file this card downloads, every clock in
     and out is its own line, and its hours are a formula that adds a day whenever the clock-out is earlier
-    than the clock-in — <code>IF(Out&gt;In, Out−In, Out+1−In)</code> — then adds any clock change and takes
+    than the clock-in, <code>IF(Out&gt;In, Out−In, Out+1−In)</code>, then adds any clock change and takes
     off the break. The total is the sum of the lines.</p>
 
     <p>The clock times in the file show as 19:00, with a colon, which is Excel's way rather than the Navy's.
@@ -268,7 +271,7 @@
     <p>In a hospital, the 24-hour clock is how medication times are written. Open RN's <em>Nursing
     Skills</em>, an open nursing textbook, calls it "the standard method used to indicate time for medication
     administration", because it removes the confusion of am and pm. A dose due at seven is charted as 0700 or
-    1900, never as 7.</p>
+    1900 rather than as 7.</p>
 
     <p>The same reason holds for anyone whose shift runs through the night: security, dispatch, a plant
     on three shifts. On a 12-hour card, 11 to 7 could be a day shift or a night shift. On this one, 2300 to
@@ -289,7 +292,7 @@
     <details>
       <summary>Is military time the same as the 24-hour clock?</summary>
       <p>Yes. In the US, military time is the everyday name for the 24-hour clock. The military adds a house
-      style — four digits and no colon, so 0700 rather than 07:00. This card takes either form and writes four
+      style: four digits and no colon, so 0700 rather than 07:00. This card takes either form and writes four
       digits back.</p>
     </details>
 
