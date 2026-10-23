@@ -566,3 +566,68 @@ details p { margin: 10px 0 0; }
   .tc.pay .day-name, .tc.pay .hm, .tc.pay .gross { line-height: 1.2; }
   main:has(.tc.pay) .body { display: none; }
 }
+
+/* ---------- the military time card ---------- */
+
+/* No am / pm buttons. Where they were, a tag after the clock-out names the day a shift ended on
+   when it ran past midnight: "-> Sat" over "31 Oct". */
+.tc.mil .pair { grid-template-columns: 84px 22px 84px 56px 26px 34px; }
+.tc.mil .ends { font-size: 12px; line-height: 1.15; color: var(--ink-soft); white-space: nowrap; }
+.tc.mil .ends small { display: block; font-size: 11px; }
+.day.doubt:not(.bad) .daynotes { color: #8a5a00; }
+@media (min-width: 761px) and (max-width: 880px) {
+  .tc.mil .pair { grid-template-columns: 74px 18px 74px 52px 24px 32px; gap: 4px; }
+}
+@media (max-width: 760px) {
+  .tc.mil .pair { grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 54px 24px 36px; gap: 4px; }
+}
+@media (max-width: 340px) {
+  .tc.mil .pair { grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr) 48px 22px 34px; gap: 3px; }
+}
+
+/* The converter and the chart: a quieter sheet under the card, like the pay-period calendar. */
+.milconv { background: var(--bar); border: 1px solid var(--hair); border-radius: 4px; padding: 16px 20px 18px; margin-bottom: 26px; }
+.milconv h2 { margin: 0; font-size: 19px; }
+.mc-conv { display: grid; grid-template-columns: auto 220px minmax(0, 1fr); gap: 8px 20px; align-items: end; padding-bottom: 16px; margin-bottom: 14px; border-bottom: 1px solid var(--hair); }
+.mc-conv h2 { align-self: center; }
+.mc-conv input { font-family: "IBM Plex Mono", monospace; font-size: 17px; }
+.conv-out { margin: 0; min-height: 36px; display: flex; flex-direction: column; justify-content: center; }
+.conv-out .cv-main { font-size: 17px; }
+.conv-out .cv-main b { font-family: "IBM Plex Mono", monospace; font-size: 22px; color: var(--stamp); font-weight: 600; }
+.conv-out .cv-more { font-size: 14px; color: var(--ink-soft); }
+.conv-out .cv-bad { color: var(--stamp); font-size: 15px; }
+.conv-out .cv-hint { color: #a39a80; font-size: 15px; }
+.mc-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.mc-head .btn { padding: 7px 12px; font-size: 14px; }
+.mc-tables { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.mc-tables table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.mc-tables th, .mc-tables td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+.mc-tables th { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
+.mc-tables td:first-child { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; font-weight: 600; width: 4.2em; }
+.mc-tables td small { display: block; font-size: 12px; color: var(--ink-soft); }
+.mc-tables tr.mc-end td { background: var(--card); }
+.mc-note { margin: 12px 0 0; font-size: 14px; color: var(--ink-soft); max-width: var(--text-max); }
+.mc-print { display: none; }
+@media (max-width: 760px) {
+  .milconv { padding: 14px 14px 16px; }
+  .mc-conv { grid-template-columns: minmax(0, 1fr); }
+  .mc-tables { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .mc-tables table:last-child { grid-column: 1 / -1; }
+  .mc-tables th, .mc-tables td { padding: 4px 5px; }
+}
+
+@media print {
+  .tc.mil .pair { grid-template-columns: auto auto auto auto; }
+  .tc.mil .ends { color: #000; font-size: 11px; }
+  .tc.mil .ends small { display: inline; margin-left: 3px; }
+  /* Printing the card leaves the chart off; "Print the chart" prints only the chart. */
+  body:not(.print-chart) .milconv { display: none; }
+  body.print-chart .site-head, body.print-chart main > h1, body.print-chart .lede,
+  body.print-chart .tc, body.print-chart .body, body.print-chart .site-foot { display: none !important; }
+  body.print-chart .milconv { border: 0; padding: 0; margin: 0; }
+  body.print-chart .mc-tables { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  body.print-chart .mc-tables th { color: #000; border-bottom: 1px solid #000; }
+  body.print-chart .mc-tables td { border-bottom: 1px solid #bbb; }
+  body.print-chart .mc-tables tr.mc-end td { background: none; }
+  body.print-chart .mc-print { display: block; font-size: 11px; color: #666; margin-top: 12px; }
+}

@@ -641,5 +641,5 @@ if (typeof document !== 'undefined') {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { fmtHMlabel, segLabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, clockChange, clockText, copyTargets, dayEmpty, copyInto, copyButton, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays };
+  module.exports = { fmtHMlabel, segLabel, toXlsxRows, xlsxName, XLSX_WIDTHS, _setState: s => { state = s; }, parseTime, parseTimeEx, applyMeridian, inferMeridians, fmt12, segmentMinutes, clockChange, clockText, copyTargets, dayEmpty, copyInto, copyButton, dayMinutes, splitDay, computeWeek, compute, fmtHM, fmtDec, periodLength, buildDays, shortDate, isoLocal, money };
 }

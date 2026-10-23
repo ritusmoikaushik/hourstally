@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Military Time Card Calculator: 24-Hour Clock, Night Shifts, 2400 | HoursTally</title>
+<meta name="description" content="Free time card calculator on the 24-hour clock. Type 1900 to 0700 with no am or pm, night shifts across midnight count on their own, and 2400 ends a day. Breaks, overtime, decimal hours, Excel download, and a military time chart.">
+<link rel="canonical" href="https://hourstally.com/military-time">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HoursTally">
+<meta property="og:title" content="Military time card calculator">
+<meta property="og:description" content="A time card on the 24-hour clock: no am or pm, night shifts across midnight, 0000 and 2400 read correctly, Excel download with real times. Conversion chart included. No signup.">
+<meta property="og:url" content="https://hourstally.com/military-time">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Military time card calculator","url":"https://hourstally.com/military-time","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["24-hour entry only: 0700, 1930, or short forms such as 7 and 730, with no am or pm anywhere","Night shifts across midnight counted with nothing to tap, and the day each shift ended on shown beside it","2400 read as the end of a day and 0000 as the start of one; 2400 refused as a clock-in","A warning when a shift is clocked out at 2359","Several clock in and out pairs a day, each read forward from the one before","Hours added or taken away on the nights the clocks change","Unpaid break minutes per day","Overtime rules: over 40 a week, over 8 a day, both, California 8/12, or none","Weekly or biweekly","Excel (.xlsx) download with real clock times and an hours formula on every line that survives midnight","Military to standard time converter, both ways","Printable military time chart","Nothing entered leaves the browser"],"author":{"@type":"Person","name":"Ritusmoi Kaushik","url":"https://hourstally.com/about"},"publisher":{"@type":"Organization","name":"HoursTally","url":"https://hourstally.com/"},"datePublished":"2026-10-23","dateModified":"2026-10-23"}
+</script>
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2032%2032%27%3E%3Crect%20width=%2732%27%20height=%2732%27%20rx=%277%27%20fill=%27%231b2a41%27/%3E%3Cg%20fill=%27%23fbf6e8%27%3E%3Crect%20x=%276%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2711.6%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2717.2%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3Crect%20x=%2722.8%27%20y=%277%27%20width=%273.2%27%20height=%2718%27%20rx=%271.6%27/%3E%3C/g%3E%3Cpath%20d=%27M5%2024%20L27%208%27%20stroke=%27%23fbf6e8%27%20stroke-width=%273.2%27%20stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="#1b2a41"><rect x="4" y="5" width="3.8" height="22" rx="1.9"/><rect x="10.5" y="5" width="3.8" height="22" rx="1.9"/><rect x="17" y="5" width="3.8" height="22" rx="1.9"/><rect x="23.5" y="5" width="3.8" height="22" rx="1.9"/></g><path d="M3 26 L29 6" stroke="#1b2a41" stroke-width="3.8" stroke-linecap="round"/></svg><span class="wm">Hours<b>Tally</b></span></a>
+    <nav>
+      <a href="/">Time card</a>
+      <a href="/with-lunch">With lunch</a>
+      <a href="/biweekly">Biweekly</a>
+      <a href="/with-overtime-and-pay">Overtime and pay</a>
+      <a href="/military-time" aria-current="page">Military time</a>
+      <a href="/time-to-decimal">Time to decimal</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Military time card calculator</h1>
+  <p class="lede">A time card on the 24-hour clock. Type 1900 and 0700 — there is no am or pm anywhere,
+  a night shift across midnight counts on its own, and 2400 is read as the end of the day. Breaks,
+  overtime, decimal hours, and an Excel file with real clock times. The conversion chart is under the card.</p>
+
+  <section class="tc mil" data-tool="military" aria-label="Military time card">
+    <div class="tc-fields">
+      <div class="field">
+        <label for="period">Pay period</label>
+        <select id="period">
+          <option value="week">Weekly, 7 days</option>
+          <option value="biweekly">Biweekly, 14 days</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="start">First day</label>
+        <input type="date" id="start">
+      </div>
+      <div class="field wide">
+        <label for="rule">Overtime</label>
+        <select id="rule">
+          <option value="weekly40">Over 40 a week</option>
+          <option value="daily8">Over 8 a day</option>
+          <option value="both">Over 8 a day, 40 a week</option>
+          <option value="california">California 8 / 12</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rate">Hourly rate</label>
+        <input type="number" id="rate" min="0" step="0.01" placeholder="optional" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="employee">Name on the card</label>
+        <input type="text" id="employee" placeholder="optional" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="tc-cols" aria-hidden="true">
+      <div>Day</div><div>Clock in and out, 24-hour</div><div>Unpaid break</div><div class="num">Worked</div><div class="num">Decimal</div>
+    </div>
+
+    <div id="days"></div>
+
+    <div class="stub">
+      <div class="stub-total">
+        <div class="stub-label">Total for the period</div>
+        <div class="stub-value"><span id="t-total-hm">0h 00m</span><small><span id="t-total-dec">0.00</span> hrs</small></div>
+      </div>
+      <dl class="stub-breakdown">
+        <dt>Regular</dt><dd id="t-reg">0.00</dd>
+        <dt>Overtime</dt><dd id="t-ot">0.00</dd>
+        <div id="dtrow" hidden><dt>Double time</dt><dd id="t-dt">0.00</dd></div>
+        <dt>Days worked</dt><dd id="t-days">0</dd>
+        <div id="payrow" class="pay" hidden><dt>Gross pay</dt><dd id="t-pay">0.00</dd></div>
+      </dl>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="btn-xlsx" type="button">Download as Excel</button>
+      <button class="btn ghost" id="btn-print" type="button">Print or save as PDF</button>
+      <button class="btn quiet" id="btn-clear" type="button">Clear the card</button>
+    </div>
+    <p class="privacy noprint"><svg class="lock" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2.5" y="7" width="11" height="8" rx="1.5" fill="currentColor"/></svg><span><strong>Private.</strong> Nothing you type is sent anywhere — the card is kept only in this browser, on this device.</span></p>
+
+    <div class="signoff" aria-hidden="true">
+      <div><span class="sigline"></span>Employee signature</div><div><span class="sigline"></span>Date</div>
+      <div><span class="sigline"></span>Supervisor signature</div><div><span class="sigline"></span>Date</div>
+    </div>
+    <p class="print-note">Prepared with the free military time card calculator at hourstally.com. Times on the 24-hour clock as entered; a shift is counted on the day it started; 2400 is midnight at the end of a day; overtime per the rule shown above.</p>
+    <p class="hint">Type four digits — <code>0700</code>, <code>1930</code> — or a short form like
+    <code>7</code> or <code>730</code>; the card writes it back as four digits. A shift that ends after
+    midnight needs nothing extra: the card counts forward and shows the day it ended. Use
+    <code>2400</code> for a shift that ended at midnight. Clock out and back in with <strong>+</strong>
+    for a meal, or put the unpaid minutes in the break box.</p>
+    <p class="hint noprint">Missing something, or got a total you think is wrong? Email
+    <a href="mailto:hello@hourstally.com">hello@hourstally.com</a>. Bugs get fixed and become tests.</p>
+  </section>
+
+  <section class="milconv" aria-labelledby="conv-h">
+    <div class="mc-conv noprint">
+      <h2 id="conv-h">Convert a time</h2>
+      <div class="field">
+        <label for="conv-in">Military or standard time</label>
+        <input id="conv-in" autocomplete="off" placeholder="1945 or 7:45 pm">
+      </div>
+      <p class="conv-out" id="conv-out" aria-live="polite"><span class="cv-hint">Type 1945, or 7:45 pm</span></p>
+    </div>
+
+    <div class="mc-chart">
+      <div class="mc-head">
+        <h2 id="chart">Military time chart</h2>
+        <button class="btn ghost noprint" id="btn-print-chart" type="button">Print the chart</button>
+      </div>
+      <div class="mc-tables">
+        <table>
+          <tr><th>Military</th><th>Standard</th></tr>
+          <tr><td>0000</td><td>12:00 am <small>midnight, start of the day</small></td></tr>
+          <tr><td>0100</td><td>1:00 am</td></tr>
+          <tr><td>0200</td><td>2:00 am</td></tr>
+          <tr><td>0300</td><td>3:00 am</td></tr>
+          <tr><td>0400</td><td>4:00 am</td></tr>
+          <tr><td>0500</td><td>5:00 am</td></tr>
+          <tr><td>0600</td><td>6:00 am</td></tr>
+          <tr><td>0700</td><td>7:00 am</td></tr>
+          <tr><td>0800</td><td>8:00 am</td></tr>
+          <tr><td>0900</td><td>9:00 am</td></tr>
+          <tr><td>1000</td><td>10:00 am</td></tr>
+          <tr><td>1100</td><td>11:00 am</td></tr>
+        </table>
+        <table>
+          <tr><th>Military</th><th>Standard</th></tr>
+          <tr><td>1200</td><td>12:00 pm <small>noon</small></td></tr>
+          <tr><td>1300</td><td>1:00 pm</td></tr>
+          <tr><td>1400</td><td>2:00 pm</td></tr>
+          <tr><td>1500</td><td>3:00 pm</td></tr>
+          <tr><td>1600</td><td>4:00 pm</td></tr>
+          <tr><td>1700</td><td>5:00 pm</td></tr>
+          <tr><td>1800</td><td>6:00 pm</td></tr>
+          <tr><td>1900</td><td>7:00 pm</td></tr>
+          <tr><td>2000</td><td>8:00 pm</td></tr>
+          <tr><td>2100</td><td>9:00 pm</td></tr>
+          <tr><td>2200</td><td>10:00 pm</td></tr>
+          <tr><td>2300</td><td>11:00 pm</td></tr>
+          <tr class="mc-end"><td>2400</td><td>12:00 am <small>midnight, end of the day</small></td></tr>
+        </table>
+        <table>
+          <tr><th colspan="2">The twelve o'clock hours</th></tr>
+          <tr><td>0015</td><td>12:15 am</td></tr>
+          <tr><td>0045</td><td>12:45 am</td></tr>
+          <tr><td>0059</td><td>12:59 am</td></tr>
+          <tr><td>1215</td><td>12:15 pm</td></tr>
+          <tr><td>1245</td><td>12:45 pm</td></tr>
+          <tr><td>1259</td><td>12:59 pm</td></tr>
+          <tr><td>2359</td><td>11:59 pm</td></tr>
+        </table>
+      </div>
+      <p class="mc-note">The minutes never change: 7:45 pm is 1945. From 1300 on, take 12 off the hours to get
+      the afternoon or evening time. 2400 and the next day's 0000 are the same moment.</p>
+      <p class="mc-print">Military time chart from hourstally.com/military-time</p>
+    </div>
+  </section>
+
+  <div class="body">
+  <article>
+
+    <h2 id="how">How the card reads a time</h2>
+
+    <p>Every box takes the 24-hour clock and nothing else. Type four digits — 0700, 1930 — or a shorter form,
+    and when you leave the box the card writes it back as four digits: <code>7</code> becomes 0700,
+    <code>730</code> becomes 0730, <code>19:30</code> becomes 1930. There is no am or pm switch, because on
+    this clock there is nothing for one to decide. 0700 can only be morning and 1900 can only be evening.</p>
+
+    <p>If you type am or pm out of habit, the line turns red and tells you the 24-hour time to type instead —
+    7pm is 1900 — so nothing is counted on a guess. Times past the end of the day are refused too. The clock
+    runs from 0000 to 2359, with 2400 allowed only as the end of a day, so 2430 is not a time (half past
+    midnight is 0030), and neither is 1275.</p>
+
+    <h2 id="night">Night shifts across midnight</h2>
+
+    <p>A night shift is the normal case on this card, not a special one. Type 1900 in and 0700 out and the day
+    shows 12 hours. When the clock-out is earlier than the clock-in, the shift ran past midnight, and the
+    card counts forward to the next morning. Beside the clock-out it shows the day the shift ended — "→ Sat",
+    or "→ Sat 31 Oct" once you have picked the first day — so a look down the card shows which shifts crossed
+    midnight.</p>
+
+    <p>The whole shift is counted on the line it started on: Friday night's shift is on Friday's line. If you
+    clock out for a meal and back in, add a second pair with <strong>+</strong>. Each pair is read forward
+    from the one before it, so 1900 to 2300, 2330 to 0300 and 0330 to 0700 is eleven hours, with the last two
+    pairs on Saturday morning. Or keep one pair and put the unpaid minutes in the break box.</p>
+
+    <p>Where a day or a week ends can change the overtime. Weekly overtime is counted by the workweek, which
+    federal rules define as a fixed block of 168 hours that can begin on any day and at any hour (29 CFR
+    778.105). If a night shift runs past the end of your employer's workweek, the hours after it belong to the
+    next week. The card keeps the whole shift in the week it began, so move those hours yourself on that one
+    night. Daily overtime in California is counted by the workday. The state labor department defines it as
+    any 24 hours in a row, starting at whatever time the employer sets, and it does not have to start when
+    your shift does (Labor Code 500). This card counts a 1900 to 0700 shift as one day's work. If your
+    employer's workday starts at midnight, the same shift is five hours on one workday and seven on the next,
+    and neither has daily overtime.</p>
+
+    <h2 id="midnight">0000 or 2400 at midnight</h2>
+
+    <p>Midnight has two names on the 24-hour clock. 0000 is midnight at the start of a day, and 2400 is
+    midnight at the end of one. They are the same moment — 2400 on Friday is 0000 on Saturday — so a shift
+    from 1600 to 2400 and a shift from 1600 to 0000 are both eight hours. The card takes both and shows the
+    difference the way a paper card would: 1600 to 2400 ends on its own day, and 1600 to 0000 shows
+    "→ Sat".</p>
+
+    <p>Which name you are expected to write depends on whose system printed the card. Pennsylvania's state
+    HR office prints its rule on its military time chart: midnight "when used at the beginning of a shift it
+    is considered 0000, when used at the end of a shift it is considered 2400." The Navy's correspondence
+    manual does without 2400 altogether: "The time range is 0000 to 2359."</p>
+
+    <p>Two rules hold either way. 2400 can end a shift but never start one. A shift that starts at midnight
+    starts at 0000, on the next day's line, and the card says so if you try. And do not write 2359 to dodge
+    the question. 2359 is a minute before midnight, so 1600 to 2359 is 7 hours 59 minutes. Five of those a
+    week for a year is more than four hours unpaid. The card counts 2359 as typed, but it flags it.</p>
+
+    <h2 id="convert">Reading and converting military time</h2>
+
+    <p>The first two digits are the hours since midnight and the last two are the minutes. Before noon the
+    digits are the 12-hour time with a zero in front: 0630 is 6:30 am. From 1300 on, take 12 off the hours:
+    1545 is 3:45 pm, and 2215 is 10:15 pm. The Navy manual adds the house style: always four digits, and
+    "Do not use a colon".</p>
+
+    <p>Going the other way, for a system that wants military time, morning times keep their digits and gain
+    a zero in front, and afternoon and evening hours gain 12. The usual shortcut, "add 1200 to a pm time",
+    breaks in the twelve o'clock hours. 12:15 pm is already 1215 — adding 1200 gives 2415, which does not
+    exist. And 12:15 am, a quarter past midnight, is 0015, not 1215. The converter above takes either kind of
+    time and gives you the other, and the chart prints on one page.</p>
+
+    <h2 id="excel">Why the Excel file still adds up after midnight</h2>
+
+    <p>A spreadsheet that works out hours as Out minus In fails on the first night shift. 0700 minus 1900 is
+    a negative time, and Excel shows a negative time as #####. In the file this card downloads, every clock in
+    and out is its own line, and its hours are a formula that adds a day whenever the clock-out is earlier
+    than the clock-in — <code>IF(Out&gt;In, Out−In, Out+1−In)</code> — then adds any clock change and takes
+    off the break. The total is the sum of the lines.</p>
+
+    <p>The clock times in the file show as 19:00, with a colon, which is Excel's way rather than the Navy's.
+    Excel reads 19:00 as a time and 1900 as the number one thousand nine hundred. Because the cells hold real
+    times, you can correct one in Excel and the hours and the total change with it. 2400 is kept as a whole
+    day, so it shows as 24:00, not 00:00.</p>
+
+    <h2 id="who">Who keeps time this way</h2>
+
+    <p>In a hospital, the 24-hour clock is how medication times are written. Open RN's <em>Nursing
+    Skills</em>, an open nursing textbook, calls it "the standard method used to indicate time for medication
+    administration", because it removes the confusion of am and pm. A dose due at seven is charted as 0700 or
+    1900, never as 7.</p>
+
+    <p>The same reason holds for anyone whose shift runs through the night: security, dispatch, a plant
+    on three shifts. On a 12-hour card, 11 to 7 could be a day shift or a night shift. On this one, 2300 to
+    0700 can only be a night. It is also why your time clock or rota may print military time even if you
+    have never been near the military.</p>
+
+    <h2 id="clocks">The night the clocks go back</h2>
+
+    <p>US clocks go back at 2 am on the first Sunday of November (15 U.S.C. 260a). This year that is Sunday 1
+    November 2026. A 2200 to 0600 shift that night is nine hours worked, even though the punches say eight,
+    because the hour from 0100 to 0200 happens twice. Pick the first day of the period and the card adds the
+    hour and says why on the line. The Excel file puts it in the Clock change column, so the formula still
+    adds up. On the second Sunday in March, 14 March 2027, the same shift is seven hours. The card goes by
+    the time zone your device is set to, so where the clocks do not change, nothing is added.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+
+    <details>
+      <summary>Is military time the same as the 24-hour clock?</summary>
+      <p>Yes. In the US, military time is the everyday name for the 24-hour clock. The military adds a house
+      style — four digits and no colon, so 0700 rather than 07:00. This card takes either form and writes four
+      digits back.</p>
+    </details>
+
+    <details>
+      <summary>Should I write 0000 or 2400 at the end of a shift?</summary>
+      <p>The hours come out the same. Write whichever your employer's system takes. If nobody has told you,
+      2400 marks the end of a shift with no doubt about which day it belongs to. Never write 2359 for
+      midnight: it is a minute short.</p>
+    </details>
+
+    <details>
+      <summary>What does "→ Sat" beside a clock-out mean?</summary>
+      <p>That clock-out fell on Saturday, after midnight. The hours still count on the line the shift started
+      on.</p>
+    </details>
+
+    <details>
+      <summary>Why did the line go red when I typed 7pm?</summary>
+      <p>This card has no am or pm. The note under the line tells you the 24-hour time to type instead: 7pm
+      is 1900. If you would rather type am and pm, the <a href="/">time card calculator</a> has a switch beside
+      every time, and it reads 24-hour times as well.</p>
+    </details>
+
+    <details>
+      <summary>Is my time card sent anywhere?</summary>
+      <p>No. Everything is worked out inside your browser, and what you type is kept in this browser only, so
+      the card is still here if you come back. Nothing reaches a server.</p>
+    </details>
+
+    <p class="byline">Written and built by <a href="/about">Ritusmoi Kaushik</a>. The arithmetic is set out on <a href="/how-it-counts">how it counts</a>. Last updated 23 October 2026.</p>
+  </article>
+    <aside class="rail">
+      <div class="rail-box">
+        <h3>Tools</h3>
+        <ul>
+        <li><a href="/">Time card calculator</a><small>Punches, breaks, overtime, Excel download</small></li>
+        <li><a href="/with-lunch">Time card with lunch break</a><small>Lunch deducted by rule, worked-through days marked</small></li>
+        <li><a href="/biweekly">Biweekly time card</a><small>Two weeks, overtime by week, the year's paydays</small></li>
+        <li><a href="/with-overtime-and-pay">Time card with overtime and pay</a><small>Two rates in a week, blended overtime, pay per day</small></li>
+        <li aria-current="page"><a href="/military-time">Military time card</a><small>24-hour clock, night shifts, 0000 and 2400</small></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a><small>One value, or a whole column at once</small></li>
+        </ul>
+      </div>
+      <div class="rail-box">
+        <h3>On this page</h3>
+        <ul>
+        <li><a href="#chart">Military time chart</a></li>
+        <li><a href="#how">How the card reads a time</a></li>
+        <li><a href="#night">Night shifts across midnight</a></li>
+        <li><a href="#midnight">0000 or 2400</a></li>
+        <li><a href="#convert">Reading and converting</a></li>
+        <li><a href="#excel">The Excel file after midnight</a></li>
+        <li><a href="#who">Who keeps time this way</a></li>
+        <li><a href="#clocks">The night the clocks go back</a></li>
+        <li><a href="#faq">Questions people ask</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h4>HoursTally</h4>
+      <p>Free calculators for counting hours and turning them into pay. Built by <a href="/about">Ritusmoi Kaushik</a>. No account. Nothing you type leaves your browser.</p>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="/">Time card calculator</a></li>
+        <li><a href="/with-lunch">Time card with lunch break</a></li>
+        <li><a href="/biweekly">Biweekly time card</a></li>
+        <li><a href="/with-overtime-and-pay">Time card with overtime and pay</a></li>
+        <li><a href="/military-time">Military time card</a></li>
+        <li><a href="/time-to-decimal">Time to decimal converter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/how-it-counts">How it counts</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/xlsx.js"></script>
+<script src="/assets/app.js"></script>
+<script src="/assets/military.js"></script>
+</body>
+</html>

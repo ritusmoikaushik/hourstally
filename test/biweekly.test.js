@@ -186,5 +186,15 @@ check('pay sheet', () => {
   datesFit('pay', p.payXlsxRows(), p.PAY_XLSX_WIDTHS);
 });
 
+check('military sheet', () => {
+  const m = require('../site/assets/military.js');
+  const days = m.milBuildDays('2026-10-04', 'biweekly');
+  days[0].segments = [{ in: '1900', out: '0700' }, { in: 'x', out: '0800' }];
+  days[0].breakMins = '30';
+  days[1].segments = [{ in: '1600', out: '2400' }];
+  m._setState({ period: 'biweekly', start: '2026-10-04', rule: 'weekly40', rate: '20', employee: 'A', days });
+  datesFit('military', m.milXlsxRows(), m.MIL_XLSX_WIDTHS);
+});
+
 if (failures) { console.log('\n' + failures + ' failing'); process.exit(1); }
 console.log('\nall passing');
