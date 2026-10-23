@@ -649,3 +649,17 @@ details p { margin: 10px 0 0; }
   .tc.mil.fortnight .print-note { margin-top: 4px; }
   .tc.mil.fortnight { margin-bottom: 0; padding-bottom: 6px; }
 }
+
+/* Windows draws a wider dropdown arrow than Chromium's own, and on the home, lunch and military
+   cards "Over 8 a day, 40 a week" and "Biweekly, 14 days" were cut off in Chrome (found
+   2026-10-23, the same fault /with-overtime-and-pay had on 15 Oct). On a screen the settings get
+   wider columns and the overtime rule a double one; on a phone every dropdown has the full row.
+   Paper keeps its own layout. */
+@media screen and (min-width: 761px) {
+  .tc[data-tool="timecard"] .tc-fields, .tc.lunch .tc-fields, .tc.mil .tc-fields {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); grid-auto-flow: row dense;
+  }
+}
+@media screen and (max-width: 760px) {
+  .tc-fields .field:has(select) { grid-column: span 2; }
+}
