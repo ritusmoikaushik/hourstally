@@ -295,6 +295,9 @@ details p { margin: 10px 0 0; }
   .tc-cols { display: grid !important; color: #444; border-bottom: 1px solid #000; }
   .day { border-bottom: 1px solid #bbb; padding: 6px 12px; grid-template-columns: 92px minmax(0, 1fr) 84px 72px 72px; grid-template-areas: none; gap: 0 12px; }
   .day-name, .pairs, .day .brkwrap, .hm, .dec, .daynotes { grid-area: auto; }
+  /* grid-area: auto above also undid the note's full-width span, so on paper the clock-change
+     note was squeezed into the day-name column (found 2026-10-23). */
+  .day .daynotes { grid-column: 1 / -1; }
   .dec::before, .dec::after { content: none !important; }
   .day.bad { background: none; }
   .day-name { line-height: 1.4; }
