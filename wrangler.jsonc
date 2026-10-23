@@ -1,0 +1,14 @@
+// The site is a Cloudflare Worker serving the static files in site/ (Workers Builds runs
+// `npx wrangler deploy` on every push to main). Until 2026-10-23 there was no config here and
+// Cloudflare made one up on each build, so a missing page answered 404 with an empty body and
+// visitors saw the browser's own error screen. not_found_handling serves site/404.html instead.
+{
+  "name": "hourstally",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "observability": { "enabled": true }
+}

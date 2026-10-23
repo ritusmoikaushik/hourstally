@@ -4,3 +4,6 @@ node_modules/
 # Cloudflare API token, Account Analytics: Read only. Never commit.
 .cf-token
 __pycache__/
+
+# wrangler dev scratch
+.wrangler/

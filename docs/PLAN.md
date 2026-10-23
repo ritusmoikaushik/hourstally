@@ -143,7 +143,7 @@ The same sequence every time. It is slow on purpose.
 
 - Static HTML, CSS and JavaScript. No framework, no build step, no server, no database.
 - One shared stylesheet, one shared engine file, one HTML file per page.
-- Hosted on Cloudflare Pages, root `site/`. Free, fast, HTTPS, custom domain.
+- Hosted on Cloudflare, free, HTTPS, custom domain: planned as Pages, built as a Worker serving the static files in `site/` (found 2026-10-23). Settings in `wrangler.jsonc`.
 - Every page works with JavaScript disabled to the extent of showing its explanation; the tool
   itself needs JavaScript and says so.
 - Nothing the visitor types leaves their browser. No analytics beyond GA4 and Search Console.
