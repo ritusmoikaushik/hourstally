@@ -631,3 +631,21 @@ details p { margin: 10px 0 0; }
   body.print-chart .mc-tables tr.mc-end td { background: none; }
   body.print-chart .mc-print { display: block; font-size: 11px; color: #666; margin-top: 12px; }
 }
+
+/* A fortnight on the military card, on one sheet of Letter or A4. Paper is narrow enough to trip
+   the phone rules, so the settings fell into two columns and fourteen days ran onto a second page
+   (found 2026-10-23 at real paper width). Settings on one row, rows tighter, as on /biweekly.
+   A week keeps the layout the founder checked on paper. */
+@media print {
+  .tc.mil.fortnight .tc-fields { grid-template-columns: 1.3fr 1fr 1.2fr 0.8fr 1.5fr; padding: 6px 12px; gap: 4px 12px; }
+  .tc.mil.fortnight .tc-fields .field select, .tc.mil.fortnight .tc-fields .field input { font-size: 13px; }
+  .tc.mil.fortnight .tc-cols { padding-top: 4px; padding-bottom: 3px; }
+  .tc.mil.fortnight .day { padding-top: 3px; padding-bottom: 3px; }
+  .tc.mil.fortnight .day-name, .tc.mil.fortnight .hm, .tc.mil.fortnight .dec { line-height: 1.25; }
+  .tc.mil.fortnight .stub { padding-top: 6px; padding-bottom: 2px; }
+  .tc.mil.fortnight .stub-breakdown { font-size: 12.5px; line-height: 1.3; }
+  .tc.mil.fortnight .stub-total .stub-value { font-size: 22px; }
+  .tc.mil.fortnight .signoff { margin-top: 14px; }
+  .tc.mil.fortnight .print-note { margin-top: 4px; }
+  .tc.mil.fortnight { margin-bottom: 0; padding-bottom: 6px; }
+}

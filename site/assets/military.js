@@ -331,6 +331,8 @@ function milRenderTotals() {
 }
 
 function milRender() {
+  // A fortnight prints tighter, so fourteen days fit one sheet (see style.css).
+  document.querySelector('.tc.mil').classList.toggle('fortnight', mstate.days.length > 7);
   document.getElementById('period').value = mstate.period;
   document.getElementById('start').value = mstate.start;
   document.getElementById('rule').value = mstate.rule;
