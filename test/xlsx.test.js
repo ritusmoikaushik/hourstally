@@ -56,6 +56,15 @@ check('has every required part', () => {
   }
 });
 check('sheet name carried', () => assert(parts['xl/workbook.xml'].includes('name="Time card"')));
+// Excel measures a column width in digits of the Normal style's font (font 0). Every width test in
+// these files - a date needs 12 - is in Calibri 11 digits, so the font is pinned here: change it and
+// the widths must be checked again (raised in a dev.to comment, 14 Oct 2026).
+check('the Normal font is Calibri 11, the unit every column width is in', () => {
+  const s = parts['xl/styles.xml'];
+  assert(s.includes('<fonts count="2"><font><sz val="11"/><name val="Calibri"/></font>'));
+  assert(s.includes('<cellStyleXfs count="1"><xf numFmtId="0" fontId="0"'));
+  assert(s.includes('<cellStyle name="Normal" xfId="0" builtinId="0"/>'));
+});
 check('string is inline, number is bare', () => {
   const s = parts['xl/worksheets/sheet1.xml'];
   assert(s.includes('<c r="A1" t="inlineStr"><is><t xml:space="preserve">a</t></is></c>'));
