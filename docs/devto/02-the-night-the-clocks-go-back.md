@@ -3,7 +3,7 @@ title: "The Night the Clocks Go Back: The Daylight-Saving Bug in Time Card Maths
 published: true  # posted 26 Oct 2026: https://dev.to/ritusmoikaushik/the-night-the-clocks-go-back-the-daylight-saving-bug-in-time-card-maths-hon
 description: A 10pm to 6am shift on the night the clocks go back is nine hours, not eight. Here's the five-line fix that keeps no table of dates, the one case it still can't get right, and how to test it in four time zones from one Node script.
 tags: javascript, webdev, testing, tutorial
-cover_image:  # uploaded by hand: D:	mp\hourstally-pins\devto-02-cover.png
+cover_image:  # uploaded by hand: D:\tmp\hourstally-pins\devto-02-cover.png
 canonical_url:
 ---
 
