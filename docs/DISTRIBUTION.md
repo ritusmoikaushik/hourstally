@@ -134,3 +134,16 @@ Time Regulations average instead, a 20-minute rest break after six hours, 24-hou
 pounds. It is a different tool, not a word swap. It is not in `PLAN.md §3–4`. If wanted, it takes a
 schedule slot after the ninety-day cap — say, in place of `/hours-and-minutes` on 2027-01-08 — and
 the decision is yours, not mine.
+
+**Field check, 27 Oct 2026** (search tool, not Google UK; no volumes seen). The bare phrase "timesheet calculator" returned US SaaS
+lead magnets (Toggl, Jibble, Apploye, HiveDesk, Rocketlane, ClockIt, Redcort, TimeClockWizard) and calculator.net; no UK site.
+UK-qualified searches return UK HR/payroll vendors on strong domains (Xero, QuickBooks UK, Breathe HR, Sage, Parim, Zelt, Blaze,
+TimeKeeper) whose tools are thin: one pair a day, print only, 130-200 words; QuickBooks UK and goodcalculators apply US 8/40
+overtime at 1.5x to UK users. Strongest UK tool: payprecision.co.uk (new; pounds, several shifts, unpaid breaks, no US default
+overtime, CSV and print, no .xlsx, says it does no working-time checks). gov.uk and Acas have no timesheet or working-hours tool.
+**Nobody does:** a 48-hour average over 17 weekly sheets with a warning; the 20-minute break on shifts over 6 hours; under 11 hours
+between shifts; pounds + 24-hour + any number of pairs + no US overtime default; an .xlsx with formulas without an email. Rules
+checked on gov.uk (maximum-weekly-working-hours, rest-breaks-work, overtime-your-rights); legislation.gov.uk blocked fetches, so the
+regulation text itself is still to be quoted before any page ships. **Recommendation:** a candidate for after the 10 Dec review if
+Keyword Planner (UK) shows 1K-10K or more for "timesheet calculator uk", "working hours calculator uk" or "timesheet calculator
+with breaks"; the founder pulls those three numbers. Open risk: a UK page on a US .com against .co.uk sites.
