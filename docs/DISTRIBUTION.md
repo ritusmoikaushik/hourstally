@@ -147,3 +147,11 @@ checked on gov.uk (maximum-weekly-working-hours, rest-breaks-work, overtime-your
 regulation text itself is still to be quoted before any page ships. **Recommendation:** a candidate for after the 10 Dec review if
 Keyword Planner (UK) shows 1K-10K or more for "timesheet calculator uk", "working hours calculator uk" or "timesheet calculator
 with breaks"; the founder pulls those three numbers. Open risk: a UK page on a US .com against .co.uk sites.
+
+**Keyword Planner, United Kingdom only, Oct 2025-Sep 2026 (founder's pull, 27 Oct):** `timesheet calculator` **1K-10K**
+(low competition, bids ₹114-426); `working hours calculator uk` 100-1K; `timesheet calculator uk` 10-100; `timesheet calculator
+with breaks` 10-100. So the bare term passes the standing bar (1K-10K or more, set 3 Oct) and the UK-qualified ones do not.
+**Correction:** the "100K-1M, the UK and Australian word" above was the US+UK+CA+AU total; the UK alone is 1K-10K, so most of
+that volume is American. **Decision deferred to the 10 Dec review**, alongside PTO accrual (page 15 candidate) and UK holiday
+pay: a fair candidate, not a strong one - a modest UK term on a crowded SaaS phrase, with the working-time checks nobody offers
+as its only real edge.
