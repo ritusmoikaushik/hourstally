@@ -20,6 +20,7 @@ also a Google signal, and this estate has lost two domains to signals.
 | 2026-09-14 | Pinterest pin images | Three pins made, in `D:\tmp\hourstally-pins\` (time card, biweekly, decimal). Waiting on the account — see below |
 | 2026-10-03 | Pinterest | Business account HoursTally (founder's Gmail login, country India). `p:domain_verify` tag on the home page, Verify clicked. Board *Time card calculators and payroll hours*. Four pins live: time card, biweekly, decimal, and `pin4-with-lunch.png` → `/with-lunch`, made the same day because that page shipped 30 September without one. `/how-it-counts` gets no pin — it explains, it is not a tool |
 | 2026-10-27 | Uneed | Listed and **free launch booked for 15 April 2027** (uneed.best/tool/hourstally, account ritusmoikaushik-4ce2). Name, URL and tagline from Uneed's robot; tag "Invoicing" removed (the site does none); description rewritten to lead with unlimited punches, overtime rules, the Excel file with formulas and all six tools; three 1600x1250 screenshots of real filled cards (`D:/tmp/hourstally-pins/uneed-home.png`, `uneed-pay.png`, `uneed-military.png`). **Rules on a free launch, from Uneed's own page: an upvote score under 10 on launch day sends it back to the dashboard; the dofollow link needs 20.** Fast-track (paid) declined: buying a link |
+| 2026-10-27 | YouTube | HoursTally channel created; one Short, public: the home card with three clock-ins, overtime and the Excel button |
 
 ## Links from other sites — which platforms give a dofollow link
 
@@ -77,7 +78,7 @@ object Google indexes as a page of its own.
 
 Then one new pin for every page that ships, the day it ships. I make the image.
 
-### 3. YouTube Short — 10 minutes to record
+### ~~3. YouTube Short~~ — done 2026-10-27, on a new **HoursTally** channel. Recorded by the assistant in Chrome from the live home card (1080x1920, 25 s, captions on screen; `D:/tmp/hourstally-pins/short-time-card.mp4`), uploaded and made public by the founder. The description link is text only: YouTube wanted phone verification to make it clickable and the founder's number has hit its limit of two accounts a year; Shorts descriptions do not show clickable links anyway. Expected value small - no more YouTube work planned. The original brief, for the record:
 
 A 30–45 second screen recording, no voice needed, captions on screen. YouTube results appear in
 Google for `time card calculator excel` type queries and a Short is the cheapest video there is.
