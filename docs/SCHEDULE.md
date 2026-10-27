@@ -44,6 +44,7 @@ Pages are counted as *indexable* only when they are in the sitemap without `noin
 | 2027-02-05 | assistant | `/hourly-to-salary` | 14 |
 | 2027-02-12 | assistant | `/minutes-to-decimal-chart` — only if it can stand on its own; else it stays inside `/time-to-decimal` | 14 or 15 |
 | 2027-02-26 | founder + assistant | **Sixth measurement.** First check against the 1,000-sessions milestone | 14 or 15 |
+| 2027-04-15 | founder + assistant | **Uneed free launch day.** Needs an upvote score of 10 to stay listed and 20 for the dofollow link: share the launch page that morning where people already know the site (never paid votes, never vote rings) | — |
 
 After that the list in `PLAN.md §4` is exhausted. Anything further is a new decision, taken on
 the measurement numbers, not on a feeling that the site needs more pages.
