@@ -42,10 +42,19 @@ body {
 .wordmark .mark { width: 34px; height: 34px; display: block; }
 .wordmark .wm { font-size: 24px; font-weight: 700; letter-spacing: -0.7px; line-height: 1; }
 .wordmark .wm b { font-weight: 400; }
-.site-head nav { display: flex; gap: 4px; margin-left: auto; }
-.site-head nav a { color: var(--ink-soft); text-decoration: none; font-size: 15px; padding: 6px 8px; border-radius: 3px; white-space: nowrap; }
-.site-head nav a:hover { color: var(--ink); background: var(--page); }
-.site-head nav a[aria-current] { color: var(--ink); font-weight: 600; }
+.site-links { display: flex; gap: 4px; margin-left: auto; }
+.site-links a { color: var(--ink-soft); text-decoration: none; font-size: 15px; padding: 6px 10px; border-radius: 3px; white-space: nowrap; }
+.site-links a:hover { color: var(--ink); background: var(--page); }
+.site-links a[aria-current] { color: var(--ink); font-weight: 600; }
+
+/* Tools get a bar of their own under the logo row, in the logo's navy (founder, 2026-10-29,
+   as on fileoholic). It scrolls sideways on a phone instead of wrapping. */
+.toolbar { background: var(--ink); }
+.toolbar .wrap { position: relative; display: flex; gap: 2px; height: 44px; align-items: stretch; overflow-x: auto; scrollbar-width: none; }
+.toolbar .wrap::-webkit-scrollbar { display: none; }
+.toolbar a { display: flex; align-items: center; padding: 0 12px; color: #d7deea; text-decoration: none; font-size: 15px; white-space: nowrap; border-bottom: 3px solid transparent; border-top: 3px solid transparent; }
+.toolbar a:hover { color: #fff; background: rgba(255, 255, 255, .07); }
+.toolbar a[aria-current] { color: #fff; font-weight: 600; border-bottom-color: var(--card); }
 
 /* ---------- type ---------- */
 
@@ -241,9 +250,6 @@ details p { margin: 10px 0 0; }
 /* ---------- small screens ---------- */
 
 @media (max-width: 900px) {
-  /* below 900px the header was already tight: labels may wrap as before, and Blog lives in the footer */
-  .site-head nav a { white-space: normal; }
-  .site-head nav a.nav-blog { display: none; }
   .body { grid-template-columns: 1fr; gap: 8px; }
   aside.rail { position: static; padding-top: 0; }
   aside.rail .rail-box:nth-child(2) { display: none; }
@@ -252,8 +258,9 @@ details p { margin: 10px 0 0; }
 @media (max-width: 760px) {
   .wrap { padding: 0 12px; }
   .site-head .wrap { height: 52px; gap: 12px; }
-  .site-head nav a { padding: 6px 7px; font-size: 14px; }
-  .site-head nav a.nav-blog { display: none; } /* six tools already fill a phone's header; Blog is in the footer */
+  .site-links a { padding: 6px 7px; font-size: 14px; }
+  .toolbar .wrap { height: 42px; }
+  .toolbar a { padding: 0 10px; font-size: 14px; }
   .tc-fields { padding: 14px 14px 12px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .tc-cols { display: none; }
   .day, .stub, .actions, .hint { padding-left: 14px; padding-right: 14px; }
@@ -428,15 +435,9 @@ details p { margin: 10px 0 0; }
   .weekband .wk-split, .weekband.over .wk-split { grid-column: 2 / 4; grid-row: auto; color: #000; }
 }
 
-/* Four tools no longer fit beside the wordmark on a phone: the menu takes its own row under it,
-   each label on one line, and scrolls sideways rather than falling off the screen. */
-@media (max-width: 760px) {
-  .site-head .wrap { height: auto; flex-wrap: wrap; row-gap: 0; padding-top: 9px; padding-bottom: 3px; }
-  .site-head nav { margin-left: -7px; width: calc(100% + 7px); overflow-x: auto; scrollbar-width: none; }
-  .site-head nav::-webkit-scrollbar { display: none; }
-  .site-head nav a { white-space: nowrap; }
-}
-@media (max-width: 400px) { .site-head nav a { padding: 6px 5px; } }
+/* The tools used to wrap under the wordmark on a phone; since 2026-10-29 they live in the
+   .toolbar under the header, which scrolls sideways on its own. */
+@media (max-width: 400px) { .toolbar a { padding: 0 8px; } .site-links a { padding: 6px 5px; } }
 
 /* Between the phone layout and the full card (761-880px) the punch pair is wider than its column,
    and the + button sat on top of the break box. Narrower boxes there. */
