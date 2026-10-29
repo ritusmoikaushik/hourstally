@@ -1,49 +1,33 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#f6f5f1"/>
+  <rect width="1200" height="630" fill="#1b2a41"/>
 
-  <!-- Left: a pay stub line, the shortcut -->
-  <g transform="translate(70, 110)" font-family="Arial, Helvetica, sans-serif">
-    <rect width="470" height="330" rx="10" fill="#fbf6e8" stroke="#d9cfb3" stroke-width="2"/>
-    <text x="32" y="56" font-size="18" font-weight="700" fill="#5c6b7f" letter-spacing="2">PAY STUB</text>
-    <line x1="32" y1="76" x2="438" y2="76" stroke="#d6ccae" stroke-width="2"/>
-    <text x="32" y="122" font-size="22" fill="#1b2a41">Regular</text>
-    <text x="438" y="122" font-size="22" fill="#1b2a41" text-anchor="end">40.00 h × $18.00</text>
-    <text x="32" y="166" font-size="22" fill="#1b2a41">Overtime</text>
-    <text x="438" y="166" font-size="22" fill="#1b2a41" text-anchor="end">6.00 h × $27.00</text>
-    <line x1="32" y1="196" x2="438" y2="196" stroke="#b9ad8a" stroke-width="2"/>
-    <text x="32" y="240" font-size="24" font-weight="700" fill="#1b2a41">Gross</text>
-    <text x="438" y="240" font-size="24" font-weight="700" fill="#1b2a41" text-anchor="end">$882.00</text>
-    <!-- stamp -->
-    <g transform="translate(206, 276) rotate(-6)">
-      <rect width="226" height="46" rx="6" fill="none" stroke="#b3372c" stroke-width="3"/>
-      <text x="113" y="31" font-size="19" font-weight="700" fill="#b3372c" text-anchor="middle" letter-spacing="1">ONLY SOMETIMES</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="80" y="104" font-size="24" font-weight="700" fill="#9fb0c7" letter-spacing="3">OVERTIME PAY</text>
+    <text x="80" y="196" font-size="72" font-weight="700" fill="#fbf6e8">40 × 1.5 is right</text>
+    <text x="80" y="282" font-size="72" font-weight="700" fill="#fbf6e8">until it isn't.</text>
+
+    <!-- the four weeks it pays short, in what the shortcut underpays -->
+    <g transform="translate(80, 352)">
+      <rect width="240" height="178" rx="14" fill="#fbf6e8"/>
+      <text x="120" y="92" font-size="56" font-weight="700" fill="#b3372c" text-anchor="middle">+$30</text>
+      <text x="120" y="140" font-size="28" fill="#1b2a41" text-anchor="middle">bonus week</text>
     </g>
+    <g transform="translate(346, 352)">
+      <rect width="240" height="178" rx="14" fill="#fbf6e8"/>
+      <text x="120" y="92" font-size="56" font-weight="700" fill="#b3372c" text-anchor="middle">+$6.67</text>
+      <text x="120" y="140" font-size="28" fill="#1b2a41" text-anchor="middle">two rates</text>
+    </g>
+    <g transform="translate(612, 352)">
+      <rect width="240" height="178" rx="14" fill="#fbf6e8"/>
+      <text x="120" y="92" font-size="56" font-weight="700" fill="#b3372c" text-anchor="middle">+$22.50</text>
+      <text x="120" y="140" font-size="28" fill="#1b2a41" text-anchor="middle">salaried</text>
+    </g>
+    <g transform="translate(878, 352)">
+      <rect width="240" height="178" rx="14" fill="#fbf6e8"/>
+      <text x="120" y="92" font-size="56" font-weight="700" fill="#b3372c" text-anchor="middle">+$80</text>
+      <text x="120" y="140" font-size="28" fill="#1b2a41" text-anchor="middle">California</text>
+    </g>
+
+    <text x="1118" y="582" font-size="22" fill="#9fb0c7" text-anchor="end">what the shortcut underpays, per week</text>
   </g>
-
-  <!-- Right: the four weeks it pays short -->
-  <g transform="translate(600, 110)" font-family="Arial, Helvetica, sans-serif">
-    <text x="0" y="22" font-size="20" font-weight="700" fill="#5c6b7f" letter-spacing="2">WHAT THE SHORTCUT MISSES</text>
-    <g transform="translate(0, 48)">
-      <rect width="530" height="62" rx="8" fill="#ffffff" stroke="#dedbd3" stroke-width="2"/>
-      <text x="22" y="40" font-size="23" fill="#1b2a41">A $300 bonus week</text>
-      <text x="508" y="40" font-size="23" font-weight="700" fill="#1f3a66" text-anchor="end">+$30.00</text>
-    </g>
-    <g transform="translate(0, 122)">
-      <rect width="530" height="62" rx="8" fill="#ffffff" stroke="#dedbd3" stroke-width="2"/>
-      <text x="22" y="40" font-size="23" fill="#1b2a41">Two rates in one week</text>
-      <text x="508" y="40" font-size="23" font-weight="700" fill="#1f3a66" text-anchor="end">+$6.67</text>
-    </g>
-    <g transform="translate(0, 196)">
-      <rect width="530" height="62" rx="8" fill="#ffffff" stroke="#dedbd3" stroke-width="2"/>
-      <text x="22" y="40" font-size="23" fill="#1b2a41">Salaried, not exempt</text>
-      <text x="508" y="40" font-size="23" font-weight="700" fill="#1f3a66" text-anchor="end">+$22.50</text>
-    </g>
-    <g transform="translate(0, 270)">
-      <rect width="530" height="62" rx="8" fill="#ffffff" stroke="#dedbd3" stroke-width="2"/>
-      <text x="22" y="40" font-size="23" fill="#1b2a41">California, four 10-hour days</text>
-      <text x="508" y="40" font-size="23" font-weight="700" fill="#1f3a66" text-anchor="end">+$80.00</text>
-    </g>
-  </g>
-
-  <text x="600" y="545" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#1b2a41">Hours over 40 × 1.5 is right until the week it isn't.</text>
 </svg>
