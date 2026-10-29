@@ -89,6 +89,12 @@ written explanation, not just a form.**
   Google's scaled-content-abuse policy names, and it is the top enforcement priority
   of 2026.
 - Every calculator page must be usable on a phone.
+- **Blog articles are practical only:** "how do I work this out" pieces that lead into a tool,
+  never "what is" explainers, which Google answers itself (fileoholic's numbers in
+  `docs/SCHEDULE.md`, §Practical articles). Pick topics on measured demand first; every rule
+  sourced at the end of the article; every worked figure checked by hand. Style: fileoholic's
+  `docs/BLOG_WRITING_STYLE.md` checklist. An article is an indexable page and counts against
+  the caps in `GOOGLE-RULES.md`.
 - **Before each new page ships, re-run the "who is there" check for its target query.**
   The 2026-09-10 screen missed countworkhours.com. One search per query, list every
   small site on page one, note whether any already does what the page's "what makes it

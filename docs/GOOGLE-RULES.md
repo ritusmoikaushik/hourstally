@@ -92,6 +92,9 @@ doorway page safe. There is no version of this that is allowed.
 
 - **Never more than two new indexable pages in any seven-day window.**
 - **Never more than eight indexable pages in the first ninety days of the domain.**
+  One exception, the founder's decision on 2026-10-29: `/blog/how-to-calculate-overtime-pay` was
+  indexed as a ninth page, six days after the eighth. Reasoning and evidence in `SCHEDULE.md`.
+  It is not a precedent: the cap stands until the review on 2026-12-10.
 - The site launches with **three pages**, not thirteen.
 
 A young domain that publishes fast in a templated pattern is the exact profile gradekar had. Speed
@@ -122,7 +125,9 @@ sitemap is what Google reads first about the site's shape. Keep it short and eve
 ### Rule 7 — A real person is behind the site.
 
 - An `/about` page naming the founder, what he does, and why this site exists.
-- A named author on every page, linked to `/about`.
+- A named author on every page, linked to `/about`. Blog articles are signed "HoursTally team",
+  linked to `/about`, at the founder's request (2026-10-29); tool pages keep the named author.
+  Never "admin": it is the default author on abandoned sites.
 - A real contact method.
 - A `/how-it-counts` page showing the arithmetic — how overtime is split, how decimal is derived,
   what the rounding is — so anyone can check the tool's answers.
@@ -168,7 +173,7 @@ A page ships only when every line is true. Copy this into the commit message tha
 [ ] Fewer than eight indexable pages total if the domain is under ninety days old
 [ ] At least 600 words of explanation a payroll clerk would learn something from
 [ ] Every claim in the text is something the tool actually does
-[ ] Named author, linked to /about
+[ ] Named author (or "HoursTally team" on a blog article), linked to /about
 [ ] Unique title and meta description, written for a person not a keyword
 [ ] Calculator is the first thing on screen on a phone
 [ ] Tested on a phone
