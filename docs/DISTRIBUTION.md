@@ -54,6 +54,13 @@ bought links, link swaps or paid guest posts — the estate has lost two domains
 - Substack — "Some Friday payrolls get 27 paydays in 2027. Or in 2026." — **posted 27 Oct** on a new publication, hourstally.substack.com: https://hourstally.substack.com/p/some-friday-payrolls-get-27-paydays (tags Payroll, Paydays, Biweekly; no contacts imported, no subscribers added). Links to `/biweekly` and the home page carry no `rel`, so dofollow. **But the whole publication is `noindex`**, the home page as well as the post: Substack withholds indexing from new publications until they meet an unpublished bar (posting, subscribers). Not our doing; recheck at every measurement. Until it clears, worth far less than dev.to. Draft in `docs/substack/01-27-paydays.md`
 - dev.to, for fileoholic — "Opening Microsoft Publisher files in the browser with WebAssembly"
 
+**Embeddable time card — looked at 2026-10-29, waiting on fileoholic's result.** Time card embeds
+exist (clocktally.com/embed asks for a dofollow "ClockTally" credit; MyHours offers an iframe) and
+none shows any sign of sites using them. fileoholic built the same thing on 2026-10-17 and emailed
+10 sites; no replies by 10-29, gate in mid-November. If that brings real embeds, copy the method
+here: an optional, visible, brand-named credit, never a keyword link or a required one (Google's
+spam policy names widget links). If it brings none, don't build it.
+
 ## Founder's queue — short tasks, in order
 
 ### ~~1. Bing Webmaster Tools~~ — done 2026-09-21
