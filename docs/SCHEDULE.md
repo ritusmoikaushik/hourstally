@@ -33,7 +33,7 @@ Pages are counted as *indexable* only when they are in the sitemap without `noin
 | 2026-11-06 | founder + assistant | **Second measurement**. Also: is hourstally.substack.com still `noindex`? Any new comments on the two dev.to articles? | 8 |
 | 2026-11-06 | — | No pages until the review. Bing and Search Console queries read, titles adjusted, bugs to tests, Pinterest pins for every page | 8 |
 | 2026-12-04 | founder + assistant | **Third measurement** | 8 |
-| 2026-12-10 | founder + assistant | **Ninety-day review.** See below. Decides whether the schedule continues | 8 |
+| 2026-12-10 | founder + assistant | **Ninety-day review.** See below. Decides whether the schedule continues. Also decides whether one or two practical articles take slots beside the tool pages (founder agreed to put it on the list, 2026-10-29) | 8 |
 | 2026-12-11 | assistant | `/monthly` — real calendar month, working-day count, pro-rata | 9 |
 | 2026-12-18 | assistant | `/hours-and-minutes` | 10 |
 | 2027-01-01 | founder + assistant | **Fourth measurement** | 10 |
@@ -75,6 +75,18 @@ whether indexed pages equal sitemap pages.
   in a weaker market; day ninety is early
 - A drop of 50% or more between two pulls on every page at once → stop publishing, follow
   `GOOGLE-RULES.md §4`, and the schedule is void until the incident is written up
+
+### Practical articles — on the list for the review
+
+Added 2026-10-29. fileoholic's numbers for the 14 days to 25 Oct: 15 articles brought 87 clicks,
+8 tools 51. But only the practical kind earned them: "HEIC files on Windows" 34 and "open a Numbers
+file on Windows" 33, while "what is a JFIF file" drew 5,871 impressions and 11 clicks, because
+Google answers a "what is" question itself. So for hourstally: only "how do I do this job"
+articles that lead into a tool, never explainers. Candidates, **not yet checked**: "how to calculate
+double time pay" (already in our Search Console queries, 2026-10-27 pull), "how to make a time card
+in Excel" (the .xlsx with formulas is the answer). Before the review the assistant checks each
+for volume (pytrends, then Keyword Planner) and whether Google's own answer box already settles
+it; only survivors reach the review. An article is an indexable page: it counts against the caps.
 
 ## Milestones, restated with the dates they could plausibly land
 
