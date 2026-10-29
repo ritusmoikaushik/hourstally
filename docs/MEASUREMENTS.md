@@ -43,6 +43,22 @@ Written down because it exists, not because it decides anything. The first real 
 | 2026-10-29 (interim, founder asked "are we missing something?") | 30 Sep–27 Oct | 0 | 397 | 46.6 | not pulled | none new; no October core update found | 93 queries. By week since launch: 25, 7, 11, 40, 63, 141, 110 (week 7 partial). Only 12 impressions on page one, 21 in the top 20. At these positions a standard click-through curve predicts **under one click** for the month, so zero is expected, not a fault. **Nothing technical wrong:** all pages 200 to a Googlebot user agent, robots allows all, canonicals self, no X-Robots-Tag. **fileoholic at the same age** (domain also registered on launch day, 2026-05-08): 6 clicks and ~790 impressions in weeks 1–7 at positions 50–70, then impressions x10 and clicks from weeks 10–13. hourstally is on that path at about half the impressions; weeks 10–13 here are 13 Nov–10 Dec. Since Google dropped `&num=100` (Sep 2025), impressions at position 50+ are mostly rank trackers, not people. The lever beside time is links: only the two dev.to links count so far. Title of `/with-overtime-and-pay` changed to lead with double time (16 of its 17 queries), committed, not pushed |
 | 2026-10-12 | 13 Sep–10 Oct | 0 | 92 | 34.6 | ~0 (Cloudflare: every visit has no referrer; none from a search engine) | **Google September 2026 spam update**, 24 Sep, about two weeks to roll out. No core update since 21 May | Three days late; due 9 Oct. 32 queries. Impressions 33 → 92 and position 51 → 35 since the 28 Sep early read. By page: `/` 32 at 37, `/time-to-decimal` 24 at 42, `/with-lunch` 19 at 28 (twelve days in the index), `/how-it-counts` 9 at 7, `/about` 3, plus 5 on the old `http` copy. Best single positions: "time clock calculator with multiple punches" **1**, "copley time card calculator" 3, "calculator soup time card" 7, "clock in clock-out calculator" 12, "my time card calculator" 13. The wedge phrases are the ones finding us. Cloudflare (sampled 1 in 10): about 25 recorded visits in the window, US desktop, no referrer — crawlers and tools, not searchers. No drop on any page, so nothing from the spam update. AI Overview read 8 Oct, see below. Rows in `docs/gsc/2026-10-10_*.csv` |
 
+## Bing
+
+Bing Webmaster Tools has had the site since 2026-09-21; there is no API key here, so the founder
+exports Search Performance → Keywords at each measurement (`docs/gsc/bing-keywords-<date>.csv`).
+
+**First read, 2026-10-29** (`docs/gsc/bing-keywords-2026-10-29.csv`): 74 keywords, 134 impressions,
+**8 clicks** — while Google sent 0 in 28 days. Bing already ranks the wedge on page one:
+`time card calculator with multiple in and out` position 4.5, `time clock calculator multiple in out
+per day` 3.8 (1 click), `2 week time clock calculator multiple in out per day` 2.0 (1 click),
+`multiple punch time card calculator` 5.9, `hours tally` 1.0 (2 clicks). Bing ranks new small sites
+far sooner than Google (gstextract has run on it since August). Some queries are people pasting
+their own time-clock exports ("clocked in 0h : 28m", "total punches reviewed") into the search box.
+The same day every meta description was cut to 148-159 characters (seven were 185-240 and lost
+their point past the cut-off; `/about` was 84), leading with what each page does; Bing's own
+phrasing, "multiple in and out", leads the home page's.
+
 ## AI Overview watch
 
 Added 2026-10-08, after Google's AI Overview was seen *building* a working calculator on
