@@ -3,7 +3,7 @@
 Search Console and GA4, pulled every 28 days, written here the same day. Anything not written here
 does not exist. Rule 10 in `GOOGLE-RULES.md`.
 
-**Visits:** `python scripts/cf_export.py` — Cloudflare Web Analytics, token in `.cf-token` (gitignored, Account Analytics: Read only). The data is sampled; read small counts as rough.
+**Visits:** Google Analytics 4 from 2026-10-31 (property hourstally.com, stream `G-53J8ESQ8KZ`, tag in `site/assets/ga.js`; events `download_xlsx`, `print_card`, `print_chart`, `copy_result`, `clear_card`; consent bar for UK/EEA time zones). Added because Cloudflare samples 1 load in 10: the 31 Oct read showed about 35 recorded loads in 28 days, mostly the founder in India and headless Chrome, and missed nearly all of Bing's 8 clicks. Mediavine Journey counts sessions in GA4. Cloudflare stays on beside it: `python scripts/cf_export.py` — Cloudflare Web Analytics, token in `.cf-token` (gitignored, Account Analytics: Read only). The data is sampled; read small counts as rough.
 
 **The pull is one command:** `python scripts/gsc_export.py` — prints the 28-day totals, every page
 and the top queries, and writes the rows to `docs/gsc/` so each pull is on the record. It reads
