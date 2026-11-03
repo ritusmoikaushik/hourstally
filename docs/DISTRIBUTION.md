@@ -136,6 +136,26 @@ never more than one link per week anywhere. I can draft answers; posting is your
 curl -X POST https://api.indexnow.org/indexnow -H "Content-Type: application/json" -d "{\"host\":\"hourstally.com\",\"key\":\"10206f9edaa086337d546f9fa7031118\",\"keyLocation\":\"https://hourstally.com/10206f9edaa086337d546f9fa7031118.txt\",\"urlList\":[\"https://hourstally.com/<page>\"]}"
 ```
 
+## Growth audit — 2026-11-03
+
+The founder asked whether we are doing everything we can. Three research passes: what both repos
+already do, how small tool sites grew in 2025–26, and what rivals do. Full fileoholic notes in its
+`CLAUDE.md` ("Growth audit 2026-11-03").
+
+- **In place:** Search Console, Bing Webmaster Tools, IndexNow on every publish, schema, speed,
+  tool links on every page, AI crawlers allowed (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot,
+  PerplexityBot all answered 200 on 2026-11-03; robots.txt allows all).
+- **Gap 1 — template page:** for the 12-10 review (`SCHEDULE.md`, below the practical articles).
+- **Gap 2 — open loop:** the founder's queue item 4 (AlternativeTo, SaaSHub, Product Hunt), open
+  since September. The evidence is weak (one-off visits, nofollow, per the table above), but two
+  indie tool sites credit their first 1,000 visitors to these listings. Do it or strike it — the
+  founder's call.
+- **Pattern from rivals:** time card sites get 51–70% of visits as *direct* (Similarweb
+  estimates) — people come back every week. The saved card in the browser serves that; keep it.
+- **Not doing, on evidence:** one page per state (countworkhours.com built 129 pages in five
+  months and ranks for 12 keywords), llms.txt, FAQ rich results (gone from Google 2026-05-07),
+  mass directory submissions, more dev.to.
+
 ## One decision for the founder — the UK term
 
 `timesheet calculator` is a 100K–1M head term in the cluster and it is the **UK and Australian**

@@ -90,6 +90,15 @@ in Excel" (the .xlsx with formulas is the answer). Before the review the assista
 for volume (pytrends, then Keyword Planner) and whether Google's own answer box already settles
 it; only survivors reach the review. An article is an indexable page: it counts against the caps.
 
+**Also for the review — a time card template page (found 2026-11-03, growth audit).** pytrends, US,
+12 months, against `time card calculator` 86.6 on average: `time card template` 13.7, `timesheet
+template` 9.9, `free timesheet` 8.5, `printable time card` 2.2 — roughly a sixth of the main term.
+Three rivals have template pages (calculatehours.com, countworkhours.com with 24, clocktally.com);
+we already make a real `.xlsx` with formulas and a print view, but no page offers a blank one. Before
+the review: Keyword Planner buckets, the page-one SERP opened result by result, and the swap test —
+a blank printable and a blank Excel card that still counts must be a different job from the
+calculator, or it does not ship.
+
 ## Milestones, restated with the dates they could plausibly land
 
 | | Milestone | Earliest realistic |
